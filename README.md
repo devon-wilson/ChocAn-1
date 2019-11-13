@@ -1,3 +1,3 @@
 # ChocAn I/O Authentication
 
-This needs to be updated
+Provides authentication for user input. Intended to be modular, simple and effective.
