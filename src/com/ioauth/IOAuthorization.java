@@ -1,15 +1,29 @@
 public class IOAuthorization {
 
     // check if input is size of expected length
-    public boolean checkInputSize(String input, int expected) {
+    public int validateUserID(String input) {
+
+    	// Check if input is correct size
+		if(!checkInputSize(input, 8))
+			return 1;
+
+		// Check if input is an int
+		if(!isInputNumber(input))
+			return 2;
+
+		// If it reached this far, success!
+		return 0;
+	}
+
+    private boolean checkInputSize(String input, int expected) {
         return input.length() == expected;
     }
 
-    public boolean isInputNumber(String input) {
+    private boolean isInputNumber(String input) {
         return this.isType(input, "int");
     }
 
-	public Boolean isType(String testStr, String type) {
+	private Boolean isType(String testStr, String type) {
 		try {
 			if (type.equalsIgnoreCase("int")) {
 				Integer.parseInt(testStr);
