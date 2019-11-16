@@ -1,29 +1,40 @@
 public class IOAuthorization {
 
+	// Verify that date entered is in correct format
+	// Expects MM/DD/YEAR
+	public int validateDate(String input) {
+	    //TODO: Actually implement this function
+		return 0;
+	}
+
     // check if input is size of expected length
-    public int validateUserID(String input) {
+    public int validateID(String input, int expectedLength) {
 
     	// Check if input is correct size
-		if(!checkInputSize(input, 8))
-			return 1;
+		if(!isCorrectSize(input, expectedLength))
+			return -1;
 
 		// Check if input is an int
-		if(!isInputNumber(input))
-			return 2;
+		if(!isType(input, "int"))
+			return -1;
+
+		// should be an int, okay to cast
+		int ID = Integer.parseInt(input);
+
+		if(isNegative(ID))
+			return -1;
 
 		// If it reached this far, success!
 		return 0;
 	}
 
-    private boolean checkInputSize(String input, int expected) {
-        return input.length() == expected;
+    private boolean isCorrectSize(String input, int expectedLength) {
+        return input.length() == expectedLength;
     }
 
-    private boolean isInputNumber(String input) {
-        return this.isType(input, "int");
-    }
+    private boolean isNegative(int input) { return input < 0; }
 
-	private Boolean isType(String testStr, String type) {
+	private boolean isType(String testStr, String type) {
 		try {
 			if (type.equalsIgnoreCase("int")) {
 				Integer.parseInt(testStr);
