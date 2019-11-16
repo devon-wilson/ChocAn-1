@@ -6,12 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-
-
 public class Main {
 
     public static void main(String[] args) {
-        /** Main function,
+        /* Main function,
             Will primarily be used for tests
          */
 
@@ -22,32 +20,58 @@ public class Main {
         //String userInput = getInput();
 
         String IDTestFile = "tests/idtests.csv";
-        runTest(IDTestFile, verbose);
+        String dateTestFile = "tests/datetests.csv";
+        String menuTestFile = "tests/menutests.csv";
+
+        runTest(dateTestFile, "date", verbose);
+        runTest(IDTestFile, "ID", verbose);
+        runTest(menuTestFile, "menu", verbose);
     }
 
-    private static boolean runTest(String fileName, boolean verbose) {
+    private static boolean runTest(String fileName, String testName, boolean verbose) {
+        IOAuthorization IO = new IOAuthorization();
+        int result = 0;
+        testName = testName.toUpperCase();
+
         try {
             CSVReader reader = new CSVReader(fileName);
             String[] line;
             boolean failed = false;
+
+            System.out.println("\nSTARTING " + testName + " TESTS");
             while ((line = reader.getLine()) != null) {
                 int expectedResult = Integer.parseInt(line[1]);
+
                 if (verbose)
-                    System.out.print("Tested " + line[0] + " expected " + expectedResult + "\t");
-                if (!testValidateID(line[0], expectedResult)) {
+                    System.out.print("Testing:\t" + line[0] + "\tExpecting:\t" + expectedResult + "\tResult:\t");
+
+                // Add more cases to add include more tests
+                if (testName.equals("ID"))
+                    result = IO.validateID(line[0], 8);
+                else if (testName.equals("DATE"))
+                    result = IO.validateDate(line[0]);
+                else if (testName.equals("MENU"))
+                    result = IO.validateMenu(line[0], 1);
+
+                if (result == expectedResult) {
                     if (verbose)
-                        System.out.print("FAILED\n");
-                    failed = true;
+                        System.out.println(result + "\tPASSED");
                 }
                 else {
+                    failed = true;
                     if (verbose)
-                        System.out.print("PASSED\n");
+                        System.out.println(result + "\tFAILED");
                 }
+
             }
+            // end of while loop
+
             if (!failed) {
-                System.out.println("ALL " + fileName + " TESTS PASSED");
+                System.out.println("ALL " + testName + " TESTS PASSED");
                 return true;
             }
+            else
+                System.out.println("SOME " + testName + " TESTS FAILED");
         }
         catch (FileNotFoundException a) {
             System.out.println("Could not open " + fileName + ".");
@@ -61,28 +85,17 @@ public class Main {
         System.out.print("Enter an 8 digit user number or q to quit.\n>");
         return keyboard.nextLine();
     }
-
-    private static boolean testValidateID(String input, int expectedResult) {
-        // Test User ID input. All user IDs should be 8 digits long
-        IOAuthorization IO = new IOAuthorization();
-        int result = IO.validateID(input, 8);
-        if (result == expectedResult)
-            return true;
-        else
-            return false;
-    }
 }
 class CSVReader {
-    /**
+    /*
      *  Class to read CSV data from .csv files
      */
 
     private String fileName;
     private BufferedReader reader;
-    private String currentLine;
 
-    public CSVReader(String newFile) throws FileNotFoundException {
-        /**
+    CSVReader(String newFile) throws FileNotFoundException {
+        /*
          *  Overloaded constructor
          *
          *  Input:
@@ -96,7 +109,7 @@ class CSVReader {
     }
 
     private BufferedReader setFile(String newFile) throws FileNotFoundException {
-        /**
+        /*
          *  Returns BufferedReader object based on file
          *
          *  Input:
@@ -110,8 +123,8 @@ class CSVReader {
         return reader = new BufferedReader(new FileReader(newFile));
     }
 
-    public String[] getLine() {
-        /**
+    String[] getLine() {
+        /*
          *  Returns current line in CSV file
          *
          *  Output:
@@ -122,11 +135,11 @@ class CSVReader {
         //  In case of readLine() exception
         try {
             //  Read next line, check if eof
+            String currentLine;
             if ((currentLine = reader.readLine()) == null)
                 return null;
 
-            String[] lineArr = currentLine.split(",");
-            return lineArr;
+            return currentLine.split(",");
         }
         //  Catch IOException
         catch (IOException a) {
