@@ -42,7 +42,7 @@ public class IOAuthorization {
 				Double.parseDouble(testStr);
 			}
 			return true;
-		} catch (Exception e) {
+		} catch (NumberFormatException a) {
 			return false;
 		}
 	}

@@ -6,37 +6,53 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+
+
 public class Main {
 
     public static void main(String[] args) {
-        /* Main function,
-           Will primarily be used for tests
+        /** Main function,
+            Will primarily be used for tests
          */
+
+        // Set to false to disable reading EVERY test result
+        boolean verbose = true;
 
         // USER INPUT TEST
         //String userInput = getInput();
 
-        String fileName = "tests/ioauthtests.csv";
+        String IDTestFile = "tests/idtests.csv";
+        runTest(IDTestFile, verbose);
+    }
+
+    private static boolean runTest(String fileName, boolean verbose) {
         try {
             CSVReader reader = new CSVReader(fileName);
             String[] line;
             boolean failed = false;
             while ((line = reader.getLine()) != null) {
                 int expectedResult = Integer.parseInt(line[1]);
+                if (verbose)
+                    System.out.print("Tested " + line[0] + " expected " + expectedResult + "\t");
                 if (!testValidateID(line[0], expectedResult)) {
-                    System.out.print("FAILED\n");
+                    if (verbose)
+                        System.out.print("FAILED\n");
                     failed = true;
                 }
-                else
-                    System.out.print("PASSED\n");
+                else {
+                    if (verbose)
+                        System.out.print("PASSED\n");
+                }
             }
-            if (!failed)
-                System.out.println("ALL TESTS PASSED");
+            if (!failed) {
+                System.out.println("ALL " + fileName + " TESTS PASSED");
+                return true;
+            }
         }
         catch (FileNotFoundException a) {
             System.out.println("Could not open " + fileName + ".");
         }
-
+        return false;
     }
 
     private static String getInput() {
@@ -50,7 +66,6 @@ public class Main {
         // Test User ID input. All user IDs should be 8 digits long
         IOAuthorization IO = new IOAuthorization();
         int result = IO.validateID(input, 8);
-        System.out.print("Tested " + input + " expected " + expectedResult + "\t");
         if (result == expectedResult)
             return true;
         else
