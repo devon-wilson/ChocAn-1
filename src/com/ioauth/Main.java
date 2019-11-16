@@ -39,19 +39,25 @@ public class Main {
             boolean failed = false;
 
             System.out.println("\nSTARTING " + testName + " TESTS");
+            int testNum = 1;
             while ((line = reader.getLine()) != null) {
                 int expectedResult = Integer.parseInt(line[1]);
 
                 if (verbose)
-                    System.out.print("Testing:\t" + line[0] + "\tExpecting:\t" + expectedResult + "\tResult:\t");
+                    System.out.print("Test " + testNum + ": \t" + line[0] + "\tExpecting:\t" + expectedResult + "\tResult:\t");
 
                 // Add more cases to add include more tests
-                if (testName.equals("ID"))
-                    result = IO.validateID(line[0], 8);
-                else if (testName.equals("DATE"))
-                    result = IO.validateDate(line[0]);
-                else if (testName.equals("MENU"))
-                    result = IO.validateMenu(line[0], 1);
+                switch (testName) {
+                    case "ID":
+                        result = IO.validateID(line[0], 8);
+                        break;
+                    case "DATE":
+                        result = IO.validateDate(line[0]);
+                        break;
+                    case "MENU":
+                        result = IO.validateMenu(line[0], 1);
+                        break;
+                }
 
                 if (result == expectedResult) {
                     if (verbose)
@@ -62,7 +68,7 @@ public class Main {
                     if (verbose)
                         System.out.println(result + "\tFAILED");
                 }
-
+                testNum++;
             }
             // end of while loop
 

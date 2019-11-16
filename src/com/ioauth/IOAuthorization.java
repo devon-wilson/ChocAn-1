@@ -2,10 +2,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class IOAuthorization {
+class IOAuthorization {
 
     // Validates menu menu. Menus shouldn't be longer than 2 digits
-    public int validateMenu(String input, int maxMenuSize) {
+	int validateMenu(String input, int maxMenuSize) {
 
         if (!isCorrectSize(input, maxMenuSize))
         	return -1;
@@ -25,7 +25,7 @@ public class IOAuthorization {
 
 	// Verify that date entered is in correct format
 	// Expects MM/DD/YEAR
-	public int validateDate(String input) {
+	int validateDate(String input) {
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		format.setLenient(false);
 		try {
@@ -38,7 +38,7 @@ public class IOAuthorization {
 	}
 
     // check if input is size of expected length
-    public int validateID(String input, int expectedLength) {
+	int validateID(String input, int expectedLength) {
 
     	// Check if input is correct size
 		if(!isCorrectSize(input, expectedLength))
@@ -58,9 +58,7 @@ public class IOAuthorization {
 		return 0;
 	}
 
-    private boolean isCorrectSize(String input, int expectedLength) {
-        return input.length() == expectedLength;
-    }
+    private boolean isCorrectSize(String input, int expectedLength) { return input.length() == expectedLength; }
 
     private boolean isNegative(int input) { return input < 0; }
 
