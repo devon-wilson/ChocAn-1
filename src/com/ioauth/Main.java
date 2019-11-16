@@ -21,16 +21,20 @@ public class Main {
 
         String IDTestFile = "tests/idtests.csv";
         String dateTestFile = "tests/datetests.csv";
+        String timeTestFile = "tests/timetests.csv";
         String menuTestFile = "tests/menutests.csv";
+        String commentTestFile = "tests/commenttests.csv";
 
-        runTest(dateTestFile, "date", verbose);
         runTest(IDTestFile, "ID", verbose);
+        runTest(dateTestFile, "date", verbose);
+        runTest(timeTestFile, "time", verbose);
         runTest(menuTestFile, "menu", verbose);
+        runTest(commentTestFile, "comment", verbose);
     }
 
     private static boolean runTest(String fileName, String testName, boolean verbose) {
         IOAuthorization IO = new IOAuthorization();
-        int result = 0;
+        int result;
         testName = testName.toUpperCase();
 
         try {
@@ -54,9 +58,17 @@ public class Main {
                     case "DATE":
                         result = IO.validateDate(line[0]);
                         break;
+                    case "TIME":
+                        result = IO.validateTime(line[0]);
+                        break;
                     case "MENU":
                         result = IO.validateMenu(line[0], 1);
                         break;
+                    case "COMMENT":
+                        result = IO.validateTextLength(line[0], 100);
+                        break;
+                    default:
+                        return false;
                 }
 
                 if (result == expectedResult) {

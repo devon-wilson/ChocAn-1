@@ -37,6 +37,19 @@ class IOAuthorization {
 		}
 	}
 
+	// Verify that time entered is in correct format
+	int validateTime(String input) {
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+		format.setLenient(false);
+		try {
+			Date inputTime = format.parse(input);
+			return 0;
+		}
+		catch (ParseException a) {
+			return -1;
+		}
+	}
+
     // check if input is size of expected length
 	int validateID(String input, int expectedLength) {
 
@@ -56,6 +69,12 @@ class IOAuthorization {
 
 		// If it reached this far, success!
 		return 0;
+	}
+
+	int validateTextLength(String input, int maxLength) {
+	    if (input.length() > maxLength)
+	    	return -1;
+	    return 0;
 	}
 
     private boolean isCorrectSize(String input, int expectedLength) { return input.length() == expectedLength; }
