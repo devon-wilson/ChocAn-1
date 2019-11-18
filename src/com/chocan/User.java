@@ -27,7 +27,7 @@ public abstract class User{
             name = new String(components[0]);
         }
 
-        if(components[1].length() > 9){
+        if(components[1].length() != 9){
             return 0;
         }
         else{
@@ -75,6 +75,99 @@ public abstract class User{
             name = toChange;
         }
         return 1;
+    }
+    public int changeID(String toChange){
+        if(toChange.length() != 9){
+            return 0;
+        }
+        if(number == null){
+            number = new String(toChange);
+        }
+        else{
+            number = toChange;
+        }
+        return 1;
+    }
+    public int changeAddress(String toChange){
+        if(toChange.length() > 25){
+            return 0;
+        }
+        if(address == null){
+            address = new String(toChange);
+        }
+        else{
+            address = toChange;
+        }
+        return 1;
+    }
+    public int changeCity(String toChange){
+        if(toChange.length() > 14){
+            return 0;
+        }
+        if(city == null){
+            city = new String(toChange);
+        }
+        else{
+            city = toChange;
+        }
+        return 1;
+    }
+    public int changeState(String toChange) {
+        if (toChange.length() > 2) {
+            return 0;
+        }
+        if (state == null) {
+            state = new String(toChange);
+        } else {
+            state = toChange;
+        }
+        return 1;
+    }
+    public int changeZip(String toChange){
+        if(toChange.length() > 5){
+            return 0;
+        }
+        if(zip == null){
+            zip = new String(toChange);
+        }
+        else{
+            zip = toChange;
+        }
+        return 1;
+    }
+
+    public String [] getAll(){
+        String [] data = new String [6];
+        data[0] = new String(name);
+        data[1] = new String(number);
+        data[2] = new String(address);
+        data[3] = new String(city);
+        data[4] = new String(state);
+        data[5] = new String(zip);
+        return data;
+    }
+    public String get(int toGet){
+        if(toGet == 0){
+            return name;
+        }
+        else if(toGet == 1){
+            return number;
+        }
+        else if(toGet == 2){
+            return address;
+        }
+        else if(toGet == 3){
+            return city;
+        }
+        else if(toGet == 4){
+            return state;
+        }
+        else if(toGet == 5){
+            return zip;
+        }
+        else{
+            return null;
+        }
     }
 
 
