@@ -170,6 +170,10 @@ public abstract class User{
         }
     }
 
+    public int test(){
+        return 1;
+    }
+
 
 
     protected String name;
