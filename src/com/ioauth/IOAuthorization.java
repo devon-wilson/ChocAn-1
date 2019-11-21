@@ -4,7 +4,7 @@ import java.util.Date;
 
 class IOAuthorization {
 
-    // Validates menu menu. Menus shouldn't be longer than 2 digits
+    // Validates menu choice. Menus shouldn't be longer than 2 digits
 	int validateMenu(String input, int maxMenuSize) {
 
         if (!isCorrectSize(input, maxMenuSize))
@@ -71,6 +71,8 @@ class IOAuthorization {
 		return 0;
 	}
 
+	// Validates most input. Most input expects a certain length of characters
+	// See requirements document for specific lengths of specific fields
 	int validateTextLength(String input, int maxLength) {
 	    if (input.length() > maxLength)
 	    	return -1;

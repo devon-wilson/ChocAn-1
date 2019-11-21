@@ -47,8 +47,9 @@ public class Main {
             while ((line = reader.getLine()) != null) {
                 int expectedResult = Integer.parseInt(line[1]);
 
+                System.out.print("Test" + testNum + ": \t" + line[0]);
                 if (verbose)
-                    System.out.print("Test " + testNum + ": \t" + line[0] + "\tExpecting:\t" + expectedResult + "\tResult:\t");
+                    System.out.print("\tExpecting:\t" + expectedResult + "\tResult:\t");
 
                 // Add more cases to add include more tests
                 switch (testName) {
@@ -72,13 +73,11 @@ public class Main {
                 }
 
                 if (result == expectedResult) {
-                    if (verbose)
-                        System.out.println(result + "\tPASSED");
+                    System.out.println(result + "\tPASSED");
                 }
                 else {
                     failed = true;
-                    if (verbose)
-                        System.out.println(result + "\tFAILED");
+                    System.out.println(result + "\tFAILED");
                 }
                 testNum++;
             }
@@ -99,8 +98,6 @@ public class Main {
 
     private static String getInput() {
         Scanner keyboard = new Scanner(System.in);
-
-        System.out.print("Enter an 8 digit user number or q to quit.\n>");
         return keyboard.nextLine();
     }
 }
