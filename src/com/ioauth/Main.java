@@ -63,7 +63,7 @@ public class Main {
                         result = IO.validateTime(line[0]);
                         break;
                     case "MENU":
-                        result = IO.validateMenu(line[0], 1);
+                        result = IO.validateMenu(line[0], 8);
                         break;
                     case "COMMENT":
                         result = IO.validateTextLength(line[0], 100);
