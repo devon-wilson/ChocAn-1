@@ -14,7 +14,8 @@ class readwrite
         input.add("");
         while((c = file.read()) != -1)
         {
-            if (c == ',') {
+            if (c == ',')
+            {
                 input.add("");
                 ++i;
             } else
@@ -30,6 +31,12 @@ class readwrite
         return data;
     }
 
+    static String[][] fileReadAll(String filename) throws IOException
+    {
+        String[][] ret = {{"Placeholder"}, {"Placeholder"}};
+        return ret;
+    }
+
     static int fileWrite(String filename, String[] data, boolean append) throws IOException
     {
         FileWriter file;
@@ -39,11 +46,12 @@ class readwrite
             return -1;
 
         file = new FileWriter(filename + ".txt", append);
-        for(i = 0; i < data.length; ++i)
+        for(i = 0; i < data.length - 1; ++i)
         {
             file.write(data[i]);
             file.write(',');
         }
+        file.write(data[i]);
         file.write('\n');
 
         file.close();
