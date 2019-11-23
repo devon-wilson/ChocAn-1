@@ -1,9 +1,10 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class readwrite
+class readwrite
 {
-    static String[] fileRead(String filename) throws IOException {
+    static String[] fileRead(String filename) throws IOException
+    {
         FileReader file = new FileReader(filename);
         ArrayList<String> input = new ArrayList<String>();
         String[] data;
