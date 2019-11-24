@@ -10,18 +10,78 @@
  */
 public class Overlord {
     public static void main(String[] args) {
-        System.out.println("Overlord tests");
-        Overlord overlord = new Overlord();
-        int rc = overlord.loginUser("0", "0");
+        Overlord_Tests.main(null);
     }
 
-    // should return User object
-    public int loginUser(String providerID, String otherID) {
-        return 0;
+    int currentProvider;
+    int currentMember;
+
+    /**
+     * Default Constructor
+     */
+    public Overlord() {
+       // first argument is filepath to
+       //super(arguments);
+        super();
+       // second argument is..
+    }
+
+    /**
+     * Login
+     *
+     * @param providerID Provider identification number
+     * @param otherID Some mystery string
+     * @return returns int; 1 for success; -1 could not log in
+     */
+    public int login(String providerID, String otherID) {
+        // matches string to provider directory
+        // if no match return -1
+        if (true)
+        return -1;
+
+        // sets currentProvider
+        currentProvider = 1;
+        return 1;
+    }
+
+    /**
+     * Logout
+     *
+     * @return 1 and cannot fail.
+     */
+    public int logout() {
+        //currentProvider = 0;
+        //currentMember = 0;
+        return -1;
     }
 
     // Member functions
-    public int memberCheckIn() { return 0;}
+
+    /**
+     * Member Check In
+     * @param memberID
+     * @return
+     */
+    public int memberCheckIn(String memberID) {
+        // match string to member directory
+        if (true)
+        return -1;
+
+        return 1;
+    }
+
+
+    /**
+     * Member Check Out
+     * @return
+     */
+    public int memberCheckOut() {
+        // match string to member directory
+        if (true)
+            return -1;
+
+        return 1;
+    }
 
     public int generateServiceRecord() {
         return 0;
@@ -31,7 +91,6 @@ public class Overlord {
 
     public int generateBill() {return 0;}
 
-    public int exit() {return 0;}
 
     // Manage members
     public int addMember(int MEMBER_PLACEHOLDER) { return 0; }
