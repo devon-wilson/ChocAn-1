@@ -19,6 +19,9 @@ public abstract class User{
         if(components.length != 6){
             return 0;
         }
+        if(components.length != 6){
+            return 0;
+        }
 
         if(components[0].length() > 25){
             return 0;
@@ -146,6 +149,7 @@ public abstract class User{
         data[5] = new String(zip);
         return data;
     }
+
     public String get(int toGet){
         if(toGet == 0){
             return name;

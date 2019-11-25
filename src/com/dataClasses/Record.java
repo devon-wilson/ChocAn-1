@@ -51,7 +51,77 @@ public class Record {
         }
         return 1;
     }
-
+    public int changeCurrDT(String toChange){
+        if(toChange == null){
+            return 0;
+        }
+        if(currDateTime == null){
+            currDateTime = new String(toChange);
+        }
+        else{
+            currDateTime = toChange;
+        }
+        return 1;
+    }
+    public int changeDateP(String toChange){
+        if(toChange == null){
+            return 0;
+        }
+        if(dateProvided == null){
+            dateProvided = new String(toChange);
+        }
+        else{
+            dateProvided = toChange;
+        }
+        return 1;
+    }
+    public int changePID(String toChange){
+        if(toChange == null){
+            return 0;
+        }
+        if(providerID == null){
+            providerID = new String(toChange);
+        }
+        else{
+            providerID = toChange;
+        }
+        return 1;
+    }
+    public int changeMID(String toChange){
+        if(toChange == null){
+            return 0;
+        }
+        if(memberID == null){
+            memberID = new String(toChange);
+        }
+        else{
+            memberID = toChange;
+        }
+        return 1;
+    }
+    public int changeCode(String toChange) {
+        if(toChange == null){
+            return 0;
+        }
+        if (serviceCode == null) {
+            serviceCode = new String(toChange);
+        } else {
+            serviceCode = toChange;
+        }
+        return 1;
+    }
+    public int changeComment(String toChange){
+        if(toChange == null){
+            return 0;
+        }
+        if(comment == null){
+            comment = new String(toChange);
+        }
+        else{
+            comment = toChange;
+        }
+        return 1;
+    }
     public int display(){
         System.out.println(currDateTime);
         System.out.println(dateProvided);
@@ -61,6 +131,7 @@ public class Record {
         System.out.println(comment);
         return 1;
     }
+
 
     public String [] getAll(){
         String [] components = new String [6];
