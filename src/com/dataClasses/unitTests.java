@@ -1,6 +1,8 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class unitTests {
@@ -13,16 +15,22 @@ public class unitTests {
     public int testDataClasses(){
         int success = 1;
         String [] components = buildUser();
+        if(components == null){
+            return 0;
+        }
         Member testMember = new Member();
         success *= testMember.build(components);
+        success *= testMember.display();
         success *= testUser(testMember, components);
 
         Provider testProvider = new Provider();
         success *= testProvider.build(components);
+        success *= testProvider.display();
         success *= testUser(testProvider, components);
 
         Manager testManager = new Manager();
         success *= testManager.build(components);
+        success *= testManager.display();
         success *= testUser(testManager, components);
 
         return success;
@@ -32,12 +40,14 @@ public class unitTests {
         success *= testAll(toTest, original);
         success *= getTest(toTest, original);
         success *= changeTest(toTest);
-        toTest.display();
         return success;
     }
 
     public String [] buildUser(){
-        file = new File("user.csv.txt");
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current relative path is: " + s);
+        file = new File("src/com/dataClasses/user.csv");
         if(file == null){
             return null;
         }
@@ -47,6 +57,7 @@ public class unitTests {
             e.printStackTrace();
             return null;
         }
+        sc.useDelimiter(",");
         String [] components = new String [6];
         for(int i = 0; i < 6; ++i){
             components[i] = sc.next();
@@ -80,7 +91,7 @@ public class unitTests {
             }
         }
         if(success == 1){
-            System.out.println("Get individual passed");
+            System.err.println("Get individual passed");
         }
         else{
             System.err.println("Get individual failed");

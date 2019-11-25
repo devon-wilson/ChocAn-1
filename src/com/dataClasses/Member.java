@@ -5,7 +5,7 @@ public class Member extends User{
     }
 
     public int display(){
-        System.out.println("Manager Information:");
+        System.out.println("Member Information:");
         System.out.println(super.name);
         System.out.println(super.number);
         System.out.println(super.address);
