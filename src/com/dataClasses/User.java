@@ -68,7 +68,7 @@ public abstract class User{
     }
 
     public int changeName(String toChange){
-        if(toChange.length() > 25){
+        if(toChange == null){
             return 0;
         }
         if(name == null){
@@ -80,7 +80,7 @@ public abstract class User{
         return 1;
     }
     public int changeID(String toChange){
-        if(toChange.length() != 9){
+        if(toChange == null){
             return 0;
         }
         if(number == null){
@@ -92,7 +92,7 @@ public abstract class User{
         return 1;
     }
     public int changeAddress(String toChange){
-        if(toChange.length() > 25){
+        if(toChange == null){
             return 0;
         }
         if(address == null){
@@ -104,7 +104,7 @@ public abstract class User{
         return 1;
     }
     public int changeCity(String toChange){
-        if(toChange.length() > 14){
+        if(toChange == null){
             return 0;
         }
         if(city == null){
@@ -116,7 +116,7 @@ public abstract class User{
         return 1;
     }
     public int changeState(String toChange) {
-        if (toChange.length() > 2) {
+        if(toChange == null){
             return 0;
         }
         if (state == null) {
@@ -127,7 +127,7 @@ public abstract class User{
         return 1;
     }
     public int changeZip(String toChange){
-        if(toChange.length() > 5){
+        if(toChange == null){
             return 0;
         }
         if(zip == null){
@@ -149,7 +149,6 @@ public abstract class User{
         data[5] = new String(zip);
         return data;
     }
-
     public String get(int toGet){
         if(toGet == 0){
             return name;
@@ -174,9 +173,6 @@ public abstract class User{
         }
     }
 
-    public int test(){
-        return 1;
-    }
 
 
 
