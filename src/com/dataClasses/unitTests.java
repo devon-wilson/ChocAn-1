@@ -19,27 +19,27 @@ public class unitTests {
             return 0;
         }
         Member testMember = new Member();
-        success *= testMember.build(components);
-        success *= testMember.display();
-        success *= testUser(testMember, components);
+        success += testMember.build(components);
+        success += testMember.display();
+        success += testUser(testMember, components);
 
         Provider testProvider = new Provider();
-        success *= testProvider.build(components);
-        success *= testProvider.display();
-        success *= testUser(testProvider, components);
+        success += testProvider.build(components);
+        success += testProvider.display();
+        success += testUser(testProvider, components);
 
         Manager testManager = new Manager();
-        success *= testManager.build(components);
-        success *= testManager.display();
-        success *= testUser(testManager, components);
+        success += testManager.build(components);
+        success += testManager.display();
+        success += testUser(testManager, components);
 
         return success;
     }
     public int testUser(User toTest, String [] original){
         int success = 1;
-        success *= testAll(toTest, original);
-        success *= getTest(toTest, original);
-        success *= changeTest(toTest);
+        success += testAll(toTest, original);
+        success += getTest(toTest, original);
+        success += changeTest(toTest);
         return success;
     }
 
