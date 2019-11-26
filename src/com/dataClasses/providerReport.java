@@ -72,6 +72,18 @@ public class providerReport extends Report{
         return 1;
     }
 
+    //Gets the data in the report.
+    public int getNumber(){
+        return number;
+    }
+    public float getFee(){
+        return totalFee;
+    }
+    public Vector<String[]> getServices(){
+        return services;
+    }
+
+
     private Vector<String []> services;
     private int number;
     private float totalFee;
