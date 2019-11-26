@@ -37,12 +37,12 @@ public abstract class User{
             }
         }
 
-        name = components[0];
-        number = components[1];
-        address = components[2];
-        city = components[3];
-        state = components[4];
-        zip = components[5];
+        name = new String(components[0]);
+        number = new String(components[1]);
+        address = new String(components[2]);
+        city = new String(components[3]);
+        state = new String(components[4]);
+        zip = new String(components[5]);
 
         return 0;
     }
