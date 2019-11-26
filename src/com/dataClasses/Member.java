@@ -12,7 +12,7 @@ public class Member extends User{
         System.out.println(super.city);
         System.out.println(super.state);
         System.out.println(super.zip);
-        return 1;
+        return 0;
     }
 
 }

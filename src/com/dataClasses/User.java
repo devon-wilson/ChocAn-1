@@ -10,137 +10,115 @@ public abstract class User{
         zip = null;
     }
 
+    //displays are found in the derived classes
     public abstract int  display();
 
+
+    //THIS FUNCTION MUST BE CALLED FIRST
     public int build(String [] components){
         //pass in an array of six strings to build
-        //the user information. Make sure they are
-        //shorter than the length specified on d2l
-        if(components.length != 6){
-            return 0;
+        //the user information. The order of the strings
+        //should be the same as the private data members.
+        //0 - name
+        //1 - number
+        //2 - address
+        //3 - city
+        //4 - state
+        //5 - zip
+        if(components == null){
+            return -1;
         }
-        if(components.length != 6){
-            return 0;
+        if(components.length != 6) {
+            return -1;
         }
-
-        if(components[0].length() > 25){
-            return 0;
-        }
-        else{
-            name = new String(components[0]);
-        }
-
-        if(components[1].length() != 9){
-            return 0;
-        }
-        else{
-            number = new String(components[1]);
+        for(int i = 0; i < 6; ++i){
+            if(components[i] == null){
+                return -1;
+            }
         }
 
-        if(components[2].length() > 25){
-            return 0;
-        }
-        else{
-            address = new String(components[2]);
-        }
+        name = components[0];
+        number = components[1];
+        address = components[2];
+        city = components[3];
+        state = components[4];
+        zip = components[5];
 
-        if(components[3].length() > 14){
-            return 0;
-        }
-        else{
-            city = new String(components[3]);
-        }
-
-        if(components[4].length() > 2){
-            return 0;
-        }
-        else{
-            state = new String(components[4]);
-        }
-
-        if(components[5].length() > 5){
-            return 0;
-        }
-        else{
-            zip = new String(components[5]);
-        }
-        return 1;
+        return 0;
     }
 
+    //These functions change a given field.
+    //Make sure the class is built.
     public int changeName(String toChange){
         if(toChange == null){
-            return 0;
+            return -1;
         }
         if(name == null){
-            name = new String(toChange);
+            return -1;
         }
-        else{
-            name = toChange;
-        }
-        return 1;
+        name = toChange;
+        return 0;
     }
     public int changeID(String toChange){
         if(toChange == null){
-            return 0;
+            return -1;
         }
         if(number == null){
-            number = new String(toChange);
+            return -1;
         }
-        else{
-            number = toChange;
-        }
-        return 1;
+        number = toChange;
+        return 0;
     }
     public int changeAddress(String toChange){
         if(toChange == null){
-            return 0;
+            return -1;
         }
         if(address == null){
-            address = new String(toChange);
+            return -1;
         }
-        else{
-            address = toChange;
-        }
-        return 1;
+        address = toChange;
+        return 0;
     }
     public int changeCity(String toChange){
         if(toChange == null){
-            return 0;
+            return -1;
         }
         if(city == null){
-            city = new String(toChange);
+            return -1;
         }
-        else{
-            city = toChange;
-        }
-        return 1;
+        city = toChange;
+        return 0;
     }
     public int changeState(String toChange) {
         if(toChange == null){
-            return 0;
+            return -1;
         }
         if (state == null) {
-            state = new String(toChange);
-        } else {
-            state = toChange;
+            return -1;
         }
-        return 1;
+        state = toChange;
+        return 0;
     }
     public int changeZip(String toChange){
         if(toChange == null){
-            return 0;
+            return -1;
         }
         if(zip == null){
-            zip = new String(toChange);
+            return -1;
         }
-        else{
-            zip = toChange;
-        }
-        return 1;
+        zip = toChange;
+        return 0;
     }
 
+
     public String [] getAll(){
+        //Returns an array of all the strings
+        //they are in the order of the private data
+        //members
         String [] data = new String [6];
+        if(name == null){
+            return null;
+        }
         data[0] = new String(name);
         data[1] = new String(number);
         data[2] = new String(address);
@@ -150,23 +128,38 @@ public abstract class User{
         return data;
     }
     public String get(int toGet){
-        if(toGet == 0){
-            return name;
+        //Return one field.
+        //The number passed in is
+        //0 - name
+        //1 - number
+        //2 - address
+        //3 - city
+        //4 - state
+        //5 - zip
+        String toReturn;
+        if(toGet == 0 && name != null){
+            toReturn = new String(name);
+            return toReturn;
         }
-        else if(toGet == 1){
-            return number;
+        if(toGet == 1 && number != null){
+            toReturn = new String(number);
+            return toReturn;
         }
-        else if(toGet == 2){
-            return address;
+        if(toGet == 2 && address != null){
+            toReturn = new String(address);
+            return toReturn;
         }
-        else if(toGet == 3){
-            return city;
+        if(toGet == 3 && city != null){
+            toReturn = new String(city);
+            return toReturn;
         }
-        else if(toGet == 4){
-            return state;
+        if(toGet == 4 && state != null){
+            toReturn = new String(state);
+            return toReturn;
         }
-        else if(toGet == 5){
-            return zip;
+        if(toGet == 5 && zip != null){
+            toReturn = new String(zip);
+            return toReturn;
         }
         else{
             return null;
