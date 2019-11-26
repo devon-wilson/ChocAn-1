@@ -65,11 +65,11 @@ public class providerReport extends Report{
         }
         System.out.println("The total fee for this period is " + totalFee + ".");
         System.out.println("The number of services provided was " + number + ".");
-        return 1;
+        return 0;
     }
     public int emptyServices(){
         services = null;
-        return 1;
+        return 0;
     }
 
     //Gets the data in the report.

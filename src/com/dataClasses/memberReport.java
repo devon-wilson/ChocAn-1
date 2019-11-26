@@ -7,11 +7,25 @@ public class memberReport extends Report{
     }
 
     public int addService(String [] service){
+        //Adds a service in this order
+        /*
+        1 - Date of Service
+        2 - Provider Name
+        3 - Service Name
+         */
+        if(service == null){
+            return -1;
+        }
         if(service.length != 3){
-            return 0;
+            return -1;
+        }
+        for(int i =0; i < 3; ++i){
+            if(service[i] == null){
+                return -1;
+            }
         }
         services.add(service);
-        return 1;
+        return 0;
     }
 
     public int display(){
@@ -30,11 +44,16 @@ public class memberReport extends Report{
                 System.out.println(service[j]);
             }
         }
-        return 1;
+        return 0;
     }
     public int emptyServices(){
-        services.clear();
-        return 1;
+        services = null;
+        return 0;
+    }
+
+    //gets the data in the report.
+    public Vector<String[]> getServices(){
+        return services;
     }
 
     private Vector<String []> services;
