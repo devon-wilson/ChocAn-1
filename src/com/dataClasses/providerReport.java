@@ -41,6 +41,9 @@ public class providerReport extends Report{
             System.err.println("Wrong format of fee");
             return -1;
         }
+        if(services == null){
+            services = new Vector<String []>();
+        }
         number += 1;
         services.add(service);
         return 0;

@@ -24,6 +24,9 @@ public class memberReport extends Report{
                 return -1;
             }
         }
+        if(services == null){
+            services = new Vector<String []>();
+        }
         services.add(service);
         return 0;
     }
