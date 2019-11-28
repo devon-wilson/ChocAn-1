@@ -6,6 +6,10 @@ public class Provider extends User{
         super();
     }
 
+    public Provider(String[] userData) {
+        super(userData);
+    }
+
     public int display(){
         System.out.println("Provider Information:");
         System.out.println(super.name);

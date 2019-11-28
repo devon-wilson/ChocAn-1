@@ -6,6 +6,10 @@ public class Member extends User{
         super();
     }
 
+    public Member(String[] userData){
+        super(userData);
+    }
+
     public int display(){
         System.out.println("Member Information:");
         System.out.println(super.name);

@@ -18,9 +18,17 @@ public abstract class User{
         zip = null;
     }
 
+    protected User(String[] userData) {
+        this.name = userData[0];
+        this.ID = userData[1];;
+        this.address = userData[2];;
+        this.city = userData[3];;
+        this.state = userData[4];;
+        this.zip = userData[5];;
+    }
+
     //displays are found in the derived classes
     public abstract int  display();
-
 
     //THIS FUNCTION MUST BE CALLED FIRST
     public int build(String [] components){

@@ -6,6 +6,10 @@ public class Manager extends User{
         super();
     }
 
+    public Manager(String[] userData){
+        super(userData);
+    }
+
     public int display(){
         System.out.println("Manager Information:");
         System.out.println(super.name);
