@@ -1,16 +1,26 @@
-import java.util.Map;
+package com.DataBaseManager;
+
 import java.util.TreeMap;
 
-public class DatabaseManager<E extends Object> {
+public class DatabaseManager<E> {
     /* Populate tree with array of objects
     Takes a tree root and an array of objects to populate the tree.
     Returns the number of objects added to the tree.
      */
-    public int buildTree(TreeMap<Integer, E> root, E[] obj) {
-        int i;
-        for(i = 0; i < obj.length; i++)
-            root.put(obj[i].id, obj[i]);
-        return i;
+
+    TreeMap<String, Object> providers;
+    TreeMap<String, Object> members;
+    TreeMap<String, Object> services;
+
+    public DatabaseManager() {
+        //providers = buildTree()
+        //members = buildTree()
+        //services = buildTree()
+    }
+
+    private TreeMap buildTree(String filename) {
+        //TODO: make this function do things
+        return null;
     }
 
     /* Return the queried item
@@ -18,8 +28,8 @@ public class DatabaseManager<E extends Object> {
     Returns a reference to the object if found, or null if the object
     is not in the tree.
      */
-    public E findData(TreeMap<Integer, E> root, int id) {
-        return root.get(id);
+    public E findData(TreeMap<String, E> root, String key) {
+        return root.get(key);
     }
 
     /* Remove queried item from tree
@@ -27,8 +37,8 @@ public class DatabaseManager<E extends Object> {
     Returns the object associated with the id, or null if the object
     was not in the tree.
      */
-    public E removeTreeData(TreeMap<Integer, E> root, int id){
-        return root.remove(id);
+    public E removeTreeData(TreeMap<String, E> root, String key){
+        return root.remove(key);
     }
 
     /* Add item to tree
@@ -36,8 +46,8 @@ public class DatabaseManager<E extends Object> {
     Returns a reference to the previous object associated with the id,
     or null if there was no object associated with the id.
      */
-    public E addTreeData(TreeMap<Integer, E> root, E obj){
-        return root.put(obj.id, obj);
+    public E addTreeData(TreeMap<String, E> root, String key, E obj){
+        return root.put(key, obj);
     }
 
     /* Update an item
@@ -45,7 +55,7 @@ public class DatabaseManager<E extends Object> {
     Returns a reference to the previous object associated with the id,
     or null if there was no object associated with the id.
      */
-    public E updateTreeData(TreeMap<Integer, E> root, E obj){
-        return root.replace(obj.id, obj);
+    public E updateTreeData(TreeMap<String, E> root, String key, E obj){
+        return root.replace(key, obj);
     }
 }

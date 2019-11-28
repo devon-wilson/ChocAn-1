@@ -1,13 +1,15 @@
+package com.ReadWrite;
+
 import java.io.IOException;
 
-public class main
+public class Main
 {
-    public main(String[] args) throws IOException
+    public Main(String[] args) throws IOException
     {
         String path = "C:\\Users\\Rubles\\IdeaProjects\\ChocAn\\";
         String[] data = {"3", "best", "'"};
         int i;
 
-        readwrite.fileWrite(path + "test", data, true);
+        ReadWrite.fileWrite(path + "test", data, true);
     }
 }
