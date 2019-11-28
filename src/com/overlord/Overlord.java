@@ -84,10 +84,23 @@ public class Overlord {
     }
 
     // Manage members
+
+    /**
+     * Add Member
+     *
+     * @param memberData Array of strings containing data in the correct order.
+     * @return 1 for success, -1 for failure
+     */
     public int addMember(String[] memberData) {
         return 0;
     }
 
+    /**
+     * RemoveMember
+     *
+     * @param memberID member ID to remove
+     * @return
+     */
     public int removeMember(String memberID) {
         return 0;
     }
