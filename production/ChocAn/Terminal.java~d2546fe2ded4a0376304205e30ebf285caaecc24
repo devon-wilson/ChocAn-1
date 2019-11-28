@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class Terminal extends IOAuthorization {
+
+    void start() {
+        System.out.println("Welcome to Chocan!\n");
+
+        int userType = -1;
+        while (userType == -1) {
+            System.out.print("Please enter your user ID: ");
+            String userID = getInput();
+            System.out.print("Password: ");
+            String password = getInput();
+
+            userType = login(userID, password);
+            if (userType == -1) { // something went wrong
+                System.out.println("Could not validate login. Please try again.");
+            }
+            else
+                System.out.println("Login Successful!");
+        }
+
+        if (userType == 1) // provider menu
+            providerMenu();
+        if (userType == 2) // manager menu
+            managerMenu();
+    }
+
+    private static String getInput() {
+        Scanner keyboard = new Scanner(System.in);
+        return keyboard.nextLine();
+    }
+
+    int login(String userID, String password) {
+        if (validateID(userID, 8) == -1)
+            return -1;
+        else
+            // User ID is VALID, so pass useID and password to be authenticated
+            // int code = Overlord.loginUser(userID, password);
+            // depending on what Overlord returns, the user is either a manager or provider
+            return 0;
+    }
+
+    private void providerMenu() {
+        // this is where provider menu options will go
+        System.out.print("1) option 1\n" +
+                         "2) option 2\n" +
+                         "3) option 3\n");
+    }
+
+    private void managerMenu() {
+        // this is where manager menu options will go
+        System.out.print("1) option 1\n" +
+                         "2) option 2\n" +
+                         "3) option 3\n");
+    }
+}
