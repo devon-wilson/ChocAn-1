@@ -1,4 +1,4 @@
-package com.Chocan;
+package com;
 
 import com.DataBaseManager.DatabaseManager;
 
