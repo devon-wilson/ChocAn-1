@@ -16,7 +16,7 @@ public class UnitTests {
     }
 
     public String [] buildUser(){
-        file = new File("data/user.csv");
+        file = new File("data/users.csv");
         if(file == null){
             return null;
         }

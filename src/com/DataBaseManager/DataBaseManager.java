@@ -1,7 +1,11 @@
 package com.DataBaseManager;
 
 import com.DataClasses.Manager;
+import com.DataClasses.Member;
+import com.DataClasses.Provider;
+import com.DataClasses.Service;
 import com.ReadWrite.ReadWrite;
+
 import java.util.TreeMap;
 
 public class DataBaseManager<E> {
@@ -10,31 +14,53 @@ public class DataBaseManager<E> {
     Returns the number of objects added to the tree.
      */
 
-    TreeMap<String, E> providers;
-    TreeMap<String, Object> members;
+    private TreeMap<String, Object> providers;
+    private TreeMap<String, Object> members;
+    private TreeMap<String, Object> managers;
     TreeMap<String, Object> services;
 
     public DataBaseManager() {
-        providers = buildTree("data/user.csv");
-        //members = buildTree()
-        //services = buildTree()
+        this.providers = buildTree("data/providers.csv");
+        this.members = buildTree("data/members.csv");
+        this.managers = buildTree("data/managers.csv");
+        this.services = buildTree("data/services.csv");
     }
 
-    private TreeMap<String, E> buildTree(String filename) {
-        TreeMap<String, Manager> root = new TreeMap<>();
+    private TreeMap<String, Object> buildTree(String filename) {
+        TreeMap<String, Object> root = new TreeMap<>();
         ReadWrite rw = new ReadWrite();
+        if (rw == null)
+            return null;
+
         String[] fileData = rw.fileRead(filename);
+        String objectType = fileData[0];
 
-        for (int i = 0; i < fileData.length; i++) {
+        for (int i = 1; i < fileData.length; i++) {
             // Need to do some sort of RTTI depending on the filename
+            String[] lineData = fileData[i].split(",");
 
-            Manager newUser = new Manager();
-            String[] userData = fileData[i].split(",");
-            newUser.build(userData);
-            root.put(userData[1], newUser);
+            Object newObject = null;
+
+            switch (objectType) {
+                case "Service":
+                    newObject = new Service(lineData);
+                    break;
+                case "Provider":
+                    newObject = new Provider(lineData);
+                    break;
+                case "Manager":
+                    newObject = new Manager(lineData);
+                    break;
+                case "Member":
+                    newObject = new Member(lineData);
+                    break;
+            }
+
+            if (newObject != null)
+                root.put(lineData[1], newObject);
         }
 
-        return (TreeMap<String, E>) root;
+        return root;
     }
 
     /* Return the queried item
