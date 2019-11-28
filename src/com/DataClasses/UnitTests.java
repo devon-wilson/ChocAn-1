@@ -2,14 +2,15 @@ package com.DataClasses;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.Vector;
 
-public class unitTests {
+public class UnitTests {
 
-    public unitTests(){
+    private File file;
+    private Scanner sc;
+
+    public UnitTests(){
         file = null;
         sc = null;
     }
@@ -105,7 +106,7 @@ public class unitTests {
     }
     public int testPReport(User toTest, String [] original){
         int success = 0;
-        providerReport test = new providerReport();
+        ProviderReport test = new ProviderReport();
         test.build(toTest);
 
         String [] service = buildPService();
@@ -120,7 +121,7 @@ public class unitTests {
     }
     public int testMReport(User toTest, String [] original){
         int success = 0;
-        memberReport test = new memberReport();
+        MemberReport test = new MemberReport();
         test.build(toTest);
 
         String [] service = buildMService();
@@ -250,7 +251,7 @@ public class unitTests {
         return success;
     }
 
-    public int testPRServices(providerReport toTest, String [] original){
+    public int testPRServices(ProviderReport toTest, String [] original){
         int success = 0;
         Vector<String[]> services = toTest.getServices();
         int number = toTest.getNumber();
@@ -274,7 +275,7 @@ public class unitTests {
         }
         return success;
     }
-    public int testMRServices(memberReport toTest, String [] original){
+    public int testMRServices(MemberReport toTest, String [] original){
         int success = 0;
         Vector<String[]> services = toTest.getServices();
         int size = services.size();
@@ -289,9 +290,4 @@ public class unitTests {
         }
         return success;
     }
-
-
-    private File file;
-    private Scanner sc;
-
 }

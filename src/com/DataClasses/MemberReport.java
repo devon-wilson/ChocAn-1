@@ -2,9 +2,9 @@ package com.DataClasses;
 
 import java.util.Vector;
 
-public class memberReport extends Report{
+public class MemberReport extends Report{
 
-    public memberReport(){
+    public MemberReport(){
         services = null;
     }
 
