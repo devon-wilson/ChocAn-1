@@ -46,7 +46,14 @@ public class DataBaseManager<E> {
                     newObject = new Service(lineData);
                     break;
                 case "Provider":
-                    newObject = new Provider(lineData);
+                    String[] userData = new String[6];
+                    System.arraycopy(lineData, 0, userData, 0, 6);
+
+                    int serviceCount = (lineData.length)-6;
+                    String[] serviceData = new String[serviceCount];
+                    System.arraycopy(lineData, 6, serviceData, 0, serviceCount);
+
+                    newObject = new Provider(userData, serviceData);
                     break;
                 case "Manager":
                     newObject = new Manager(lineData);

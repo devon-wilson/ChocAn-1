@@ -11,17 +11,16 @@ public class ReadWrite
         try {
             BufferedReader file = new BufferedReader(new FileReader(filename));
             ArrayList<String> input = new ArrayList<>();
-            String[] data;
             String line;
 
             while ((line = file.readLine()) != null) {
-
                 input.add(line);
             }
             file.close();
 
             int size = input.size();
-            data = new String[size];
+            String[] data = new String[size];
+
             for (int i = 0; i < size; ++i)
                 data[i] = input.get(i);
 

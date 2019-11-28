@@ -2,12 +2,18 @@ package com.DataClasses;
 
 public class Provider extends User{
 
+    private String[] services;
+
     public Provider(){
         super();
+        services = null;
     }
 
-    public Provider(String[] userData) {
+    public Provider(String[] userData, String[] serviceData) {
         super(userData);
+
+        this.services = new String[serviceData.length];
+        System.arraycopy(serviceData, 0, services, 0, serviceData.length);
     }
 
     public int display(){
