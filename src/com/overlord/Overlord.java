@@ -30,7 +30,7 @@ public class Overlord {
      * Login
      *
      * @param providerID Provider identification number
-     * @return returns int; 1 for success; -1 could not log in
+     * @return returns int: 1 for provider; 2 for manager; -1 could not log in
      */
     public int login(String providerID) {
         // matches string to provider directory

@@ -8,7 +8,8 @@ class OverlordTest {
 
 
         assertEquals(-1, overlord.login(null), "login with null reports failure");
-        assertEquals(1, overlord.login(null), "login with null reports failure");
+        assertEquals(1, overlord.login("000001"), "login with provider reports 1");
+        assertEquals(2, overlord.login("999999"), "login with provider reports 1");
     }
 
     @org.junit.jupiter.api.Test
