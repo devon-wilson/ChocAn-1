@@ -16,7 +16,7 @@ public class UnitTests {
     }
 
     public String [] buildUser(){
-        file = new File("src/com/dataClasses/user.csv");
+        file = new File("data/user.csv");
         if(file == null){
             return null;
         }
@@ -34,7 +34,7 @@ public class UnitTests {
         return components;
     }
     public String [] buildMService(){
-        file = new File("src/com/dataClasses/Mservices.csv");
+        file = new File("data/Mservices.csv");
         if(file == null){
             return null;
         }
@@ -52,7 +52,7 @@ public class UnitTests {
         return components;
     }
     public String [] buildPService(){
-        file = new File("src/com/dataClasses/Pservices.csv");
+        file = new File("data/Pservices.csv");
         if(file == null){
             return null;
         }

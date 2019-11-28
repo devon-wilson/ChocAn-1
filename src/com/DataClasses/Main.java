@@ -7,8 +7,7 @@ public class Main {
         if(success == 0){
             System.err.println("all tests passed");
         }
-        else{
+        else
             System.err.println("tests failed");
-        }
     }
 }
