@@ -1,10 +1,12 @@
 package com;
 
-import com.DataBaseManager.DatabaseManager;
+import com.DataBaseManager.DataBaseManager;
 
 public class Main {
     public static void main (String[] args) {
 
-        DatabaseManager DBM = new DatabaseManager();
+        DataBaseManager DBM = new DataBaseManager();
+
+        System.out.println("This is a test.");
     }
 }

@@ -1,7 +1,5 @@
 package com.DataBaseManager;
 
-import java.util.TreeMap;
-
 public class Main {
     public static void main (String[] args) {
 
@@ -10,5 +8,7 @@ public class Main {
         with the objects in the tree, and the class of the objects
         stored in the tree.
          */
+
+        DataBaseManager DBM = new DataBaseManager();
     }
 }
