@@ -3,30 +3,26 @@ package com.ReadWrite;
 import java.io.*;
 import java.util.ArrayList;
 
-class ReadWrite
+public class ReadWrite
 {
+
     public String[] fileRead(String filename)
     {
         try {
-            FileReader file = new FileReader(filename);
+            BufferedReader file = new BufferedReader(new FileReader(filename));
             ArrayList<String> input = new ArrayList<>();
             String[] data;
-            int i = 0;
-            int c;
+            String line;
 
-            input.add("");
-            while ((c = file.read()) != -1) {
-                if (c == ',') {
-                    input.add("");
-                    ++i;
-                } else
-                    input.set(i, input.get(i) + (char) c);
+            while ((line = file.readLine()) != null) {
+
+                input.add(line);
             }
             file.close();
 
-            c = input.size();
-            data = new String[c];
-            for (i = 0; i < c; ++i)
+            int size = input.size();
+            data = new String[size];
+            for (int i = 0; i < size; ++i)
                 data[i] = input.get(i);
 
             return data;
@@ -43,7 +39,7 @@ class ReadWrite
         return ret;
     }
 
-    static int fileWrite(String filename, String[] data, boolean append) throws IOException
+    static int fileWrite(String filename, String[] data, boolean append)
     {
         if(data[0] == null)
             return -1;
