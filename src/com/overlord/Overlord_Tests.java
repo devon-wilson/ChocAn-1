@@ -6,14 +6,14 @@ import java.io.IOException;
 public class Overlord_Tests {
     public static void main(String[] args) {
         String smiley = "pass 😀";
-        String frown = "no pass ☹";
+        String frown = "fail ☹";
         boolean verbose = true;
 
         String loginTestFile = "tests/logintests.csv";
 
-        System.out.println("Overlord tests" + smiley);
+        System.out.println("Overlord tests");
         Overlord overlord = new Overlord();
-        int rc = overlord.login("0", "0");
+        int rc = overlord.login("0");
         System.out.println("Login test: " + (rc > 1 ? smiley : frown));
     }
 }

@@ -13,8 +13,8 @@ public class Overlord {
         Overlord_Tests.main(null);
     }
 
-    int currentProvider;
-    int currentMember;
+    private int currentProvider;
+    private int currentMember;
 
     /**
      * Default Constructor
@@ -30,10 +30,9 @@ public class Overlord {
      * Login
      *
      * @param providerID Provider identification number
-     * @param otherID Some mystery string
      * @return returns int; 1 for success; -1 could not log in
      */
-    public int login(String providerID, String otherID) {
+    public int login(String providerID) {
         // matches string to provider directory
         // if no match return -1
         if (true)
@@ -59,21 +58,22 @@ public class Overlord {
 
     /**
      * Member Check In
-     * @param memberID
-     * @return
+     * @param memberID contains id of member
+     * @return returns 1 for sucess, -1 for failure.
      */
     public int memberCheckIn(String memberID) {
         // match string to member directory
         if (true)
         return -1;
 
+        currentMember = 1;
         return 1;
     }
 
 
     /**
      * Member Check Out
-     * @return
+     * @return 1 for success, -1 for failure.
      */
     public int memberCheckOut() {
         // match string to member directory
@@ -83,45 +83,61 @@ public class Overlord {
         return 1;
     }
 
-    public int generateServiceRecord() {
+    // Manage members
+    public int addMember(String[] memberData) {
         return 0;
     }
 
-    public int requestDirectory() { return 0; }
+    public int removeMember(String memberID) {
+        return 0;
+    }
 
-    public int generateBill() {return 0;}
+    public int suspendMember(String memberID) {
+        return 0;
+    }
 
-
-    // Manage members
-    public int addMember(int MEMBER_PLACEHOLDER) { return 0; }
-
-    public int removeMember(int memberID) {return 0;}
-
-    public int suspendMember(int memberID) {return 0;}
-
-    public int renewMember(int memberID) {return 0;}
+    public int renewMember(String memberID) {
+        return 0;
+    }
 
     // should return Member object
-    public void searchMember(String query) {}
+    public void searchMember(String query) {
+
+    }
 
 
     // Manage providers
-    public int addProvider(int PROVIDER_PLACEHOLDER) { return 0; }
+    public int addProvider(String[] providerData) {
+        return 0;
+    }
 
-    public int removeProvider(int providerID) {return 0;}
+    public int removeProvider(int providerID) {
+        return 0;
+    }
 
     // should return Provider object
-    public void searchProvider(String query) {}
+    public String[] searchProvider(String query) {
+        return null;
+    }
+
 
     // Manage services
-    public int addService(int SERVICE_PLACEHOLDER) { return 0; }
+    public int addService(String[] serviceData) {
+        return 0;
+    }
 
-    public int removeService(int serviceID) {return 0;}
+    public int removeService(int serviceID) {
+        return 0;
+    }
 
-    // should return Service object
-    public int searchService(String query) {return 0;}
 
-    public int genMemberReport(int memberID) {return 0;}
+    public String[] searchService(String query) {
+        return null;
+    }
+
+    public int genMemberReport(int memberID) {
+        return 0;
+    }
 
     public int genProviderReport(int memberID) {
         return 0;
@@ -138,4 +154,20 @@ public class Overlord {
     public int sendReports(String input) {
         return 0;
     }
+
+
+
+    public int generateServiceRecord() {
+        return 0;
+    }
+
+    public int requestDirectory() {
+        return 0;
+    }
+
+    public int generateBill() {
+        return 0;
+    }
+
+
 }
