@@ -1,17 +1,22 @@
 package com;
 
-import com.DataBaseManager.DataBaseManager;
-import com.DataClasses.Manager;
-import com.DataClasses.Provider;
+import com.Overlord.*;
 
 public class Main {
 
     public static void main (String[] args) {
 
-        DataBaseManager DBM = new DataBaseManager();
+        Overlord overlord = new Overlord();
 
+        if(overlord.login(1, "012345678") == -1)
+            System.out.println("Couldn't login.");
+        else
+            System.out.println("Welcome to ChocAn");
 
-        Manager retrieved = (Manager) DBM.findData(0,"012345678");
-        retrieved.display();
+        overlord.displayCurrentServices();
+
+        overlord.memberCheckIn("012345678");
+
+        overlord.viewMember();
     }
 }
