@@ -10,15 +10,9 @@ public class Manager extends User{
         super(userData);
     }
 
-    public int display(){
+    public void display(){
         System.out.println("Manager Information:");
-        System.out.println(super.name);
-        System.out.println(super.ID);
-        System.out.println(super.address);
-        System.out.println(super.city);
-        System.out.println(super.state);
-        System.out.println(super.zip);
-        return 0;
+        super.display();
     }
 
 

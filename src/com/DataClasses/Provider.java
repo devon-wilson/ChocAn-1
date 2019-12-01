@@ -17,14 +17,14 @@ public class Provider extends User{
         System.arraycopy(userData,6 , services, 0, serviceCount);
     }
 
-    public int display(){
+    public String[] displayServices() {
+        if (services == null)
+            return null;
+        return services;
+    }
+
+    public void display(){
         System.out.println("Provider Information:");
-        System.out.println(super.name);
-        System.out.println(super.ID);
-        System.out.println(super.address);
-        System.out.println(super.city);
-        System.out.println(super.state);
-        System.out.println(super.zip);
-        return 0;
+        super.display();
     }
 }

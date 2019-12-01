@@ -19,16 +19,18 @@ public abstract class User{
     }
 
     protected User(String[] userData) {
-        this.name = userData[0];
-        this.ID = userData[1];;
-        this.address = userData[2];;
-        this.city = userData[3];;
-        this.state = userData[4];;
-        this.zip = userData[5];;
+        build(userData);
     }
 
     //displays are found in the derived classes
-    public abstract int  display();
+    public void display() {
+        System.out.println("Name:\t\t" + name);
+        System.out.println("ID:\t\t\t" + ID);
+        System.out.println("Address:\t" + address);
+        System.out.println("City:\t\t" + city);
+        System.out.println("State:\t\t" + state);
+        System.out.println("Zip:\t\t" + zip);
+    }
 
     //THIS FUNCTION MUST BE CALLED FIRST
     public int build(String [] components){
@@ -44,9 +46,11 @@ public abstract class User{
         if(components == null){
             return -1;
         }
+        /* this won't work with updated lists like providers or members
         if(components.length != 6) {
             return -1;
         }
+        */
         for(int i = 0; i < 6; ++i){
             if(components[i] == null){
                 return -1;
