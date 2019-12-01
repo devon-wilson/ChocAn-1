@@ -5,6 +5,7 @@ import java.util.Vector;
 public class ProviderReport extends Report{
 
     public ProviderReport(){
+        super();
         services = null;
         number = 0;
         totalFee = 0;
@@ -15,7 +16,7 @@ public class ProviderReport extends Report{
         //The requirements.
         /*
         1 - Date of Service
-        2 - Date and time data was recieved
+        2 - Date and time data was received
         3 - Member name
         4 - Member number
         5 - Service code

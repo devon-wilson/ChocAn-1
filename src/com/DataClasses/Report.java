@@ -18,6 +18,10 @@ public abstract class Report {
         zip = null;
     }
 
+    public Report(User toFill){
+        build(toFill);
+    }
+
     public int build(User toFill){
         //Builds the report based on the order of
         //protected data members below.

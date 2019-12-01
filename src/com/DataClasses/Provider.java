@@ -9,11 +9,12 @@ public class Provider extends User{
         services = null;
     }
 
-    public Provider(String[] userData, String[] serviceData) {
+    public Provider(String[] userData) {
         super(userData);
 
-        this.services = new String[serviceData.length];
-        System.arraycopy(serviceData, 0, services, 0, serviceData.length);
+        int serviceCount = (userData.length)-6;
+        this.services = new String[serviceCount];
+        System.arraycopy(userData,6 , services, 0, serviceCount);
     }
 
     public int display(){
