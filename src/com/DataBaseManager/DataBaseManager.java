@@ -1,40 +1,36 @@
 package com.DataBaseManager;
 
-import com.DataClasses.Manager;
-import com.DataClasses.Member;
-import com.DataClasses.Provider;
-import com.DataClasses.Service;
+import com.DataClasses.*;
 import com.ReadWrite.ReadWrite;
 
 import java.util.TreeMap;
 
-public class DataBaseManager<E> {
+public class DataBaseManager<Object> {
     /* Populate tree with array of objects
     Takes a tree root and an array of objects to populate the tree.
     Returns the number of objects added to the tree.
      */
 
-    private TreeMap<String, Object> providers;
-    private TreeMap<String, Object> members;
-    private TreeMap<String, Object> managers;
-    TreeMap<String, Object> services;
-
-    enum tree {providers, members, managers, services};
+    protected TreeMap<String, Object> managers;
+    protected TreeMap<String, Object> providers;
+    protected TreeMap<String, Object> members;
+    protected TreeMap<String, Object> services;
 
     public DataBaseManager() {
+        this.managers = buildTree("data/managers.csv");
         this.providers = buildTree("data/providers.csv");
         this.members = buildTree("data/members.csv");
-        this.managers = buildTree("data/managers.csv");
         this.services = buildTree("data/services.csv");
     }
 
     private TreeMap<String, Object> buildTree(String filename) {
         TreeMap<String, Object> root = new TreeMap<>();
         ReadWrite rw = new ReadWrite();
-        if (rw == null)
+
+        String[] fileData;
+        if((fileData = rw.fileRead(filename)) == null)
             return null;
 
-        String[] fileData = rw.fileRead(filename);
         // Determines what kind of objects will be created
         // First line of all .csv files
         String objectType = fileData[0];
@@ -47,17 +43,16 @@ public class DataBaseManager<E> {
 
             switch (objectType) {
                 case "Manager":
-                    newObject = new Manager(lineData);
-                    break;
-                case "Member":
-                    newObject = new Member(lineData);
+                    newObject = (Object) new Manager(lineData);
                     break;
                 case "Provider":
-                    String[] userData = new String[6];
-                    newObject = new Provider(userData);
+                    newObject = (Object) new Provider(lineData);
+                    break;
+                case "Member":
+                    newObject = (Object) new Member(lineData);
                     break;
                 case "Service":
-                    newObject = new Service(lineData);
+                    newObject = (Object) new Service(lineData);
                     break;
             }
 
@@ -73,24 +68,24 @@ public class DataBaseManager<E> {
     Returns a reference to the object if found, or null if the object
     is not in the tree.
      */
-    public E findData(int type, String key) {
+    public Object findData(int type, String key) {
         /*
         Each tree has it's own integer code
         0 - MANAGER
-        1 - MEMBER
-        2 - PROVIDER
+        1 - PROVIDER
+        2 - MEMBER
         3 - SERVICE
          */
         switch(type) {
 
             case (0):
-                return (E) managers.get(key);
+                return managers.get(key);
             case (1):
-                return (E) members.get(key);
+                return providers.get(key);
             case (2):
-                return (E) providers.get(key);
+                return members.get(key);
             case (3):
-                return (E) services.get(key);
+                return services.get(key);
         }
         return null;
     }
@@ -100,24 +95,24 @@ public class DataBaseManager<E> {
     Returns the object associated with the id, or null if the object
     was not in the tree.
      */
-    public E removeTreeData(int type, String key){
+    public Object removeTreeData(int type, String key){
         /*
         Each tree has it's own integer code
         0 - MANAGER
-        1 - MEMBER
-        2 - PROVIDER
+        1 - PROVIDER
+        2 - MEMBER
         3 - SERVICE
          */
         switch(type) {
 
             case (0):
-                return (E) managers.remove(key);
+                return managers.remove(key);
             case (1):
-                return (E) members.remove(key);
+                return providers.remove(key);
             case (2):
-                return (E) providers.remove(key);
+                return members.remove(key);
             case (3):
-                return (E) services.remove(key);
+                return services.remove(key);
         }
         return null;
     }
@@ -127,24 +122,24 @@ public class DataBaseManager<E> {
     Returns a reference to the previous object associated with the id,
     or null if there was no object associated with the id.
      */
-    public E addTreeData(int type, String key, E obj){
+    public Object addTreeData(int type, String key, Object obj){
         /*
         Each tree has it's own integer code
         0 - MANAGER
-        1 - MEMBER
-        2 - PROVIDER
+        1 - PROVIDER
+        2 - MEMBER
         3 - SERVICE
          */
         switch(type) {
 
             case (0):
-                return (E) managers.put(key, obj);
+                return managers.put(key, obj);
             case (1):
-                return (E) members.put(key, obj);
+                return providers.put(key, obj);
             case (2):
-                return (E) providers.put(key, obj);
+                return members.put(key, obj);
             case (3):
-                return (E) services.put(key, obj);
+                return services.put(key, obj);
         }
         return null;
     }
@@ -154,24 +149,24 @@ public class DataBaseManager<E> {
     Returns a reference to the previous object associated with the id,
     or null if there was no object associated with the id.
      */
-    public E updateTreeData(int type, String key, E obj){
+    public Object updateTreeData(int type, String key, Object obj){
         /*
         Each tree has it's own integer code
         0 - MANAGER
-        1 - MEMBER
-        2 - PROVIDER
+        1 - PROVIDER
+        2 - MEMBER
         3 - SERVICE
          */
         switch(type) {
 
             case (0):
-                return (E) managers.replace(key, obj);
+                return managers.replace(key, obj);
             case (1):
-                return (E) members.replace(key, obj);
+                return providers.replace(key, obj);
             case (2):
-                return (E) providers.replace(key, obj);
+                return members.replace(key, obj);
             case (3):
-                return (E) services.replace(key, obj);
+                return services.replace(key, obj);
         }
         return null;
     }

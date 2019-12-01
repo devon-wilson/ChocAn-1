@@ -97,8 +97,9 @@ public class Overlord extends DataBaseManager {
 
     public void viewMember() {
         if (currentMember == null)
-            return;
-        currentMember.display();
+            System.out.println("No member current checked in.");
+        else
+            currentMember.display();
     }
 
     /**
@@ -145,12 +146,20 @@ public class Overlord extends DataBaseManager {
 
     public int suspendMember(String memberID) {
         try {
-            // pull info from tree
-            Member toUpdate = (Member) findData(2, memberID);
-            toUpdate.updateStatus("SUSPENDED");
+            // check if member to be suspended is current member
+            if (currentMember != null && currentMember.get(1).equals(memberID)) {
+                currentMember.updateStatus("SUSPENDED");
+                // update tree with current info
+                updateTreeData(2, memberID, currentMember);
+            }
 
-            // put info back on tree
-            updateTreeData(2, memberID, toUpdate);
+            else {
+                // pull info from tree
+                Member toUpdate = (Member) findData(2, memberID);
+                toUpdate.updateStatus("SUSPENDED");
+                // put info back on tree
+                updateTreeData(2, memberID, toUpdate);
+            }
             return 1;
         }
         catch (ClassCastException a) {
@@ -160,12 +169,19 @@ public class Overlord extends DataBaseManager {
 
     public int renewMember(String memberID) {
         try {
-            // pull info from tree
-            Member toUpdate = (Member) findData(2, memberID);
-            toUpdate.updateStatus("Validated");
+            if (currentMember != null && currentMember.get(1).equals(memberID)) {
+                currentMember.updateStatus("SUSPENDED");
+                // update tree with current info
+                updateTreeData(2, memberID, currentMember);
+            }
+            else {
+                // pull info from tree
+                Member toUpdate = (Member) findData(2, memberID);
+                toUpdate.updateStatus("Validated");
 
-            // put info back on tree
-            updateTreeData(2, memberID, toUpdate);
+                // put info back on tree
+                updateTreeData(2, memberID, toUpdate);
+            }
             return 1;
         }
         catch (ClassCastException a) {
