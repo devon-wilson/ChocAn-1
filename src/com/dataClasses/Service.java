@@ -8,7 +8,7 @@ public class Service {
         cost = 0;
     }
 
-    public int Build(String [] components){
+    public int build(String [] components){
         //Builds the class form ana array of Strings
         //1 - code
         //2 - name
@@ -97,6 +97,15 @@ public class Service {
             components[2] = new String(Float.toString(cost));
             return components;
         }
+    }
+    public int display(){
+        if(code == null){
+            return -1;
+        }
+        System.out.println(code);
+        System.out.println(name);
+        System.out.println(cost);
+        return 0;
     }
 
 
