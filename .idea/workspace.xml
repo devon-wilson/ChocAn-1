@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f2b41691-6ae0-4817-baa2-922bc21ef93c" name="Default Changelist" comment="Updated tests and updated documentation for clarity of use">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/Mservices.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/Pservices.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/managers.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/providers.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/services.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/users.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/files/Mservices.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/files/Pservices.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/files/user.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataBaseManager/DataBaseManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataBaseManager/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Manager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Member.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/MemberReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Provider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/ProviderReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Record.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Report.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/UnitTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/memberReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/providerReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/unitTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/Overlord/Overlord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/Overlord/OverlordTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/Overlord/Overlord_Tests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/ReadWrite/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/ReadWrite/ReadWrite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/logintests.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ChocAn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChocAn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/overlord/Overlord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/overlord/Overlord_Tests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/overlord/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/package-info.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dataclasses" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1TaNXq18bNPfyzq09T13nrCVC7T" />
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/files" />
+      <recent name="$PROJECT_DIR$/src/com" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/tests" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.dataclasses">
+    <configuration name="IOAuth Test" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="ChocAn" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Terminal" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="ChocAn" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="chocan" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="ChocAn" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dataclasses" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.IOAuth Test" />
+      <item itemvalue="Application.chocan" />
+      <item itemvalue="Application.dataclasses" />
+      <item itemvalue="Application.Terminal" />
+    </list>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Added main class as a framework" />
+    <MESSAGE value="Added isInputNumber and isType with loop for testing. Need to write comprehensive tests." />
+    <MESSAGE value="Added validateUserID, made functions that actually do the work private. Need to create a robust testing class." />
+    <MESSAGE value="Added a csv to automate tests. Need to implement a date io function." />
+    <MESSAGE value="Added Terminal class that extends IO Auth class" />
+    <MESSAGE value="Updated tests and updated documentation for clarity of use" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated tests and updated documentation for clarity of use" />
+  </component>
+</project>
