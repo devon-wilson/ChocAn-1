@@ -10,6 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 
 class OverlordTest {
+  @Test
+  void InstantiateOverlordTest() {
+    System.out.println("Testing: instantiating overlord");
+
+    Overlord overlord = new Overlord();
+  }
 
   @ParameterizedTest(name = "{3}")
   @CsvFileSource(resources = "tests/loginTests.csv")
@@ -28,7 +34,6 @@ class OverlordTest {
 
     overlord.login(0, "012345678");
     assertEquals(1,overlord.logout(), "log out returns 1");
-
   }
 
   @ParameterizedTest(name = "{2}")

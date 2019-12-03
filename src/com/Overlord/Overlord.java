@@ -21,10 +21,7 @@ public class Overlord extends DataBaseManager {
    * Default Constructor
    */
   public Overlord() {
-    // first argument is filepath to
-    //super(arguments);
     super();
-    // second argument is..
 
     this.currentUser = null;
     this.currentMember = null;
