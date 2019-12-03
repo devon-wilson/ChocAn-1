@@ -78,7 +78,7 @@ public class Overlord extends DataBaseManager {
     /**
      * Member Check In
      * @param memberID contains id of member
-     * @return returns 1 for sucess, -1 for failure.
+     * @return returns 1 for success, -1 for failure.
      */
     public int memberCheckIn(String memberID) {
         // match string to member directory

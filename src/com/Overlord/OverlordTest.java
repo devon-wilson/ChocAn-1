@@ -1,17 +1,34 @@
 package com.Overlord;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
 
 class OverlordTest {
 
     @org.junit.jupiter.api.Test
     void login() {
         Overlord overlord = new Overlord();
+        String[] line;
+
+        try {
+            CSVReader reader = new CSVReader("tests/loginTests.csv");
+
+            while ((line = reader.getLine()) != null) {
+                assertEquals(Integer.parseInt(line[0]), overlord.login(Integer.parseInt(line[1]),line[2]), line[3]);
+            }
+            //assertEquals(-1, overlord.login(0, "000000"), "login with null reports failure");
+            //assertEquals(1, overlord.login(1, "000001"), "login with provider reports 1");
+            //assertEquals(2, overlord.login(2, "999999"), "login with provider reports 1");
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
 
-        assertEquals(-1, overlord.login(0, "000000"), "login with null reports failure");
-        assertEquals(1, overlord.login(1, "000001"), "login with provider reports 1");
-        assertEquals(2, overlord.login(2, "999999"), "login with provider reports 1");
     }
 
     @org.junit.jupiter.api.Test
@@ -50,8 +67,7 @@ class OverlordTest {
     void addProvider() {
         Overlord overlord = new Overlord();
         String[] testArray = new String[7];
-        for (int i = 0; i < testArray.length; ++i)
-            testArray[i] = "";
+        Arrays.fill(testArray, "");
 
         assertEquals(-1, overlord.addProvider(testArray), "add member fails on null");
         assertEquals(1, overlord.addProvider(testArray), "add member fails on null");
@@ -107,5 +123,68 @@ class OverlordTest {
 
     @org.junit.jupiter.api.Test
     void generateBill() {
+    }
+}
+
+class CSVReader {
+    /*
+     *  Class to read CSV data from .csv files
+     */
+
+    private String fileName;
+    private BufferedReader reader;
+
+    CSVReader(String newFile) throws FileNotFoundException {
+        /*
+         *  Overloaded constructor
+         *
+         *  Input:
+         *  String newFile: file to try to be opened
+         *  Throws:
+         *  FileNotFoundException: file can not be opened properly
+         */
+
+        this.fileName = newFile;
+        this.reader = setFile(newFile);
+    }
+
+    private BufferedReader setFile(String newFile) throws FileNotFoundException {
+        /*
+         *  Returns BufferedReader object based on file
+         *
+         *  Input:
+         *  String newFile: file to try to be opened
+         *  Throws:
+         *  FileNotFoundException: file can not be opened properly
+         *  Output:
+         *  Returns BufferedReader object pointing to file if opened properly
+         */
+
+        return reader = new BufferedReader(new FileReader(newFile));
+    }
+
+    String[] getLine() {
+        /*
+         *  Returns current line in CSV file
+         *
+         *  Output:
+         *  String[]: Returns current line in CSV as array of String objects
+         */
+
+        //  Returns String array of current line, already broken up by deliminator ","
+        //  In case of readLine() exception
+        try {
+            //  Read next line, check if eof
+            String currentLine;
+            if ((currentLine = reader.readLine()) == null)
+                return null;
+
+            return currentLine.split(",");
+        }
+        //  Catch IOException
+        catch (IOException a) {
+            System.out.println("Could not read line from " + fileName);
+            return null;
+        }
     }
 }
