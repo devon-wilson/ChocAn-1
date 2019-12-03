@@ -16,7 +16,7 @@ public class Overlord_Tests {
 
         System.out.println("Overlord tests");
         Overlord overlord = new Overlord();
-        int rc = overlord.login("0");
+        int rc = overlord.login(0, "0");
         System.out.println("Login test: " + (rc > 1 ? smiley : frown));
         // Set to false to disable reading EVERY test result
 
@@ -49,7 +49,7 @@ public class Overlord_Tests {
                 // Add more cases to add include more tests
                 switch (testName) {
                     case "LOGIN":
-                        result = overlord.login(line[0]);
+                        result = overlord.login(1, line[0]);
                         break;
                     default:
                         return false;
