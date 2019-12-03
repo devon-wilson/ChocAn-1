@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2b41691-6ae0-4817-baa2-922bc21ef93c" name="Default Changelist" comment="Updated tests and updated documentation for clarity of use">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/data/Mservices.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/data/Pservices.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/data/managers.csv" afterDir="false" />
@@ -15,20 +14,6 @@
       <change afterPath="$PROJECT_DIR$/files/user.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/DataBaseManager/DataBaseManager.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/DataBaseManager/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Manager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Member.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/MemberReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Provider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/ProviderReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Record.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Report.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/UnitTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/memberReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/providerReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/unitTests.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/Main.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/Overlord/Overlord.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/Overlord/OverlordTest.java" afterDir="false" />
@@ -36,7 +21,6 @@
       <change afterPath="$PROJECT_DIR$/src/com/ReadWrite/Main.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ReadWrite/ReadWrite.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/tests/logintests.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ChocAn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChocAn.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/overlord/Overlord.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/overlord/Overlord_Tests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/overlord/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/package-info.java" afterDir="false" />
@@ -130,6 +114,12 @@
       <item itemvalue="Application.dataclasses" />
       <item itemvalue="Application.Terminal" />
     </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
