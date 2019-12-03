@@ -2,30 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2b41691-6ae0-4817-baa2-922bc21ef93c" name="Default Changelist" comment="Updated tests and updated documentation for clarity of use">
-      <change afterPath="$PROJECT_DIR$/data/Mservices.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/Pservices.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/managers.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/members.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/providers.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/services.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/users.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files/Mservices.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files/Pservices.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files/user.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataBaseManager/DataBaseManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/DataBaseManager/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Overlord/Overlord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Overlord/OverlordTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Overlord/Overlord_Tests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ReadWrite/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ReadWrite/ReadWrite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/logintests.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/overlord/Overlord.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/overlord/Overlord_Tests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/overlord/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,10 +32,18 @@
     </option>
   </component>
   <component name="ProjectId" id="1TaNXq18bNPfyzq09T13nrCVC7T" />
+  <component name="ProjectViewState">
+    <option name="foldersAlwaysOnTop" value="false" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="12" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -67,18 +53,6 @@
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/tests" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Application.dataclasses">
     <configuration name="IOAuth Test" type="Application" factoryName="Application">
@@ -115,11 +89,26 @@
       <item itemvalue="Application.Terminal" />
     </list>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -144,5 +133,31 @@
     <MESSAGE value="Added Terminal class that extends IO Auth class" />
     <MESSAGE value="Updated tests and updated documentation for clarity of use" />
     <option name="LAST_COMMIT_MESSAGE" value="Updated tests and updated documentation for clarity of use" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575339770385">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1575339770385" />
+    <state x="498" y="201" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575339769304">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="201" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1575339769304" />
+    <state x="620" y="303" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1575339969652">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="620" y="303" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" timestamp="1575339969652" />
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1575340733877">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1575340733877" />
+    <state x="496" y="215" key="git4idea.merge.GitPullDialog" timestamp="1575339732561">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="215" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1575339732561" />
+    <state x="209" y="38" key="new project wizard" timestamp="1575340078267">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="209" y="38" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1575340078267" />
   </component>
 </project>
