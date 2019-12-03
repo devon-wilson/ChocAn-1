@@ -202,6 +202,8 @@ public class Overlord extends DataBaseManager {
     // Manage providers
     public int addProvider(String[] providerData) {
         Provider toAdd = new Provider(providerData);
+        if (providerData.length < 2)
+            return -1;
         if(addTreeData(1, providerData[1], toAdd) == null)
             return -1;
         return 1;

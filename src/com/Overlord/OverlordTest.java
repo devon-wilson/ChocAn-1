@@ -9,9 +9,9 @@ class OverlordTest {
         Overlord overlord = new Overlord();
 
 
-        assertEquals(-1, overlord.login(1, null), "login with null reports failure");
+        assertEquals(-1, overlord.login(0, "000000"), "login with null reports failure");
         assertEquals(1, overlord.login(1, "000001"), "login with provider reports 1");
-        assertEquals(2, overlord.login(1, "999999"), "login with provider reports 1");
+        assertEquals(2, overlord.login(2, "999999"), "login with provider reports 1");
     }
 
     @org.junit.jupiter.api.Test
@@ -49,9 +49,12 @@ class OverlordTest {
     @org.junit.jupiter.api.Test
     void addProvider() {
         Overlord overlord = new Overlord();
+        String[] testArray = new String[7];
+        for (int i = 0; i < testArray.length; ++i)
+            testArray[i] = "";
 
-        assertEquals(-1, overlord.addProvider(null), "add member fails on null");
-        assertEquals(1, overlord.addProvider(null), "add member fails on null");
+        assertEquals(-1, overlord.addProvider(testArray), "add member fails on null");
+        assertEquals(1, overlord.addProvider(testArray), "add member fails on null");
     }
 
     @org.junit.jupiter.api.Test
