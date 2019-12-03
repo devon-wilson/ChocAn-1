@@ -1,0 +1,4 @@
+00,000000000,-1,login that doesn't exist
+01,012345678,01,login exists
+-1,012345678,-1,unacceptable login type: -1
+02,012345678,-1,unacceptable login type: 2

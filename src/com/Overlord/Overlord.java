@@ -66,7 +66,7 @@ public class Overlord extends DataBaseManager {
   public int logout() {
     currentUser = null;
     currentMember = null;
-    return -1;
+    return 1;
   }
 
   // Member functions
@@ -78,6 +78,8 @@ public class Overlord extends DataBaseManager {
    */
   public int memberCheckIn(String memberID) {
     // match string to member directory
+    if (currentUser == null)
+      return -2;
 
     try {
       this.currentMember = (Member) findData(2, memberID);
@@ -91,11 +93,19 @@ public class Overlord extends DataBaseManager {
     }
   }
 
-  public void viewMember() {
-    if (currentMember == null)
+  /**
+   * View Member
+   *
+   * @return 1 for success; -1 for failure
+   */
+  public int viewMember() {
+    if (currentMember == null) {
       System.out.println("No member current checked in.");
-    else
+      return -1;
+    } else {
       currentMember.display();
+      return 1;
+    }
   }
 
   /**
@@ -131,7 +141,7 @@ public class Overlord extends DataBaseManager {
    * RemoveMember
    *
    * @param memberID member ID to remove
-   * @return
+   * @return 1 for success, -1 for failure
    */
   public int removeMember(String memberID) {
     Object removed = removeTreeData(2, memberID);
