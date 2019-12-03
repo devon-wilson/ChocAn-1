@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f2b41691-6ae0-4817-baa2-922bc21ef93c" name="Default Changelist" comment="">
+    <list default="true" id="f2b41691-6ae0-4817-baa2-922bc21ef93c" name="Default Changelist" comment="fixed small overlord test bugs and added test Junit path">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Overlord/Overlord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/Overlord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Overlord/OverlordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/OverlordTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Overlord/Overlord_Tests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Overlord/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/package-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +133,7 @@
       <option name="presentableId" value="Default" />
       <updated>1575340704106</updated>
       <workItem from="1575340710461" duration="1416000" />
+      <workItem from="1575342493748" duration="186000" />
     </task>
     <task id="LOCAL-00001" summary="Readded module and package files">
       <created>1575340829295</created>
@@ -184,10 +182,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixed small overlord test bugs and added test Junit path" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575339770385">
+    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575342855308">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1575339770385" />
+    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1575342855308" />
     <state x="498" y="201" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575339769304">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -200,10 +198,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="520" y="157" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1575340968774" />
-    <state x="375" y="11" width="1005" height="802" key="CommitChangelistDialog2" timestamp="1575341370316">
+    <state x="375" y="11" width="1005" height="802" key="CommitChangelistDialog2" timestamp="1575342763895">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="375" y="11" width="1005" height="802" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1575341370316" />
+    <state x="375" y="11" width="1005" height="802" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1575342763895" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1575342745038">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1575342745038" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1575342228247">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -220,14 +222,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1575342228247" />
+    <state x="601" y="125" key="RollbackChangesDialog" timestamp="1575342775620">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="601" y="125" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1575342775620" />
     <state x="361" y="147" key="Vcs.Push.Dialog.v2" timestamp="1575342247876">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="147" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1575342247876" />
-    <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1575340733877">
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1575342494079">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1575340733877" />
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1575342494079" />
     <state x="498" y="313" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1575341101179">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
