@@ -25,7 +25,10 @@ class UserTest {
         }
 
         components2 = new String [6];
-        if(buildUser(components, components2) == -1){
+        if(buildUser(0, components)){
+            fail("File read failed.");
+        }
+        if(buildUser(1, components2)){
             fail("File read failed.");
         }
         if(myMember.build(components) != 0){
@@ -159,10 +162,10 @@ class UserTest {
 
     @org.junit.jupiter.api.Test
     void get() {
-        
+
     }
 
-    private int buildUser(String [] comp1, String [] comp2){
+    private int buildUser(int line, String [] components){
         file = new File("data/users.csv");
         if(file == null){
             return -1;
@@ -174,12 +177,11 @@ class UserTest {
             return -1;
         }
         sc.useDelimiter(",");
+        for(int i =0; i < line, ++i){
+            sc.nextLine();
+        }
         for(int i = 0; i < 6; ++i){
             comp1[i] = sc.next();
-        }
-        sc.nextLine();
-        for(int i = 0; i < 6; ++i){
-            comp2[i] = sc.next();
         }
         return 0;
     }
