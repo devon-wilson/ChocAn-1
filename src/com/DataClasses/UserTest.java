@@ -24,7 +24,6 @@ class UserTest {
             fail("Build user with Null Strings failed.");
         }
 
-        components = new String[6];
         components2 = new String [6];
         if(buildUser(components, components2) == -1){
             fail("File read failed.");
@@ -38,13 +37,15 @@ class UserTest {
                 fail("First build data not correct");
             }
         }
-        if(myMember.build(components) != 0){
+        if(myMember.build(components2) != 0){
             fail("Build user with info overwrite failed");
         }
         data = myMember.getAll();
         for(int i = 0; i < 6; ++i){
             if(data[i].equals(components2[i]) == false){
-                fail("First build data not correct");
+                System.out.println(components2[i]);
+                System.out.println(components[i]);
+                fail("Second build data not correct");
             }
         }
         components[0] = null;
