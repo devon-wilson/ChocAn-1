@@ -1,8 +1,16 @@
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+//import com.DataBaseManager.DataBaseManager;
+//import com.DataClasses.*;
+//import com.ReadWrite.ReadWrite;
+import java.util.TreeMap;
 
 public class Main {
     public static String member_number = " ";
@@ -12,93 +20,87 @@ public class Main {
 
 
     public static void main(String[] args) {
-        String prov = "provider";
-        String mana = "manager";
-        Scanner in = new Scanner(System.in);
-        System.out.print("Are you a 'provider' or 'manager'");
-        String user_type = in.next();
         while (true) {
-            if (user_type.equalsIgnoreCase("provider")) {
-                break;
-            }
-            else if(user_type.equalsIgnoreCase("manager")) {
-                break;
-            }
-            else {
+            boolean switcher = true;
+            String prov = "provider";
+            String mana = "manager";
+            Scanner in = new Scanner(System.in);
+            System.out.print("Are you a 'provider' or 'manager'");
+            String user_type = in.next();
+            while (true) {
+                if (user_type.equalsIgnoreCase("provider")) {
+                    break;
+                } else if (user_type.equalsIgnoreCase("manager")) {
+                    break;
+                } else {
                     System.out.print("invalid input, please enter 'provider' or 'manager'");
                     user_type = in.next();
+                }
             }
-        }
-        /*System.out.print("Enter your provider/member name (name < 25 characters)");
-        String name = in.next();
-        int result = IO.validateTextLength(name, 25);
-        while (true) {
-            if (result == -1) {
-                System.out.println("value entered is invalid");
-                name = in.next();
-                result = IO.validateTextLength(name, 25);
+            if (validate_member_number(in)) {
+                System.out.print("Validated\n");
+            }
+            if (stringCompare(prov, user_type) == 0) {
+                //Provider_Terminal a_terminal = new Provider_Terminal(name, member_number);
+                //a_terminal.print();
+                System.out.print("1 - Check in member\n" +
+                        "2 - Generate record of service\n" +
+                        "3 - Request provider directory\n" +
+                        "4 - Generate Chocan bill\n" +
+                        "9 - Quit\n");
             } else {
+                //Manager_Terminal a_terminal = new Manager_Terminal(name, member_number);
+                //a_terminal.print();
+                System.out.print("5 - Manage members\n" +
+                        "6 - Manage providers and services\n" +
+                        "7 - Generate reports\n" +
+                        "8 - View reports\n" +
+                        "9 - Quit\n");
+            }
+            String aChoice = in.next();
+            while (true) {
+                if (IO.validateMenu(aChoice, 9) == -1) {
+                    System.out.print("invalid choice(1-9), try again");
+                    aChoice = in.next();
+                } else {
+                    break;
+                }
+            }
+            int choice = Integer.parseInt(aChoice); //convert string to integer for menu switch
+            switch (choice) {
+                case 1:
+                    Check_in_member(in, member_number);
+                    break; // break is optional
+                case 2:
+                    Generate_record_of_service(in);
+                    break;
+                case 3:
+                    Request_provider_directory(in);
+                    break;
+                case 4:
+                    Generate_Chocan_bill(in);
+                    break;
+                case 5:
+                    Manage_members(in);
+                    break;
+                case 6:
+                    Manage_providers_and_services(in);
+                    break;
+                case 7:
+                    Generate_reports(in);
+                    break;
+                case 8:
+                    View_reports(in);
+                    break;
+                case 9:
+                    switcher = false;
+                    break;
+                default:
+                    // No break is needed in the default case
+            }
+            if (switcher == false) {
                 break;
             }
-        }*/
-        if(validate_member_number(in)){
-            System.out.print("Validated\n");
-        }
-        if (stringCompare(prov, user_type) == 0) {
-            //Provider_Terminal a_terminal = new Provider_Terminal(name, member_number);
-            //a_terminal.print();
-            System.out.print("1 - Check in member\n" +
-                    "2 - Generate record of service\n" +
-                    "3 - Request provider directory\n" +
-                    "4 - Generate Chocan bill\n");
-        } else {
-            //Manager_Terminal a_terminal = new Manager_Terminal(name, member_number);
-            //a_terminal.print();
-            System.out.print("5 - Manage members\n" +
-                    "6 - Manage providers and services\n" +
-                    "7 - Generate reports\n" +
-                    "8 - View reports\n" +
-                    "9 - Quit\n");
-        }
-        String aChoice = in.next();
-        while (true) {
-            if (IO.validateMenu(aChoice, 9) == -1) {
-                System.out.print("invalid choice(1-9), try again");
-                aChoice = in.next();
-            } else {
-                break;
-            }
-        }
-        int choice = Integer.parseInt(aChoice); //convert string to integer for menu switch
-        switch (choice) {
-            case 1:
-                Check_in_member(in,member_number);
-                break; // break is optional
-            case 2:
-                Generate_record_of_service(in);
-                break;
-            case 3:
-                Request_provider_directory(in);
-                break;
-            case 4:
-                Generate_Chocan_bill(in);
-                break;
-            case 5:
-                Manage_members(in);
-                break;
-            case 6:
-                Manage_providers_and_services(in);
-                break;
-            case 7:
-                Generate_reports(in);
-                break;
-            case 8:
-                View_reports(in);
-                break;
-            case 9:
-                break;
-            default:
-                // No break is needed in the default case.
         }
     }
 
@@ -120,16 +122,17 @@ public class Main {
 
     //function's for each menu item
     public static void Check_in_member(Scanner in, String member_number) {
-        //memberCheckIn();
+        //overlord.memberCheckIn(member_number);
     }
 
     public static void Generate_record_of_service(Scanner in) {
-        // generateServiceRecord();
+        // overlord.generateServiceRecord();
     }
 
     public static void Request_provider_directory(Scanner in) {
-        //requestDirectory();
+        //overlord.requestDirectory();
     }
+
     public static boolean Generate_Chocan_bill(Scanner in) {
         System.out.println("Generate ChocAn Bill");
         String date = " ";
@@ -156,7 +159,7 @@ public class Main {
          }
 
          */
-        //generateBill()
+        //overlord.generateBill()
         System.out.println("Fake ChocAn Bill generated(user needs to validate service code, additioanl comments also optional");
         return true;
     }
@@ -183,28 +186,28 @@ public class Main {
                 //addMember(int MEMBER_PLACEHOLDER);
                 break; // break is optional
             case 2:
-                //removeMember();
+                //overlord.removeMember(String memberID)
                 break;
             case 3:
-                //suspendMember();
+                //overlord.suspendMember(String memberID);
                 break;
             case 4:
-                //renewMember();
+                //overlord.renewMember(String memberID);
             case 5:
-                //searchMember(String query);
+                //overlord.searchMember(String query);
                 break;
         }
 
     }
 
     public static void Manage_providers_and_services(Scanner in) {
-            System.out.print("1 - Add provider\n" +
-                    "2 - Delete provider\n" +
-                    "3 - Search provider\n" +
-                    "4 - Add services\n" +
-                    "5 - Remove services\n" +
-                    "6 - Search services\n");
-            String choice = in.next();
+        System.out.print("1 - Add provider\n" +
+                "2 - Delete provider\n" +
+                "3 - Search provider\n" +
+                "4 - Add services\n" +
+                "5 - Remove services\n" +
+                "6 - Search services\n");
+        String choice = in.next();
         while (true) {
             if (IO.validateMenu(choice, 6) == -1) {
                 System.out.print("invalid choice(1-9), try again");
@@ -214,46 +217,42 @@ public class Main {
             }
         }
         int aChoice = Integer.parseInt(choice); //convert string to integer for menu switch
-            switch (aChoice) {
-                case 1:
-                    //addProvider(int PROVIDER_PLACEHOLDER);
-                    break; // break is optional
-                case 2:
-                    //removeProvider(int providerID)
-                    break;
-                case 3:
-                    //searchProvider(String query)
-                    break;
-                case 4:
-                    //addService(int SERVICE_PLACEHOLDER)
-                case 5:
-                    // removeService(int serviceID)
-                case 6:
-                    //searchService(String query)
-                    break;
-            }
+        switch (aChoice) {
+            case 1:
+                //overlord.addProvider(String providerData);
+                break; // break is optional
+            case 2:
+                //removeProvider(String providerID);
+                break;
+            case 3:
+                //overlord.searchProvider(String query);
+                break;
+            case 4:
+                //overlord.addService(String[] serviceData);
+            case 5:
+                //overlord.removeService(String serviceID);
+            case 6:
+                //overlord.searchService(String query);
+                break;
+        }
 
     }
 
     public static void Generate_reports(Scanner in) {
-        // genMemberReport(int memberID);
-            // genProviderReport(int memberID);
-            //sendReports(String input)?????
+        //overlord.genMemberReport;
     }
 
     public static void View_reports(Scanner in) {
-        //genAllMemberReports()
-            //genAllProvidersReports()
-            //sendReports(String input)???????
+        //overlord.
     }
 
-    public static int stringCompare(String str1, String str2){//had problems with comparing strings, so I did it lexicographically{
+    public static int stringCompare(String str1, String str2) {//had problems with comparing strings, so I did it lexicographically{
         int l1 = str1.length();
         int l2 = str2.length();
         int lmin = Math.min(l1, l2);
         for (int i = 0; i < lmin; i++) {
-            int str1_ch = (int)str1.charAt(i);
-            int str2_ch = (int)str2.charAt(i);
+            int str1_ch = (int) str1.charAt(i);
+            int str2_ch = (int) str2.charAt(i);
 
             if (str1_ch != str2_ch) {
                 return str1_ch - str2_ch;
@@ -304,4 +303,90 @@ public class Main {
         //}
         return service_code;
     }
+    //
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+    public static class IOAuthorization {
+        IOAuthorization() {
+        }
+
+        int validateMenu(String input, int maxMenuSize) {
+
+            if (!isType(input, "int"))
+                return -1;
+
+            // should be an int, okay to cast
+            int menu = Integer.parseInt(input);
+
+            if (menu <= 0 || menu > maxMenuSize)
+                return -1;
+
+            // all tests passed
+            return 0;
+        }
+
+        int validateDate(String var1) {
+            SimpleDateFormat var2 = new SimpleDateFormat("MM/dd/yyyy");
+            var2.setLenient(false);
+
+            try {
+                var2.parse(var1);
+                return 0;
+            } catch (ParseException var4) {
+                return -1;
+            }
+        }
+
+        int validateTime(String var1) {
+            SimpleDateFormat var2 = new SimpleDateFormat("HH:mm:ss");
+            var2.setLenient(false);
+
+            try {
+                var2.parse(var1);
+                return 0;
+            } catch (ParseException var4) {
+                return -1;
+            }
+        }
+
+        int validateID(String var1, int var2) {
+            if (!this.isCorrectSize(var1, var2)) {
+                return -1;
+            } else if (!this.isType(var1, "int")) {
+                return -1;
+            } else {
+                int var3 = Integer.parseInt(var1);
+                return this.isNegative(var3) ? -1 : 0;
+            }
+        }
+
+        int validateTextLength(String var1, int var2) {
+            return var1.length() > var2 ? -1 : 0;
+        }
+
+        private boolean isCorrectSize(String var1, int var2) {
+            return var1.length() == var2;
+        }
+
+        private boolean isNegative(int var1) {
+            return var1 < 0;
+        }
+
+        private boolean isType(String var1, String var2) {
+            try {
+                if (var2.equalsIgnoreCase("int")) {
+                    Integer.parseInt(var1);
+                } else if (var2.equalsIgnoreCase("double")) {
+                    Double.parseDouble(var1);
+                }
+
+                return true;
+            } catch (NumberFormatException var4) {
+                return false;
+            }
+        }
+    }
+
 }
