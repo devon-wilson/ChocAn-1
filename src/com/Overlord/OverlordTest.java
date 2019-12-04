@@ -54,7 +54,7 @@ class OverlordTest {
   void viewMember() {
     Overlord overlord = new Overlord();
 
-    assertEquals(-1, overlord.viewMember(), "no member checked in");
+    assertEquals(-2, overlord.viewMember(), "no member checked in");
 
     overlord.login(0, "012345678");
     overlord.memberCheckIn("012345678");
@@ -115,18 +115,13 @@ class OverlordTest {
   }
 
   @Test
-  void addProvider() {
+  void addRemoveProvider() {
     Overlord overlord = new Overlord();
     String[] testArray = new String[7];
     Arrays.fill(testArray, "");
 
     assertEquals(-1, overlord.addProvider(testArray), "add member fails on null");
     assertEquals(1, overlord.addProvider(testArray), "add member fails on null");
-  }
-
-  @Test
-  void removeProvider() {
-    Overlord overlord = new Overlord();
   }
 
   @Test
@@ -137,6 +132,13 @@ class OverlordTest {
   @Test
   void displayCurrentServices() {
     Overlord overlord = new Overlord();
+
+    assertEquals(-2, overlord.displayCurrentServices(), "no member checked in");
+
+    overlord.login(0, "012345678");
+    overlord.memberCheckIn("012345678");
+
+    assertEquals(1, overlord.displayCurrentServices(), "member checked in displays");
   }
 
   @Test

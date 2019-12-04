@@ -242,13 +242,18 @@ public class Overlord extends DataBaseManager {
     }
   }
 
-  public void displayCurrentServices() {
+  public int displayCurrentServices() {
+    if (currentMember == null)
+      return -2;
     try {
       Provider current = (Provider) currentUser;
       current.displayServices();
+      //return displayStream
+      return 1;
     }
     catch (ClassCastException a) {
       System.out.println("Current user is not a Provider. Cannot display services");
+      return -1;
     }
   }
 
