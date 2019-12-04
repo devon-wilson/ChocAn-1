@@ -48,7 +48,7 @@ public class Overlord extends DataBaseManager {
 
       // sets currentUser
       currentUser = login;
-      return 1;
+      return ++userType;
     }
     catch (ClassCastException a){
       return -1;
@@ -127,10 +127,24 @@ public class Overlord extends DataBaseManager {
    * @return 1 for success, -1 for failure
    */
   public int addMember(String[] memberData) {
+    if (currentUser == null)
+      return -2;
     Member toAdd = new Member(memberData);
 
+    Object returnCode;
+    returnCode = addTreeData(2, toAdd.get(1), toAdd);
+
+    System.out.println(returnCode);
+
+    if (null == returnCode) {
+      return -1;
+    }
+
+    /*
     if(addTreeData(2, toAdd.get(1), toAdd) == null)
       return -1;
+
+     */
     return 1;
   }
 

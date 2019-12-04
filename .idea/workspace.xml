@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2b41691-6ae0-4817-baa2-922bc21ef93c" name="Default Changelist" comment="added more tests and passed more tests">
-      <change afterPath="$PROJECT_DIR$/src/com/Overlord/tests/memberCheckInTests.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Overlord/Overlord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/Overlord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Overlord/OverlordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/OverlordTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Overlord/tests/logintests.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/tests/loginTests.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Overlord/tests/loginTests.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/tests/loginTests.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +16,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -27,6 +27,13 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="git@github.com:CS300-Group-4/ChocAn.git" />
+      </set>
+    </option>
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
@@ -51,10 +58,22 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="12" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/Overlord/tests" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.ReadWrite" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\PSU\cs300\ChocAn\src\com\Overlord\tests" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\dev\PSU\cs300\ChocAn" />
       <recent name="C:\dev\PSU\cs300\pulltest3\ChocAn\src\com\Overlord" />
@@ -62,19 +81,9 @@
       <recent name="$PROJECT_DIR$/src/com" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\dev\PSU\cs300\ChocAn\src\com\Overlord\tests" />
-    </key>
   </component>
-  <component name="RunManager" selected="JUnit.OverlordTest">
-    <configuration name="IOAuth Test" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="ChocAn" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.All in ChocAn">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.Main" />
       <module name="ChocAn" />
       <extension name="coverage">
@@ -87,22 +96,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Terminal" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="All in ChocAn" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="ChocAn" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="chocan" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="ChocAn" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="dataclasses" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -117,24 +114,52 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.Overlord" />
       <option name="MAIN_CLASS_NAME" value="com.Overlord.OverlordTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReadWriteTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="ChocAn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ReadWrite.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ReadWrite" />
+      <option name="MAIN_CLASS_NAME" value="com.ReadWrite.ReadWriteTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="ChocAn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.DataClasses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.DataClasses" />
+      <option name="MAIN_CLASS_NAME" value="com.DataClasses.UserTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.IOAuth Test" />
-      <item itemvalue="Application.chocan" />
-      <item itemvalue="Application.dataclasses" />
-      <item itemvalue="Application.Terminal" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.All in ChocAn" />
+      <item itemvalue="JUnit.ReadWriteTest" />
       <item itemvalue="JUnit.OverlordTest" />
+      <item itemvalue="JUnit.UserTest" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -165,6 +190,11 @@
       <workItem from="1575362847281" duration="571000" />
       <workItem from="1575407797376" duration="1831000" />
       <workItem from="1575411409533" duration="43000" />
+      <workItem from="1575411937340" duration="974000" />
+      <workItem from="1575412979267" duration="773000" />
+      <workItem from="1575414131251" duration="53000" />
+      <workItem from="1575418468104" duration="2181000" />
+      <workItem from="1575422332878" duration="7150000" />
     </task>
     <task id="LOCAL-00001" summary="Readded module and package files">
       <created>1575340829295</created>
@@ -187,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575357071673</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added 3rd item to services.csv so overlord can instantiate">
+      <created>1575413664535</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575413664535</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,13 +254,23 @@
     <MESSAGE value="Readded module and package files" />
     <MESSAGE value="fixed small overlord test bugs and added test Junit path" />
     <MESSAGE value="Changed test dependency to use junit to read files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed test dependency to use junit to read files" />
+    <MESSAGE value="added 3rd item to services.csv so overlord can instantiate" />
+    <option name="LAST_COMMIT_MESSAGE" value="added 3rd item to services.csv so overlord can instantiate" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575342855308">
+    <state x="371" y="92" key="#OverlordTest" timestamp="1575432718575">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1575342855308" />
+    <state x="371" y="92" key="#OverlordTest/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432718575" />
+    <state x="371" y="92" key="#UserTest" timestamp="1575432723006">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="371" y="92" key="#UserTest/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432723006" />
+    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575432734247">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432734247" />
+    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1575418699291" />
     <state x="498" y="201" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575339769304">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -237,53 +284,62 @@
     </state>
     <state x="520" y="157" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575357354986" />
     <state x="520" y="157" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1575340968774" />
-    <state x="375" y="11" width="1005" height="802" key="CommitChangelistDialog2" timestamp="1575411522507">
+    <state x="14" y="11" width="1407" height="798" key="CommitChangelistDialog2" timestamp="1575432775078">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="375" y="11" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575357071063" />
-    <state x="375" y="11" width="1005" height="802" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1575411522507" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1575342745038">
+    <state x="14" y="11" width="1407" height="798" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432775078" />
+    <state x="375" y="11" width="1005" height="802" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1575413663769" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1575424314804">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1575342745038" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1575409648334">
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575424314804" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1575422412484" />
+    <state width="1493" height="319" key="GridCell.Tab.0.bottom" timestamp="1575432781113">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575363418205" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1575409648334" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1575409648334">
+    <state width="1493" height="319" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432781113" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575430057133" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1575420670557" />
+    <state width="1493" height="319" key="GridCell.Tab.0.center" timestamp="1575432781113">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575363418205" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1575409648334" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1575409648334">
+    <state width="1493" height="319" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432781113" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575430057133" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1575420670557" />
+    <state width="1493" height="319" key="GridCell.Tab.0.left" timestamp="1575432781113">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575363418205" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1575409648334" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1575409648334">
+    <state width="1493" height="319" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432781113" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575430057133" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1575420670557" />
+    <state width="1493" height="319" key="GridCell.Tab.0.right" timestamp="1575432781113">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575363418205" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1575409648334" />
+    <state width="1493" height="319" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432781113" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575430057133" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1575420670557" />
     <state x="601" y="125" key="RollbackChangesDialog" timestamp="1575342775620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="601" y="125" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1575342775620" />
-    <state x="361" y="147" key="Vcs.Push.Dialog.v2" timestamp="1575357373738">
+    <state x="361" y="147" key="Vcs.Push.Dialog.v2" timestamp="1575414141474">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="147" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575357373738" />
-    <state x="361" y="147" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1575342247876" />
-    <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1575411411712">
+    <state x="361" y="147" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1575414141474" />
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1575422332729">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575363027841" />
-    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1575411411712" />
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1575422332729" />
     <state x="498" y="313" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1575341101179">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="498" y="313" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1575341101179" />
+    <state x="2651" y="251" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1575427531493">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2651" y="251" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575427531493" />
     <state x="496" y="215" key="git4idea.merge.GitPullDialog" timestamp="1575411543056">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -292,5 +348,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="209" y="38" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1575340078267" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1575429930147">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575429930147" />
   </component>
 </project>

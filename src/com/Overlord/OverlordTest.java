@@ -76,29 +76,42 @@ class OverlordTest {
   }
 
   @Test
-  void addMember() {
+  @DisplayName("Add, Remove, Member")
+  void addRemoveMember() {
     Overlord overlord = new Overlord();
+    String[] newMember = {"Jane Doe","321321321","3415 54th Street","Portland","OR","97320","Valid"};
+    assertEquals(7, newMember.length);
 
-  }
+    assertEquals("Val"+"id", newMember[6], "valid");
 
-  @Test
-  void removeMember() {
-    Overlord overlord = new Overlord();
+    assertEquals(-2, overlord.addMember(newMember), "add member without manager");
+
+    overlord.login(1, "012345678");
+
+    assertEquals(1, overlord.addMember(newMember), "add member without manager");
+
+    assertEquals(-1, overlord.removeMember(newMember[1]), "add member without manager");
+
   }
 
   @Test
   void suspendMember() {
     Overlord overlord = new Overlord();
+
+    assertEquals(-2, overlord.suspendMember("012345678"));
+
+    overlord.login(1, "012345678");
+
+    assertEquals(-1, overlord.suspendMember("012345678"));
+    assertEquals(-1, overlord.renewMember("012345678"));
   }
 
-  @Test
-  void renewMember() {
+  @ParameterizedTest(name = "{2}")
+  @CsvFileSource(resources = "tests/memberCheckInTests.csv")
+  void searchMember(String id, int expected, String message) {
     Overlord overlord = new Overlord();
-  }
 
-  @Test
-  void searchMember() {
-    Overlord overlord = new Overlord();
+    assertNull("tuna", message);
   }
 
   @Test
