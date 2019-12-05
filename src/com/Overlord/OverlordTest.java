@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -231,5 +232,19 @@ class OverlordTest {
     Overlord overlord = new Overlord();
   }
 
+  @ParameterizedTest(name = "{1}")
+  @CsvSource({
+          "0,member is not checked in",
+          "1,member is checked in"
+  })
+  void isMemberCheckedIn(boolean expected, String message) {
+    Overlord overlord = new Overlord();
+
+    if (expected) {
+      overlord.login(0, "012345678");
+      overlord.memberCheckIn("012345678");
+    }
+    assertEquals(expected, overlord.isMemberCheckedIn(), message);
+  }
 }
 

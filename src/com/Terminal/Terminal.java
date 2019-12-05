@@ -57,6 +57,7 @@ public class Terminal extends IOAuthorization {
     char choice = '\0';
     String providerID;
     System.out.println("\nTerminal.startProvider");
+    System.out.println("Authorized Access Only");
 
     System.out.print("\nEnter Provider ID" +
             "\nLogin" + prompt
@@ -85,17 +86,20 @@ public class Terminal extends IOAuthorization {
       switch (choice) {
         case '1':
           checkInMember();
+          break;
         default:
           break;
       }
 
     } while (choice != 'q');
+    overlord.logout();
   }
 
   private void startManager() {
     char choice = '\0';
     String managerID;
     System.out.println("\nTerminal.startManager");
+    System.out.println("Authorized Access Only");
 
     System.out.print("Login" + prompt);
     managerID = in.nextLine();
