@@ -3,6 +3,7 @@ package com.DataBaseManager;
 import com.DataClasses.*;
 import com.ReadWrite.ReadWrite;
 
+import java.io.IOException;
 import java.util.TreeMap;
 
 public class DataBaseManager<Object> {
@@ -28,36 +29,40 @@ public class DataBaseManager<Object> {
         ReadWrite rw = new ReadWrite();
 
         String[] fileData;
-        if((fileData = rw.fileRead(filename)) == null)
-            return null;
+        try {
+            if((fileData = rw.fileRead(filename)) == null)
+                return null;
 
-        // Determines what kind of objects will be created
-        // First line of all .csv files
-        String objectType = fileData[0];
+            // Determines what kind of objects will be created
+            // First line of all .csv files
+            String objectType = fileData[0];
 
-        for (int i = 1; i < fileData.length; i++) {
-            // Need to do some sort of RTTI depending on the filename
-            String[] lineData = fileData[i].split(",");
+            for (int i = 1; i < fileData.length; i++) {
+                // Need to do some sort of RTTI depending on the filename
+                String[] lineData = fileData[i].split(",");
 
-            Object newObject = null;
+                Object newObject = null;
 
-            switch (objectType) {
-                case "Manager":
-                    newObject = (Object) new Manager(lineData);
-                    break;
-                case "Provider":
-                    newObject = (Object) new Provider(lineData);
-                    break;
-                case "Member":
-                    newObject = (Object) new Member(lineData);
-                    break;
-                case "Service":
-                    newObject = (Object) new Service(lineData);
-                    break;
+                switch (objectType) {
+                    case "Manager":
+                        newObject = (Object) new Manager(lineData);
+                        break;
+                    case "Provider":
+                        newObject = (Object) new Provider(lineData);
+                        break;
+                    case "Member":
+                        newObject = (Object) new Member(lineData);
+                        break;
+                    case "Service":
+                        newObject = (Object) new Service(lineData);
+                        break;
+                }
+
+                if (newObject != null)
+                    root.put(lineData[1], newObject);
             }
-
-            if (newObject != null)
-                root.put(lineData[1], newObject);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         return root;
