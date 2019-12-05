@@ -75,11 +75,8 @@ public class Terminal extends IOAuthorization {
     );
     providerID = in.nextLine();
     int returnCode;
-    returnCode = validateID(providerID, 9);
-    if (returnCode < 0) {
-      System.out.println("Not valid provider ID");
+    if (!isValidID(providerID, 9, "Provider ID"))
       return;
-    }
     returnCode = overlord.login(1, providerID);
     if (returnCode < 0) {
       System.out.println("Could not login");
@@ -147,13 +144,11 @@ public class Terminal extends IOAuthorization {
 
     System.out.print("Login" + prompt);
     managerID = in.nextLine();
-    int returnCode;
-    returnCode = validateID(managerID, 9);
-    if (returnCode < 0) {
-      System.out.println("Not valid Manager ID");
+
+    if (!isValidID(managerID, 9, "Member ID"))
       return;
-    }
-    returnCode = overlord.login(0, managerID);
+
+    int returnCode = overlord.login(0, managerID);
     if (returnCode < 0) {
       System.out.println("Could not login");
       return;
@@ -193,6 +188,15 @@ public class Terminal extends IOAuthorization {
     }
   }
 
+  private boolean isValidID(String ID, int expected, String name) {
+    int returnCode = validateID(ID, expected);
+    if (returnCode < 0) {
+      System.out.print("Not valid " + name);
+      return false;
+    }
+    return true;
+  }
+
   /*
   private boolean validateMemberID() {
     System.out.print("Enter your Member ID: ");
@@ -217,11 +221,8 @@ public class Terminal extends IOAuthorization {
     System.out.print("Enter memberID:\n$ ");
     String memberID = in.nextLine();
     int returnCode;
-    returnCode = validateID(memberID, 9);
-    if (returnCode < 0) {
-      System.out.println("Not valid member ID");
+    if (!isValidID(memberID, 9, "Member ID"))
       return;
-    }
     returnCode = overlord.memberCheckIn(memberID);
     if (returnCode < 0) {
       System.out.println("Could not check in member: " + memberID);
