@@ -2,11 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2b41691-6ae0-4817-baa2-922bc21ef93c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/DataClasses/ReportTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ChocAn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChocAn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Overlord/OverlordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/OverlordTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ioauth/IOAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/IOAuth/IOAuthorization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ioauth/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/IOAuth/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/com/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/com/Manager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/com/Member.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/com/Provider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/com/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/DataBaseManager/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/DataBaseManager/DataBaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/DataClasses/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/DataClasses/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/DataClasses/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/DataClasses/UserTest.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -70,13 +80,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.DataClasses" />
       <recent name="com.ReadWrite" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\dev\PSU\cs300\ChocAn\src\com\Overlord\tests" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\dev\PSU\cs300\ChocAn" />
@@ -85,8 +90,26 @@
       <recent name="$PROJECT_DIR$/src/com" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\PSU\cs300\ChocAn\src\com\Overlord\tests" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in ChocAn">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.ReportTest">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.Main" />
       <module name="ChocAn" />
@@ -140,6 +163,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ReportTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChocAn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.DataClasses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.DataClasses" />
+      <option name="MAIN_CLASS_NAME" value="com.DataClasses.ReportTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="ChocAn" />
       <extension name="coverage">
@@ -163,19 +201,13 @@
       <item itemvalue="JUnit.ReadWriteTest" />
       <item itemvalue="JUnit.OverlordTest" />
       <item itemvalue="JUnit.UserTest" />
+      <item itemvalue="JUnit.ReportTest" />
     </list>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
+    <recent_temporary>
       <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
+        <item itemvalue="JUnit.ReportTest" />
       </list>
-    </option>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -444,11 +476,11 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ChocAn$All_in_ChocAn.ic" NAME="All in ChocAn Coverage Results" MODIFIED="1575511369820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/ChocAn2$UserTest.ic" NAME="UserTest Coverage Results" MODIFIED="1575489648123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.DataClasses.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/ChocAn2$Main.ic" NAME="Main Coverage Results" MODIFIED="1575489228719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ChocAn2$UserTest.ic" NAME="UserTest Coverage Results" MODIFIED="1575489648123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.DataClasses.*</FILTER>
     </SUITE>
   </component>
 </project>

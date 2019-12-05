@@ -19,6 +19,14 @@ public class Service {
         return name;
     }
 
+    public String[] getAll(){
+        String [] components = new String [3];
+        components[0] = name;
+        components[1] = ID;
+        components[2] = cost;
+        return components;
+    }
+
     private String name;
     private String ID;
     private String cost;
