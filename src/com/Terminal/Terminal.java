@@ -4,24 +4,30 @@ import com.IOAuth.IOAuthorization;
 import com.Overlord.Overlord;
 
 import java.util.Scanner;
+import java.util.Stack;
 
+/**
+ * Terminal
+ * <p>
+ *   extends Chocan's IO Authorization class
+ * </p>
+ */
 public class Terminal extends IOAuthorization {
-  private String memberID = " ";
-  private String memberStatus = "unsuspended";//Valid or Suspended
-  private String dateOfService = " ";
   private Overlord overlord;
-  private Scanner in;
+  final private Scanner in;
   final String prompt = "$ ";
+  final private Stack<String> breadcrumb;
 
+  /**
+   * Terminal Constructor
+   *
+   * @param overlord ChocaAn API to send and recieve information from users
+   */
   public Terminal(Overlord overlord) {
     super();
     this.overlord = overlord;
     in = new Scanner(System.in);
-  }
-
-  char getChoice() {
-    String input = in.nextLine();
-    return Character.toLowerCase(input.charAt(0));
+    breadcrumb = new Stack<>();
   }
 
   /**
@@ -33,13 +39,14 @@ public class Terminal extends IOAuthorization {
   public void start() {
     char choice = '\0';
     System.out.println("\nsTerminal.start");
+    breadcrumb.push("Terminal");
     do {
-      System.out.print("\nChoose terminal:" +
+      System.out.println("\nChoose terminal:" +
               "\n p - Provider terminal" +
               "\n m - Manager terminal" +
-              "\n q - Quit" +
-              "\nTerminal" + prompt
+              "\n q - Quit"
       );
+      prompt();
       choice = getChoice();
 
       switch (choice) {
@@ -60,30 +67,31 @@ public class Terminal extends IOAuthorization {
     char choice = '\0';
     String providerID;
     System.out.println("\nTerminal.startProvider");
+    breadcrumb.push("Provider");
     System.out.println("Authorized Access Only");
 
     System.out.print("\nEnter Provider ID" +
             "\nLogin" + prompt
     );
     providerID = in.nextLine();
-    int rc = overlord.login(1, providerID);
-    if (rc < 0) {
+    int returnCode;
+    returnCode = validateID(providerID, 9);
+    if (returnCode < 0) {
+      System.out.println("Not valid provider ID");
+      return;
+    }
+    returnCode = overlord.login(1, providerID);
+    if (returnCode < 0) {
       System.out.println("Could not login");
       return;
     }
 
     do {
-      System.out.print("\nChoose Provider option:");
-
-      // change this to a separate function
-      if (overlord.isMemberCheckedIn())
-        System.out.print("\n 1 - Check in member");
-      else
-        System.out.println(" 1 - Other options ");
-
-      System.out.println("\n q - Quit" +
-                      "\nProvider" + prompt
+      System.out.println("\nChoose Provider option:" +
+              "\n 1 - Check in member" +
+              "\n q - quit (logout)"
       );
+      prompt();
       choice = getChoice();
 
       if (choice == '1') {
@@ -91,46 +99,102 @@ public class Terminal extends IOAuthorization {
       }
 
     } while (choice != 'q');
+    breadcrumb.pop();
     overlord.logout();
   }
 
   private void providerCheckedIn() {
+    char choice = '\0';
     System.out.println("Terminal.providerCheckedIn");
+    breadcrumb.add("checkedIn");
 
+    do {
+      System.out.println("\nChoose Provider option:" +
+              "\n 1 - 1" +
+              "\n 2 - 2" +
+              "\n 3 - 3" +
+              "\n 4 - 4" +
+              "\n q - quit (check out)"
+      );
+      prompt();
+      choice = getChoice();
+
+      switch (choice) {
+        case '1':
+          break;
+        case '2':
+          break;
+        case '3':
+          break;
+        case '4':
+          break;
+        default:
+          break;
+      }
+
+    } while (choice != 'q');
+
+    overlord.memberCheckOut();
+    breadcrumb.pop();
   }
 
   private void startManager() {
     char choice = '\0';
     String managerID;
     System.out.println("\nTerminal.startManager");
+    breadcrumb.push("Manager");
     System.out.println("Authorized Access Only");
 
     System.out.print("Login" + prompt);
     managerID = in.nextLine();
-    int rc = overlord.login(0, managerID);
-    if (rc < 0) {
+    int returnCode;
+    returnCode = validateID(managerID, 9);
+    if (returnCode < 0) {
+      System.out.println("Not valid Manager ID");
+      return;
+    }
+    returnCode = overlord.login(0, managerID);
+    if (returnCode < 0) {
       System.out.println("Could not login");
       return;
     }
 
     do {
-      System.out.print("\nChoose Manager option:" +
-              "\n q - Quit" +
-              "\nManager" + prompt
+      System.out.println("\nChoose Manager option:" +
+              "\n q - Quit"
       );
+      prompt();
       choice = getChoice();
 
-      /*
       switch (choice) {
         default:
           break;
       }
-      */
 
     } while (choice != 'q');
+
+    breadcrumb.pop();
   }
 
-  private boolean validateMemberID(Scanner in) {
+  void prompt() {
+    int last = breadcrumb.size() - 1;
+    for (int i = 0; i < last; ++i) {
+      System.out.print(breadcrumb.get(i) + ".");
+    }
+    System.out.print(breadcrumb.get(last) + prompt);
+  }
+
+  private char getChoice() {
+    try {
+      String input = in.nextLine();
+      return Character.toLowerCase(input.charAt(0));
+    } catch (StringIndexOutOfBoundsException e) {
+      return '\0';
+    }
+  }
+
+  /*
+  private boolean validateMemberID() {
     System.out.print("Enter your Member ID: ");
     String memberID = in.next();
     int result = validateID(memberID, 9);
@@ -145,15 +209,22 @@ public class Terminal extends IOAuthorization {
     }
     return true;
   }
+   */
 
   //function's for each menu item
 
   private void checkInMember() {
     System.out.print("Enter memberID:\n$ ");
     String memberID = in.nextLine();
-    int rc = overlord.memberCheckIn(memberID);
-    if (rc < 0) {
-      System.out.println("Could not check in member " + memberID);
+    int returnCode;
+    returnCode = validateID(memberID, 9);
+    if (returnCode < 0) {
+      System.out.println("Not valid member ID");
+      return;
+    }
+    returnCode = overlord.memberCheckIn(memberID);
+    if (returnCode < 0) {
+      System.out.println("Could not check in member: " + memberID);
       return;
     }
 
@@ -161,19 +232,19 @@ public class Terminal extends IOAuthorization {
     providerCheckedIn();
   }
 
-  private void generateRecordOfService(Scanner in) {
-    // overlord.generateServiceRecord();
+  private void generateRecordOfService() {
+    //overlord.generateServiceRecord();
   }
 
-  private void requestProviderDirectory(Scanner in) {
+  private void requestProviderDirectory() {
     //overlord.requestDirectory();
   }
 
-  private boolean generateChocanBill(Scanner in) {
+  private boolean generateChocanBill() {
     System.out.println("Generate ChocAn Bill");
     String date;
     String serviceID;
-    boolean usethis = validateMemberID(in);
+    //boolean usethis = validateMemberID(member);
     System.out.print("Enter date of service(MM-DD-YYYY)");
     date = in.next();
     int result = validateDate(date);
@@ -186,7 +257,7 @@ public class Terminal extends IOAuthorization {
         break;
       }
     }
-    serviceID = getServiceCode(in);
+    serviceID = getServiceCode();
         /*System.out.println("Would you like to add comments to record?");
         boolean toComment = in.nextBoolean();
         if(toComment){
@@ -200,7 +271,7 @@ public class Terminal extends IOAuthorization {
     return true;
   }
 
-  private void manageMembers(Scanner in) {
+  private void manageMembers() {
     /*name,number,address,city,state,zip*/
     System.out.print("\n" +
             "\n 1 - Add" +
@@ -237,7 +308,7 @@ public class Terminal extends IOAuthorization {
 
   }
 
-  private void manageProvidersAndServices(Scanner in) {
+  private void manageProvidersAndServices() {
     System.out.print("1 - Add provider\n" +
             "2 - Delete provider\n" +
             "3 - Search provider\n" +
@@ -275,15 +346,15 @@ public class Terminal extends IOAuthorization {
 
   }
 
-  private void generateReports(Scanner in) {
+  private void generateReports() {
     //overlord.genMemberReport;
   }
 
-  private void viewReports(Scanner in) {
+  private void viewReports() {
     //overlord.
   }
 
-  private String getServiceCode(Scanner in) {
+  private String getServiceCode() {
     System.out.print("please enter service code");
     String serviceID = in.next();
     int result = validateID(serviceID, 6);
