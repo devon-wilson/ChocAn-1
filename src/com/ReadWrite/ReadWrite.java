@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ReadWrite
 {
-    static String[] fileRead(String filename)
+    public static String[] fileRead(String filename)
     {
         try {
             BufferedReader file = new BufferedReader(new FileReader(filename));
@@ -86,7 +86,7 @@ public class ReadWrite
         return ret;
     }
 
-    static int fileWrite(String filename, String[] data, boolean append) throws IOException
+    public static int fileWrite(String filename, String[] data, boolean append) throws IOException
     {
         FileWriter file;
         int i;
