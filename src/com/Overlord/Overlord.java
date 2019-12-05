@@ -166,6 +166,9 @@ public class Overlord extends DataBaseManager {
   }
 
   public int suspendMember(String memberID) {
+    if (!(currentUser instanceof Manager))
+      return -2;
+
     try {
       // check if member to be suspended is current member
       if (currentMember != null && currentMember.get(1).equals(memberID)) {
@@ -301,8 +304,20 @@ public class Overlord extends DataBaseManager {
     }
   }
 
-  public int genProviderReport(int memberID) {
-    return 0;
+  public int genProviderReport(String providerID) {
+
+    try {
+      Provider provider = (Provider) findData(1, providerID);
+      if (provider == null)
+        return -1;
+      //ReadWrite.fileWrite("Report" + providerID, member.toString(), false);
+
+      return 0;
+    }
+    catch (ClassCastException a)
+    {
+      return -1;
+    }
   }
 
   public int genAllMemberReports() {
@@ -328,6 +343,7 @@ public class Overlord extends DataBaseManager {
   }
 
   public int generateBill() {
+    // where do i look at what this is supposed to do?
     return 0;
   }
 
