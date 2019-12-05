@@ -1,17 +1,24 @@
 package com.Terminal;
 
+import com.IOAuth.IOAuthorization;
+import com.Overlord.Overlord;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
-public class Terminal {
-  public static String member_number = " ";
-  public static String member_status = "unsuspended";//suspended or unsuspended
-  public static String date_of_service = " ";
-  public static IOAuthorization IO = new IOAuthorization();
-
+public class Terminal extends IOAuthorization {
+  public String member_number = " ";
+  public String member_status = "unsuspended";//suspended or unsuspended
+  public String date_of_service = " ";
 
   public static void main(String[] args) {
+    Overlord overlord = new Overlord();
+    Terminal terminal = new Terminal();
+    terminal.begin();
+  }
+
+  public void begin() {
     while (true) {
       boolean switcher = true;
       String prov = "provider";
@@ -51,7 +58,7 @@ public class Terminal {
       }
       String aChoice = in.next();
       while (true) {
-        if (IO.validateMenu(aChoice, 9) == -1) {
+        if (validateMenu(aChoice, 9) == -1) {
           System.out.print("invalid choice(1-9), try again");
           aChoice = in.next();
         } else {
@@ -96,15 +103,15 @@ public class Terminal {
     }
   }
 
-  public static boolean validate_member_number(Scanner in) {
+  public boolean validate_member_number(Scanner in) {
     System.out.print("Enter your member number: ");
     member_number = in.next();
-    int result = IO.validateID(member_number, 9);
+    int result = validateID(member_number, 9);
     while (true) {
       if (result == -1) {
         System.out.print("invalid input, try again(9 digits)");
         member_number = in.next();
-        result = IO.validateID(member_number, 9);
+        result = validateID(member_number, 9);
       } else {
         break;
       }
@@ -113,31 +120,31 @@ public class Terminal {
   }
 
   //function's for each menu item
-  public static void Check_in_member(Scanner in, String member_number) {
+  public void Check_in_member(Scanner in, String member_number) {
     //overlord.memberCheckIn(member_number);
   }
 
-  public static void Generate_record_of_service(Scanner in) {
+  public void Generate_record_of_service(Scanner in) {
     // overlord.generateServiceRecord();
   }
 
-  public static void Request_provider_directory(Scanner in) {
+  public void Request_provider_directory(Scanner in) {
     //overlord.requestDirectory();
   }
 
-  public static boolean Generate_Chocan_bill(Scanner in) {
+  public boolean Generate_Chocan_bill(Scanner in) {
     System.out.println("Generate ChocAn Bill");
     String date = " ";
     String service_code = " ";
     validate_member_number(in);
     System.out.print("Enter date of service(MM-DD-YYYY)");
     date = in.next();
-    int result = IO.validateDate(date);
+    int result = validateDate(date);
     while (true) {
       if (result == -1) {
         System.out.print("invalid input, try again(MM-DD-YYYY)");
         date = in.next();
-        result = IO.validateDate(date);
+        result = validateDate(date);
       } else {
         break;
       }
@@ -156,7 +163,7 @@ public class Terminal {
     return true;
   }
 
-  public static void Manage_members(Scanner in) {
+  public void Manage_members(Scanner in) {
     /*name,number,address,city,state,zip*/
     System.out.print("1 - Add member\n" +
             "2 - Delete member\n" +
@@ -165,7 +172,7 @@ public class Terminal {
             "5 - Search member\n");
     String choice = in.next();
     while (true) {
-      if (IO.validateMenu(choice, 5) == -1) {
+      if (validateMenu(choice, 5) == -1) {
         System.out.print("invalid choice(1-9), try again");
         choice = in.next();
       } else {
@@ -192,7 +199,7 @@ public class Terminal {
 
   }
 
-  public static void Manage_providers_and_services(Scanner in) {
+  public void Manage_providers_and_services(Scanner in) {
     System.out.print("1 - Add provider\n" +
             "2 - Delete provider\n" +
             "3 - Search provider\n" +
@@ -201,7 +208,7 @@ public class Terminal {
             "6 - Search services\n");
     String choice = in.next();
     while (true) {
-      if (IO.validateMenu(choice, 6) == -1) {
+      if (validateMenu(choice, 6) == -1) {
         System.out.print("invalid choice(1-9), try again");
         choice = in.next();
       } else {
@@ -230,15 +237,15 @@ public class Terminal {
 
   }
 
-  public static void Generate_reports(Scanner in) {
+  public void Generate_reports(Scanner in) {
     //overlord.genMemberReport;
   }
 
-  public static void View_reports(Scanner in) {
+  public void View_reports(Scanner in) {
     //overlord.
   }
 
-  public static int stringCompare(String str1, String str2) {//had problems with comparing strings, so I did it lexicographically{
+  public int stringCompare(String str1, String str2) {//had problems with comparing strings, so I did it lexicographically{
     int l1 = str1.length();
     int l2 = str2.length();
     int lmin = Math.min(l1, l2);
@@ -262,15 +269,15 @@ public class Terminal {
     }
   }
 
-  public static String get_service_code(Scanner in) {
+  public String get_service_code(Scanner in) {
     System.out.print("please enter service code");
     String service_code = in.next();
-    int result = IO.validateID(service_code, 6);
+    int result = validateID(service_code, 6);
     while (true) {
       if (result == -1) {
         System.out.print("invalid code, try again(6 digit #)");
         service_code = in.next();
-        result = IO.validateID(service_code, 6);
+        result = validateID(service_code, 6);
       } else {
         break;
       }
@@ -295,89 +302,5 @@ public class Terminal {
     //}
     return service_code;
   }
-  //
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
 
-  public static class IOAuthorization {
-    IOAuthorization() {
-    }
-
-    int validateMenu(String input, int maxMenuSize) {
-
-      if (!isType(input, "int"))
-        return -1;
-
-      // should be an int, okay to cast
-      int menu = Integer.parseInt(input);
-
-      if (menu <= 0 || menu > maxMenuSize)
-        return -1;
-
-      // all tests passed
-      return 0;
-    }
-
-    int validateDate(String var1) {
-      SimpleDateFormat var2 = new SimpleDateFormat("MM/dd/yyyy");
-      var2.setLenient(false);
-
-      try {
-        var2.parse(var1);
-        return 0;
-      } catch (ParseException var4) {
-        return -1;
-      }
-    }
-
-    int validateTime(String var1) {
-      SimpleDateFormat var2 = new SimpleDateFormat("HH:mm:ss");
-      var2.setLenient(false);
-
-      try {
-        var2.parse(var1);
-        return 0;
-      } catch (ParseException var4) {
-        return -1;
-      }
-    }
-
-    int validateID(String var1, int var2) {
-      if (!this.isCorrectSize(var1, var2)) {
-        return -1;
-      } else if (!this.isType(var1, "int")) {
-        return -1;
-      } else {
-        int var3 = Integer.parseInt(var1);
-        return this.isNegative(var3) ? -1 : 0;
-      }
-    }
-
-    int validateTextLength(String var1, int var2) {
-      return var1.length() > var2 ? -1 : 0;
-    }
-
-    private boolean isCorrectSize(String var1, int var2) {
-      return var1.length() == var2;
-    }
-
-    private boolean isNegative(int var1) {
-      return var1 < 0;
-    }
-
-    private boolean isType(String var1, String var2) {
-      try {
-        if (var2.equalsIgnoreCase("int")) {
-          Integer.parseInt(var1);
-        } else if (var2.equalsIgnoreCase("double")) {
-          Double.parseDouble(var1);
-        }
-
-        return true;
-      } catch (NumberFormatException var4) {
-        return false;
-      }
-    }
-  }
 }
