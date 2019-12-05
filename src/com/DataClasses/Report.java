@@ -86,22 +86,7 @@ public abstract class Report {
         return 0;
     }
 
-    public String [] getAll(){
-        //Returns an array of all the strings
-        //they are in the order of the protected data
-        //members
-        String [] data = new String [6];
-        if(name == null){
-            return null;
-        }
-        data[0] = name;
-        data[1] = number;
-        data[2] = address;
-        data[3] = city;
-        data[4] = state;
-        data[5] = zip;
-        return data;
-    }
+    public abstract String [] getAll();
     public String get(int toGet){
         //Return one field.
         //The number passed in is

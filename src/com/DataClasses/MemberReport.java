@@ -56,6 +56,23 @@ public class MemberReport extends Report{
         return 0;
     }
 
+    public String [] getAll(){
+        //1 - Provider info
+        //2 - number of services provided
+        //3 - total fee of all services
+        //4 - each cell contains a comma seperated list of services
+        String [] components = new String [3 + services.size()];
+        components[0] = super.name + "," + super.number + "," + super.address + "," + super.city + "," + super.state + "," + super.zip;
+        for(int i = 0; i < services.size(); ++i){
+            String [] temp = services.get(i);
+            components[i + 1] = temp[0];
+            for(int j = 1; j < temp.length; ++j){
+                components[i + 1] += "," + temp[i];
+            }
+        }
+        return components;
+    }
+
     //gets the data in the report.
     public Vector<String[]> getServices(){
         return services;

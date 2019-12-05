@@ -1,5 +1,7 @@
 package com.DataClasses;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -8,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void build() {
         User myMember = new Member();
         String [] components = null;
@@ -57,7 +59,7 @@ class UserTest {
         }
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void changeName() {
         Member myMember = new Member();
         String toChange = null;
@@ -74,7 +76,7 @@ class UserTest {
         }
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void changeID() {
         Member myMember = new Member();
         String toChange = null;
@@ -91,7 +93,7 @@ class UserTest {
         }
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void changeAddress() {
         Member myMember = new Member();
         String toChange = null;
@@ -108,7 +110,7 @@ class UserTest {
         }
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void changeCity() {
         Member myMember = new Member();
         String toChange = null;
@@ -125,7 +127,7 @@ class UserTest {
         }
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void changeState() {
         Member myMember = new Member();
         String toChange = null;
@@ -142,7 +144,7 @@ class UserTest {
         }
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void changeZip() {
         Member myMember = new Member();
         String toChange = null;
@@ -160,7 +162,7 @@ class UserTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     void get() {
 
     }
