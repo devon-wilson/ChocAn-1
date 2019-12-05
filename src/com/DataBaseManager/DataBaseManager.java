@@ -130,7 +130,7 @@ public class DataBaseManager<Object> {
     Returns a reference to the previous object associated with the id,
     or null if there was no object associated with the id.
      */
-    public int addTreeData(int type, String key, Object obj){
+    public Object addTreeData(int type, String key, Object obj){
         /*
         Each tree has it's own integer code
         0 - MANAGER
@@ -141,23 +141,15 @@ public class DataBaseManager<Object> {
         switch(type) {
 
             case (0):
-                if((managers.put(key, obj)) == null)
-                    return -1;
-                return 1;
+                return managers.put(key, obj);
             case (1):
-                if((providers.put(key, obj)) == null)
-                    return -1;
-                return 1;
+                return providers.put(key, obj);
             case (2):
-                if((members.put(key, obj)) == null)
-                    return -1;
-                return 1;
+                return members.put(key, obj);
             case (3):
-                if((services.put(key, obj)) == null)
-                    return -1;
-                return 1;
+                return services.put(key, obj);
         }
-        return -1;
+        return null;
     }
 
     /* Update an item
