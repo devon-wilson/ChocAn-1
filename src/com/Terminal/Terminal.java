@@ -3,20 +3,18 @@ package com.Terminal;
 import com.IOAuth.IOAuthorization;
 import com.Overlord.Overlord;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Terminal extends IOAuthorization {
-  private String member_number = " ";
-  private String member_status = "unsuspended";//Valid or Suspended
-  private String date_of_service = " ";
+  private String memberID = " ";
+  private String memberStatus = "unsuspended";//Valid or Suspended
+  private String dateOfService = " ";
   private Overlord overlord;
 
   public static void main(String[] args) {
     Overlord overlord = new Overlord();
     Terminal terminal = new Terminal(overlord);
-    terminal.begin();
+    terminal.start();
   }
 
   public Terminal(Overlord overlord) {
@@ -27,28 +25,28 @@ public class Terminal extends IOAuthorization {
   /**
    * Begin terminal emulation
    */
-  public void begin() {
+  public void start() {
     while (true) {
       boolean switcher = true;
       String prov = "provider";
       String mana = "manager";
       Scanner in = new Scanner(System.in);
       System.out.print("Are you a 'provider' or 'manager'");
-      String user_type = in.next();
+      String userType = in.next();
       while (true) {
-        if (user_type.equalsIgnoreCase("provider")) {
+        if (userType.equalsIgnoreCase("provider")) {
           break;
-        } else if (user_type.equalsIgnoreCase("manager")) {
+        } else if (userType.equalsIgnoreCase("manager")) {
           break;
         } else {
           System.out.print("invalid input, please enter 'provider' or 'manager'");
-          user_type = in.next();
+          userType = in.next();
         }
       }
-      if (validate_member_number(in)) {
+      if (validateMemberNumber(in)) {
         System.out.print("Validated\n");
       }
-      if (prov.equals(user_type)) {
+      if (prov.equals(userType)) {
         //Provider_Terminal a_terminal = new Provider_Terminal(name, member_number);
         //a_terminal.print();
         System.out.print("1 - Check in member\n" +
@@ -77,28 +75,28 @@ public class Terminal extends IOAuthorization {
       int choice = Integer.parseInt(aChoice); //convert string to integer for menu switch
       switch (choice) {
         case 1:
-          Check_in_member(in, member_number);
+          checkInMember(in, memberID);
           break; // break is optional
         case 2:
-          Generate_record_of_service(in);
+          generateRecordOfService(in);
           break;
         case 3:
-          Request_provider_directory(in);
+          requestProviderDirectory(in);
           break;
         case 4:
-          Generate_Chocan_bill(in);
+          generateChocanBill(in);
           break;
         case 5:
-          Manage_members(in);
+          manageMembers(in);
           break;
         case 6:
-          Manage_providers_and_services(in);
+          manageProvidersAndServices(in);
           break;
         case 7:
-          Generate_reports(in);
+          generateReports(in);
           break;
         case 8:
-          View_reports(in);
+          viewReports(in);
           break;
         case 9:
           switcher = false;
@@ -112,15 +110,19 @@ public class Terminal extends IOAuthorization {
     }
   }
 
-  private boolean validate_member_number(Scanner in) {
-    System.out.print("Enter your member number: ");
-    member_number = in.next();
-    int result = validateID(member_number, 9);
+  private void startProvider() {}
+
+  private void startManager() {}
+
+  private boolean validateMemberNumber(Scanner in) {
+    System.out.print("Enter your Member ID: ");
+    memberID = in.next();
+    int result = validateID(memberID, 9);
     while (true) {
       if (result == -1) {
         System.out.print("invalid input, try again(9 digits)");
-        member_number = in.next();
-        result = validateID(member_number, 9);
+        memberID = in.next();
+        result = validateID(memberID, 9);
       } else {
         break;
       }
@@ -129,23 +131,23 @@ public class Terminal extends IOAuthorization {
   }
 
   //function's for each menu item
-  private void Check_in_member(Scanner in, String member_number) {
-    //overlord.memberCheckIn(member_number);
+  private void checkInMember(Scanner in, String memberID) {
+    //overlord.memberCheckIn(memberID);
   }
 
-  private void Generate_record_of_service(Scanner in) {
+  private void generateRecordOfService(Scanner in) {
     // overlord.generateServiceRecord();
   }
 
-  private void Request_provider_directory(Scanner in) {
+  private void requestProviderDirectory(Scanner in) {
     //overlord.requestDirectory();
   }
 
-  private boolean Generate_Chocan_bill(Scanner in) {
+  private boolean generateChocanBill(Scanner in) {
     System.out.println("Generate ChocAn Bill");
     String date;
-    String service_code;
-    validate_member_number(in);
+    String serviceID;
+    validateMemberNumber(in);
     System.out.print("Enter date of service(MM-DD-YYYY)");
     date = in.next();
     int result = validateDate(date);
@@ -158,7 +160,7 @@ public class Terminal extends IOAuthorization {
         break;
       }
     }
-    service_code = get_service_code(in);
+    serviceID = getServiceCode(in);
         /*System.out.println("Would you like to add comments to record?");
         boolean to_comment = in.nextBoolean();
         if(to_comment){
@@ -168,17 +170,16 @@ public class Terminal extends IOAuthorization {
 
          */
     //overlord.generateBill()
-    System.out.println("Fake ChocAn Bill generated(user needs to validate service code, additioanl comments also optional");
+    System.out.println("Fake ChocAn Bill generated(user needs to validate service code, additional comments also optional");
     return true;
   }
 
-  private void Manage_members(Scanner in) {
+  private void manageMembers(Scanner in) {
     /*name,number,address,city,state,zip*/
-    System.out.print("1 - Add member\n" +
-            "2 - Delete member\n" +
-            "3 - Suspend member\n" +
-            "4 - Renew member\n" +
-            "5 - Search member\n");
+    System.out.println("1 - Add");
+    System.out.println("2 - Delete");
+    System.out.println("3 - Suspend");
+    System.out.println("4 - Renew");
     String choice = in.next();
     while (true) {
       if (validateMenu(choice, 5) == -1) {
@@ -208,7 +209,7 @@ public class Terminal extends IOAuthorization {
 
   }
 
-  private void Manage_providers_and_services(Scanner in) {
+  private void manageProvidersAndServices(Scanner in) {
     System.out.print("1 - Add provider\n" +
             "2 - Delete provider\n" +
             "3 - Search provider\n" +
@@ -246,28 +247,28 @@ public class Terminal extends IOAuthorization {
 
   }
 
-  private void Generate_reports(Scanner in) {
+  private void generateReports(Scanner in) {
     //overlord.genMemberReport;
   }
 
-  private void View_reports(Scanner in) {
+  private void viewReports(Scanner in) {
     //overlord.
   }
 
-  private String get_service_code(Scanner in) {
+  private String getServiceCode(Scanner in) {
     System.out.print("please enter service code");
-    String service_code = in.next();
-    int result = validateID(service_code, 6);
+    String serviceID = in.next();
+    int result = validateID(serviceID, 6);
     while (true) {
       if (result == -1) {
         System.out.print("invalid code, try again(6 digit #)");
-        service_code = in.next();
-        result = validateID(service_code, 6);
+        serviceID = in.next();
+        result = validateID(serviceID, 6);
       } else {
         break;
       }
     }
-    //String service = get_Service("String service_code");
+    //String service = get_Service("String serviceID");
     //System.out.print("service found: " + service);
     //System.out.print("is this service correct?(yes(y) or no(n))");
     //String correct = in.next();
@@ -280,12 +281,12 @@ public class Terminal extends IOAuthorization {
             }
         }*/
     //if(correct == 'n'){
-    //return String get_service(in);
+    //return String getService(in);
     //}
     //else{
-    //  return service_code;
+    //  return serviceID;
     //}
-    return service_code;
+    return serviceID;
   }
 
 }
