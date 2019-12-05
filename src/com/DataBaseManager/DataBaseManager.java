@@ -29,7 +29,7 @@ public class DataBaseManager<Object> {
         ReadWrite rw = new ReadWrite();
 
         String[] fileData;
-        try {
+        //try {
             if((fileData = rw.fileRead(filename)) == null)
                 return null;
 
@@ -61,9 +61,12 @@ public class DataBaseManager<Object> {
                 if (newObject != null)
                     root.put(lineData[1], newObject);
             }
-        } catch (IOException e) {
+
+        //}
+        /*catch (IOException e) {
             e.printStackTrace();
         }
+        */
 
         return root;
     }
