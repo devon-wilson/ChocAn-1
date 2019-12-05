@@ -7,8 +7,6 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
-
 class OverlordTest {
   @Test
   void InstantiateOverlordTest() {
@@ -56,10 +54,10 @@ class OverlordTest {
 
     assertEquals(-2, overlord.viewMember(), "no member checked in");
 
-    //overlord.login(0, "012345678");
-    //overlord.memberCheckIn("012345678");
+    overlord.login(0, "012345678");
+    overlord.memberCheckIn("012345678");
 
-    //assertEquals(1, overlord.viewMember(), "member checked in displays");
+    assertEquals(1, overlord.viewMember(), "member checked in displays");
   }
 
 
@@ -88,9 +86,15 @@ class OverlordTest {
 
     overlord.login(1, "012345678");
 
+    assertEquals(-2, overlord.addMember(newMember), "add member without manager");
+
+    overlord.logout();
+
+    overlord.login(0, "012345678");
+
     assertEquals(1, overlord.addMember(newMember), "add member without manager");
 
-    assertEquals(-1, overlord.removeMember(newMember[1]), "add member without manager");
+    assertEquals(1, overlord.removeMember(newMember[1]), "add member without manager");
 
   }
 
@@ -98,7 +102,7 @@ class OverlordTest {
   void suspendMember() {
     Overlord overlord = new Overlord();
 
-    assertEquals(-2, overlord.suspendMember("012345678"), "not manager returns -2");
+    assertEquals(-1, overlord.suspendMember("012345678"), "not manager returns -1");
 
     overlord.login(0, "012345678");
 
@@ -108,41 +112,29 @@ class OverlordTest {
 
     assertEquals(-1, overlord.renewMember("012345678"), "renew without manager");
 
-    overlord.login(0, "012345678");
+    overlord.login(1, "012345678");
 
-    assertEquals(1, overlord.renewMember("012345678"), "renew with manager");
-  }
-
-  @ParameterizedTest(name = "{2}")
-  @CsvFileSource(resources = "tests/searchMemberTests.csv")
-  void searchMember(boolean expectedNotNull, String query, String message) {
-    Overlord overlord = new Overlord();
-    //assertEquals(null, overlord.searchMember("the one that got away"), "search for the one that got away returns null");
-
-    //Object member = overlord.searchMember("John");
-    //assertNotNull(member, "search for John");
-
-    Object member = overlord.searchMember(query);
-    if (expectedNotNull) {
-      assertNotNull(member, message);
-    } else {
-      assertNull(member, message);
-    }
+    assertEquals(-2, overlord.renewMember("012345678"), "cannot renew as a provider");
   }
 
   @Test
   void addRemoveProvider() {
     Overlord overlord = new Overlord();
-    String[] testArray = new String[7];
-    //Arrays.fill(testArray, "");
+    String[] testArray = {"Jane Doe","321321321","3415 54th Street","Portland","OR","97320","123456","213509"};
 
-    //assertEquals(-1, overlord.addProvider(testArray), "add member fails on null");
-    //assertEquals(1, overlord.addProvider(testArray), "add member fails on null");
-  }
+    assertEquals(-2, overlord.addProvider(testArray), "no user is logged in");
 
-  @Test
-  void searchProvider() {
-    Overlord overlord = new Overlord();
+    overlord.login(1, "01234567");
+    assertEquals(-2, overlord.addProvider(testArray), "add member fails on null");
+
+    overlord.logout();
+    overlord.login(0, "012345678");
+
+    assertEquals(-1, overlord.addProvider(null), "null string provided");
+    assertEquals(1, overlord.addProvider(testArray), "user is not a manager");
+
+    assertEquals(1, overlord.removeProvider(testArray[1]), "removing provider from list");
+    assertEquals(-1, overlord.removeProvider(testArray[1]), "removing same provider from list");
   }
 
   @Test
@@ -154,17 +146,49 @@ class OverlordTest {
     overlord.login(0, "012345678");
     overlord.memberCheckIn("012345678");
 
-    assertEquals(1, overlord.displayCurrentServices(), "member checked in displays");
+    assertEquals(-2, overlord.displayCurrentServices(), "user is a manager, not a provider");
+
+    overlord.logout();
+    overlord.login(1, "012345678");
+    overlord.memberCheckIn("012345678");
+
+    assertEquals(1, overlord.displayCurrentServices(), "services have been displayed");
   }
 
   @Test
   void addRemoveService() {
     Overlord overlord = new Overlord();
+
+    String[] newService = {"Pedicure", "000001", "50.00"};
+    assertEquals(-2, overlord.addService(newService), "no current user");
+    assertEquals(-2, overlord.removeService("000001"), "no current user");
+
+    overlord.login(1, "012345678");
+
+    assertEquals(-2, overlord.addService(newService), "current user is not a manager");
+
+    overlord.logout();
+    overlord.login(0, "012345678");
+
+    assertEquals(1, overlord.addService(newService), "correctly added to tree");
+
+    assertEquals(-3, overlord.addService(null), "passed null pointer to constructor");
+
+    assertEquals(-3, overlord.removeService(null), "passed null to function");
+
+    assertEquals(-1, overlord.removeService("000001"), "passed null to function");
   }
 
   @Test
   void searchService() {
     Overlord overlord = new Overlord();
+
+    assertNull(overlord.searchService(null), "no user, null string");
+
+    overlord.login(1, "012345678");
+    assertNull(overlord.searchService(null), "null string");
+    String[] retrieved = overlord.searchService("123456");
+    assertArrayEquals(retrieved, overlord.searchService("123456"), "confirms test passes");
   }
 
   @Test

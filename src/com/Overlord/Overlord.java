@@ -53,7 +53,7 @@ public class Overlord extends DataBaseManager {
 
       // sets currentUser
       currentUser = login;
-      return ++userType;
+      return 1;
     }
     catch (ClassCastException a){
       return -1;
@@ -72,17 +72,14 @@ public class Overlord extends DataBaseManager {
   }
 
   // Member functions
-
   /**
    * Member Check In
    * @param memberID contains id of member
    * @return returns 1 for success, -1 for failure.
    */
   public int memberCheckIn(String memberID) {
-    // match string to member directory
     if (currentUser == null)
       return -2;
-
     try {
       this.currentMember = (Member) findData(2, memberID);
       if (currentMember == null)
@@ -90,9 +87,12 @@ public class Overlord extends DataBaseManager {
       return 1;
     }
     catch (ClassCastException a) {
-      this.currentMember = null;
       return -1;
     }
+  }
+
+  public boolean isMemberCheckedIn() {
+    return (currentMember == null);
   }
 
   /**
@@ -105,12 +105,11 @@ public class Overlord extends DataBaseManager {
       return -2;
     }
     if (currentMember == null) {
-      System.out.println("No member current checked in.");
+      System.out.println("No member currently checked in.");
       return -1;
-    } else {
-      currentMember.display();
-      return 1;
     }
+    currentMember.display();
+    return 1;
   }
 
   /**
@@ -127,7 +126,6 @@ public class Overlord extends DataBaseManager {
   }
 
   // Manage members
-
   /**
    * Add Member
    *
@@ -135,25 +133,14 @@ public class Overlord extends DataBaseManager {
    * @return 1 for success, -1 for failure
    */
   public int addMember(String[] memberData) {
-    if (currentUser == null)
+    // check if user is a manager
+    if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
+
     Member toAdd = new Member(memberData);
-
-    Object returnCode;
-    returnCode = addTreeData(2, toAdd.get(1), toAdd);
-
-    System.out.println(returnCode);
-
-    if (null == returnCode) {
-      return -1;
-    }
-
-    /*
     if(addTreeData(2, toAdd.get(1), toAdd) == null)
-      return -1;
-
-     */
-    return 1;
+      return 1;
+    return -1;
   }
 
   /**
@@ -170,6 +157,10 @@ public class Overlord extends DataBaseManager {
   }
 
   public int suspendMember(String memberID) {
+    // check if there is a user logged in
+    if (currentUser == null)
+      return -1;
+    // check if user is a manager
     if (!(currentUser instanceof Manager))
       return -2;
 
@@ -196,6 +187,13 @@ public class Overlord extends DataBaseManager {
   }
 
   public int renewMember(String memberID) {
+    // check if there is a user logged in
+    if (currentUser == null)
+      return -1;
+    // check if user is a manager
+    if (!(currentUser instanceof Manager))
+      return -2;
+
     try {
       if (currentMember != null && currentMember.get(1).equals(memberID)) {
         currentMember.updateStatus("SUSPENDED");
@@ -217,49 +215,38 @@ public class Overlord extends DataBaseManager {
     }
   }
 
-  // should return Member object
-  public Member searchMember(String query) {
-    try {
-      return (Member) findData(2, query);
-    }
-    catch (ClassCastException a) {
-      return null;
-    }
-  }
-
   // Manage providers
   public int addProvider(String[] providerData) {
+    // check if user is a manager
+    if (currentUser == null || !(currentUser instanceof Manager))
+      return -2;
+
+    if(providerData == null)
+      return -1;
+
     Provider toAdd = new Provider(providerData);
-    if (providerData.length < 2)
-      return -1;
     if(addTreeData(1, providerData[1], toAdd) == null)
-      return -1;
-    return 1;
+      return 1;
+    return -1;
   }
 
   public int removeProvider(String providerID) {
+    // check if user is a manager
+    if (currentUser == null || !(currentUser instanceof Manager))
+      return -2;
+
     if(removeTreeData(1,providerID) == null)
       return -1;
     return 1;
   }
 
-  // should return Provider object
-  public Provider searchProvider(String query) {
-    try {
-      return (Provider) findData(1, query);
-    }
-    catch (ClassCastException a) {
-      return null;
-    }
-  }
-
   public int displayCurrentServices() {
-    if (currentMember == null)
+    if (currentUser == null || !(currentUser instanceof Provider))
       return -2;
     try {
       Provider current = (Provider) currentUser;
       current.getServices();
-      //return displayStream
+      current.display();
       return 1;
     }
     catch (ClassCastException a) {
@@ -270,24 +257,36 @@ public class Overlord extends DataBaseManager {
 
   // Manage services
   public int addService(String[] serviceData) {
+    if (currentUser == null || !(currentUser instanceof Manager))
+      return -2;
+    if (serviceData == null)
+      return -3;
+
     Service toAdd = new Service(serviceData);
     if(addTreeData(3, serviceData[1], toAdd) == null)
-      return -1;
-    return 1;
+      return 1;
+    return -1;
   }
 
   public int removeService(String serviceID) {
+    if (currentUser == null || !(currentUser instanceof Manager))
+      return -2;
+    if (serviceID == null)
+      return -3;
+
     if(removeTreeData(3, serviceID) == null)
-      return -1;
-    return 1;
+      return 1;
+    return -1;
   }
 
-  public Service searchService(String query) {
+  public String[] searchService(String query) {
+    if (currentUser == null || query == null)
+        return null;
     try {
-      return (Service) findData(2, query);
+      Service found = (Service) findData(3, query);
+      return found.getAll();
     }
-    catch (ClassCastException a)
-    {
+    catch (ClassCastException a) {
       return null;
     }
   }
