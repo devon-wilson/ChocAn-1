@@ -1,3 +1,3 @@
-# ChocAn I/O Authentication
+# ChocAn
 
-Provides authentication for user input. Intended to be modular, simple and effective.
+Grant me the security to authenticate and authorize the things, and hash all passwords.
