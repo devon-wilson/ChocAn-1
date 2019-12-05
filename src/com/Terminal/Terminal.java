@@ -29,13 +29,14 @@ public class Terminal extends IOAuthorization {
    */
   public void start() {
     char choice = '\0';
-    System.out.println("Terminal.start");
+    System.out.println("\nsTerminal.start");
     do {
-      System.out.println("Choose terminal:");
-      System.out.println("p - Provider terminal");
-      System.out.println("m - Manager terminal");
-      System.out.println("q - Quit");
-      System.out.printf("Terminal" + prompt);
+      System.out.print("\nChoose terminal:" +
+              "\n p - Provider terminal" +
+              "\n m - Manager terminal" +
+              "\n q - Quit" +
+              "\nTerminal" + prompt
+      );
       choice = getChoice();
 
       switch (choice) {
@@ -56,8 +57,10 @@ public class Terminal extends IOAuthorization {
     char choice = '\0';
     String providerID;
     System.out.println("\nTerminal.startProvider");
-    System.out.println("Enter Provider ID");
-    System.out.printf("Login" + prompt);
+
+    System.out.print("\nEnter Provider ID" +
+            "\nLogin" + prompt
+    );
     providerID = in.nextLine();
     int rc = overlord.login(1, providerID);
     if (rc < 0) {
@@ -66,13 +69,22 @@ public class Terminal extends IOAuthorization {
     }
 
     do {
-      System.out.println("\nChoose Provider option:");
-      System.out.println("1 - Check in member");
-      System.out.println("q - Quit");
-      System.out.printf("Provider" + prompt);
+      System.out.print("\nChoose Provider option:");
+
+      // change this to a separate function
+      if (overlord.isMemberCheckedIn())
+        System.out.print("\n 1 - Check in member");
+      else
+        System.out.println(" 1 - Other options ");
+
+      System.out.println("\n q - Quit" +
+                      "\nProvider" + prompt
+      );
       choice = getChoice();
 
       switch (choice) {
+        case '1':
+          checkInMember();
         default:
           break;
       }
@@ -85,7 +97,7 @@ public class Terminal extends IOAuthorization {
     String managerID;
     System.out.println("\nTerminal.startManager");
 
-    System.out.printf("Login" + prompt);
+    System.out.print("Login" + prompt);
     managerID = in.nextLine();
     int rc = overlord.login(0, managerID);
     if (rc < 0) {
@@ -94,9 +106,10 @@ public class Terminal extends IOAuthorization {
     }
 
     do {
-      System.out.println("\nChoose Manager option:");
-      System.out.println("q - Quit");
-      System.out.printf("Manager" + prompt);
+      System.out.print("\nChoose Manager option:" +
+              "\n q - Quit" +
+              "\nManager" + prompt
+      );
       choice = getChoice();
 
       switch (choice) {
@@ -124,8 +137,17 @@ public class Terminal extends IOAuthorization {
   }
 
   //function's for each menu item
-  private void checkInMember(Scanner in, String memberID) {
-    //overlord.memberCheckIn(memberID);
+
+  private void checkInMember() {
+    System.out.print("Enter memberID:\n$ ");
+    String memberID = in.nextLine();
+    int rc = overlord.memberCheckIn(memberID);
+    if (rc < 0) {
+      System.out.println("Could not check in member " + memberID);
+      return;
+    }
+
+    overlord.viewMember();
   }
 
   private void generateRecordOfService(Scanner in) {
@@ -140,7 +162,7 @@ public class Terminal extends IOAuthorization {
     System.out.println("Generate ChocAn Bill");
     String date;
     String serviceID;
-    validateMemberID(in);
+    boolean usethis = validateMemberID(in);
     System.out.print("Enter date of service(MM-DD-YYYY)");
     date = in.next();
     int result = validateDate(date);
@@ -155,8 +177,8 @@ public class Terminal extends IOAuthorization {
     }
     serviceID = getServiceCode(in);
         /*System.out.println("Would you like to add comments to record?");
-        boolean to_comment = in.nextBoolean();
-        if(to_comment){
+        boolean toComment = in.nextBoolean();
+        if(toComment){
             System.out.print("Enter comments: ");
             String comments = in.next();
          }
@@ -169,10 +191,12 @@ public class Terminal extends IOAuthorization {
 
   private void manageMembers(Scanner in) {
     /*name,number,address,city,state,zip*/
-    System.out.println("1 - Add");
-    System.out.println("2 - Delete");
-    System.out.println("3 - Suspend");
-    System.out.println("4 - Renew");
+    System.out.print("\n" +
+            "\n 1 - Add" +
+            "\n 2 - Delete" +
+            "\n 3 - Suspend" +
+            "\n 4 - Renew"
+    );
     String choice = in.next();
     while (true) {
       if (validateMenu(choice, 5) == -1) {
