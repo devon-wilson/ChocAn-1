@@ -107,11 +107,20 @@ class OverlordTest {
   }
 
   @ParameterizedTest(name = "{2}")
-  @CsvFileSource(resources = "tests/memberCheckInTests.csv")
-  void searchMember(String id, int expected, String message) {
+  @CsvFileSource(resources = "tests/searchMemberTests.csv")
+  void searchMember(boolean expectedNotNull, String query, String message) {
     Overlord overlord = new Overlord();
+    //assertEquals(null, overlord.searchMember("the one that got away"), "search for the one that got away returns null");
 
-    assertNull("tuna", message);
+    //Object member = overlord.searchMember("John");
+    //assertNotNull(member, "search for John");
+
+    Object member = overlord.searchMember(query);
+    if (expectedNotNull) {
+      assertNotNull(member, message);
+    } else {
+      assertNull(member, message);
+    }
   }
 
   @Test
@@ -142,12 +151,7 @@ class OverlordTest {
   }
 
   @Test
-  void addService() {
-    Overlord overlord = new Overlord();
-  }
-
-  @Test
-  void removeService() {
+  void addRemoveService() {
     Overlord overlord = new Overlord();
   }
 

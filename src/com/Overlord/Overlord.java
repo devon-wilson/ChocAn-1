@@ -2,6 +2,7 @@ package com.Overlord;
 
 import com.DataBaseManager.DataBaseManager;
 import com.DataClasses.*;
+import com.ReadWrite.ReadWrite;
 
 /**
  * Overlord of layers
@@ -93,9 +94,12 @@ public class Overlord extends DataBaseManager {
   /**
    * View Member
    *
-   * @return 1 for success; -1 for failure
+   * @return 1 for success; -1 for no member checked in; -2 for no user checked in
    */
   public int viewMember() {
+    if (currentUser == null) {
+      return -2;
+    }
     if (currentMember == null) {
       System.out.println("No member current checked in.");
       return -1;
@@ -282,8 +286,19 @@ public class Overlord extends DataBaseManager {
     }
   }
 
-  public int genMemberReport(int memberID) {
-    return 0;
+  public int genMemberReport(String memberID) {
+    try {
+      Member member = (Member) findData(2, memberID);
+      if (member == null)
+        return -1;
+      //ReadWrite.fileWrite("Report" + memberID, member.toString(), false);
+
+      return 0;
+    }
+    catch (ClassCastException a)
+    {
+      return -1;
+    }
   }
 
   public int genProviderReport(int memberID) {
