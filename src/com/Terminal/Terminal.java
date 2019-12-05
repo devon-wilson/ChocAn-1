@@ -10,111 +10,104 @@ public class Terminal extends IOAuthorization {
   private String memberStatus = "unsuspended";//Valid or Suspended
   private String dateOfService = " ";
   private Overlord overlord;
-
-  public static void main(String[] args) {
-    Overlord overlord = new Overlord();
-    Terminal terminal = new Terminal(overlord);
-    terminal.start();
-  }
+  private Scanner in;
+  final String prompt = "$ ";
 
   public Terminal(Overlord overlord) {
     super();
     this.overlord = overlord;
+    in = new Scanner(System.in);
+  }
+
+  char getChoice() {
+    String input = in.nextLine();
+    return Character.toLowerCase(input.charAt(0));
   }
 
   /**
-   * Begin terminal emulation
+   * Start terminal emulation
    */
   public void start() {
-    while (true) {
-      boolean switcher = true;
-      String prov = "provider";
-      String mana = "manager";
-      Scanner in = new Scanner(System.in);
-      System.out.print("Are you a 'provider' or 'manager'");
-      String userType = in.next();
-      while (true) {
-        if (userType.equalsIgnoreCase("provider")) {
-          break;
-        } else if (userType.equalsIgnoreCase("manager")) {
-          break;
-        } else {
-          System.out.print("invalid input, please enter 'provider' or 'manager'");
-          userType = in.next();
-        }
-      }
-      if (validateMemberNumber(in)) {
-        System.out.print("Validated\n");
-      }
-      if (prov.equals(userType)) {
-        //Provider_Terminal a_terminal = new Provider_Terminal(name, member_number);
-        //a_terminal.print();
-        System.out.print("1 - Check in member\n" +
-                "2 - Generate record of service\n" +
-                "3 - Request provider directory\n" +
-                "4 - Generate Chocan bill\n" +
-                "9 - Quit\n");
-      } else {
-        //Manager_Terminal a_terminal = new Manager_Terminal(name, member_number);
-        //a_terminal.print();
-        System.out.print("5 - Manage members\n" +
-                "6 - Manage providers and services\n" +
-                "7 - Generate reports\n" +
-                "8 - View reports\n" +
-                "9 - Quit\n");
-      }
-      String aChoice = in.next();
-      while (true) {
-        if (validateMenu(aChoice, 9) == -1) {
-          System.out.print("invalid choice(1-9), try again");
-          aChoice = in.next();
-        } else {
-          break;
-        }
-      }
-      int choice = Integer.parseInt(aChoice); //convert string to integer for menu switch
+    char choice = '\0';
+    System.out.println("Terminal.start");
+    do {
+      System.out.println("Choose terminal:");
+      System.out.println("p - Provider terminal");
+      System.out.println("m - Manager terminal");
+      System.out.println("q - Quit");
+      System.out.printf("Terminal" + prompt);
+      choice = getChoice();
+
       switch (choice) {
-        case 1:
-          checkInMember(in, memberID);
-          break; // break is optional
-        case 2:
-          generateRecordOfService(in);
+        case 'p':
+          startProvider();
           break;
-        case 3:
-          requestProviderDirectory(in);
-          break;
-        case 4:
-          generateChocanBill(in);
-          break;
-        case 5:
-          manageMembers(in);
-          break;
-        case 6:
-          manageProvidersAndServices(in);
-          break;
-        case 7:
-          generateReports(in);
-          break;
-        case 8:
-          viewReports(in);
-          break;
-        case 9:
-          switcher = false;
+        case 'm':
+          startManager();
           break;
         default:
-          // No break is needed in the default case
+          break;
       }
-      if (!switcher) {
-        break;
-      }
-    }
+
+    } while (choice != 'q');
   }
 
-  private void startProvider() {}
+  private void startProvider() {
+    char choice = '\0';
+    String providerID;
+    System.out.println("\nTerminal.startProvider");
+    System.out.println("Enter Provider ID");
+    System.out.printf("Login" + prompt);
+    providerID = in.nextLine();
+    int rc = overlord.login(1, providerID);
+    if (rc < 0) {
+      System.out.println("Could not login");
+      return;
+    }
 
-  private void startManager() {}
+    do {
+      System.out.println("\nChoose Provider option:");
+      System.out.println("1 - Check in member");
+      System.out.println("q - Quit");
+      System.out.printf("Provider" + prompt);
+      choice = getChoice();
 
-  private boolean validateMemberNumber(Scanner in) {
+      switch (choice) {
+        default:
+          break;
+      }
+
+    } while (choice != 'q');
+  }
+
+  private void startManager() {
+    char choice = '\0';
+    String managerID;
+    System.out.println("\nTerminal.startManager");
+
+    System.out.printf("Login" + prompt);
+    managerID = in.nextLine();
+    int rc = overlord.login(0, managerID);
+    if (rc < 0) {
+      System.out.println("Could not login");
+      return;
+    }
+
+    do {
+      System.out.println("\nChoose Manager option:");
+      System.out.println("q - Quit");
+      System.out.printf("Manager" + prompt);
+      choice = getChoice();
+
+      switch (choice) {
+        default:
+          break;
+      }
+
+    } while (choice != 'q');
+  }
+
+  private boolean validateMemberID(Scanner in) {
     System.out.print("Enter your Member ID: ");
     memberID = in.next();
     int result = validateID(memberID, 9);
@@ -147,7 +140,7 @@ public class Terminal extends IOAuthorization {
     System.out.println("Generate ChocAn Bill");
     String date;
     String serviceID;
-    validateMemberNumber(in);
+    validateMemberID(in);
     System.out.print("Enter date of service(MM-DD-YYYY)");
     date = in.next();
     int result = validateDate(date);
