@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
  * @author Jason Forral
  * @version 1.0.0
  */
-public class Overlord extends DataBaseManager {
+public class Overlord extends DataBaseManager<Object> {
   private User currentUser;
   private Member currentMember;
 

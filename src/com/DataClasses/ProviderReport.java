@@ -45,7 +45,7 @@ public class ProviderReport extends Report{
             return -1;
         }
         if(services == null){
-            services = new Vector<String []>();
+            services = new Vector<>();
         }
         number += 1;
         services.add(service);

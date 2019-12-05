@@ -34,8 +34,8 @@ public class ReadWrite
     static String[][] fileReadAll(String filename) throws IOException
     {
         FileReader file;
-        ArrayList<String> input = new ArrayList<String>();
-        ArrayList<String[]> holder = new ArrayList<String[]>();
+        ArrayList<String> input = new ArrayList<>();
+        ArrayList<String[]> holder = new ArrayList<>();
         String[][] ret;
         String[] data;
         int i = 0;

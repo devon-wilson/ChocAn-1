@@ -26,6 +26,9 @@ public class Terminal extends IOAuthorization {
 
   /**
    * Start terminal emulation
+   * <p>
+   *   Emulates the terminals using the ChocAn API
+   * </p>
    */
   public void start() {
     char choice = '\0';
@@ -83,16 +86,17 @@ public class Terminal extends IOAuthorization {
       );
       choice = getChoice();
 
-      switch (choice) {
-        case '1':
-          checkInMember();
-          break;
-        default:
-          break;
+      if (choice == '1') {
+        checkInMember();
       }
 
     } while (choice != 'q');
     overlord.logout();
+  }
+
+  private void providerCheckedIn() {
+    System.out.println("Terminal.providerCheckedIn");
+
   }
 
   private void startManager() {
@@ -116,17 +120,19 @@ public class Terminal extends IOAuthorization {
       );
       choice = getChoice();
 
+      /*
       switch (choice) {
         default:
           break;
       }
+      */
 
     } while (choice != 'q');
   }
 
   private boolean validateMemberID(Scanner in) {
     System.out.print("Enter your Member ID: ");
-    memberID = in.next();
+    String memberID = in.next();
     int result = validateID(memberID, 9);
     while (true) {
       if (result == -1) {
@@ -152,6 +158,7 @@ public class Terminal extends IOAuthorization {
     }
 
     overlord.viewMember();
+    providerCheckedIn();
   }
 
   private void generateRecordOfService(Scanner in) {

@@ -9,6 +9,6 @@ public class Main {
         stored in the tree.
          */
 
-        DataBaseManager DBM = new DataBaseManager();
+        DataBaseManager<Object> DBM = new DataBaseManager<>();
     }
 }
