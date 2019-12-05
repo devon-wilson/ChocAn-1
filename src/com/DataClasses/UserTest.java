@@ -25,10 +25,10 @@ class UserTest {
         }
 
         components2 = new String [6];
-        if(buildUser(0, components)){
+        if(buildUser(0, components) == -1){
             fail("File read failed.");
         }
-        if(buildUser(1, components2)){
+        if(buildUser(1, components2) == -1){
             fail("File read failed.");
         }
         if(myMember.build(components) != 0){
@@ -64,12 +64,12 @@ class UserTest {
         if(myMember.changeName(toChange) != -1){
             fail("Change name to null failed");
         }
-        String toChange = new String("Test");
+        toChange = new String("Test");
         if(myMember.changeName(toChange) != 0){
             fail("Valid name change failed");
         }
-        String [] components = myMember.getAll();
-        if(components[0].equals(toChange) == false){
+        String check = myMember.get(0);
+        if(check.equals(toChange) == false){
             fail("Name does not match");
         }
     }
@@ -81,12 +81,12 @@ class UserTest {
         if(myMember.changeID(toChange) != -1){
             fail("Change ID to null failed");
         }
-        String toChange = new String("Test");
+        toChange = new String("Test");
         if(myMember.changeID(toChange) != 0){
             fail("Valid ID change failed");
         }
-        String [] components = myMember.getAll();
-        if(components[1].equals(toChange) == false){
+        String check = myMember.get(1);
+        if(check.equals(toChange) == false){
             fail("ID does not match");
         }
     }
@@ -98,12 +98,12 @@ class UserTest {
         if(myMember.changeAddress(toChange) != -1){
             fail("Change address to null failed");
         }
-        String toChange = new String("Test");
-        if(myMember.changeAdress(toChange) != 0){
+        toChange = new String("Test");
+        if(myMember.changeAddress(toChange) != 0){
             fail("Valid adress change failed");
         }
-        String [] components = myMember.getAll();
-        if(components[2].equals(toChange) == false){
+        String check = myMember.get(2);
+        if(check.equals(toChange) == false){
             fail("Adress does not match");
         }
     }
@@ -115,12 +115,12 @@ class UserTest {
         if(myMember.changeCity(toChange) != -1){
             fail("Change City to null failed");
         }
-        String toChange = new String("Test");
+        toChange = new String("Test");
         if(myMember.changeCity(toChange) != 0){
             fail("Valid city change failed");
         }
-        String [] components = myMember.getAll();
-        if(components[3].equals(toChange) == false){
+        String check = myMember.get(3);
+        if(check.equals(toChange) == false){
             fail("City does not match");
         }
     }
@@ -132,12 +132,12 @@ class UserTest {
         if(myMember.changeState(toChange) != -1){
             fail("Change state to null failed");
         }
-        String toChange = new String("Test");
+        toChange = new String("Test");
         if(myMember.changeState(toChange) != 0){
             fail("Valid state change failed");
         }
-        String [] components = myMember.getAll();
-        if(components[4].equals(toChange) == false){
+        String check = myMember.get(4);
+        if(check.equals(toChange) == false){
             fail("State does not match");
         }
     }
@@ -149,12 +149,12 @@ class UserTest {
         if(myMember.changeZip(toChange) != -1){
             fail("Change zip to null failed");
         }
-        String toChange = new String("Test");
+        toChange = new String("Test");
         if(myMember.changeZip(toChange) != 0){
             fail("Valid zip change failed");
         }
-        String [] components = myMember.getAll();
-        if(components[5].equals(toChange) == false){
+        String check = myMember.get(5);
+        if(check.equals(toChange) == false){
             fail("Zip does not match");
         }
     }
@@ -177,11 +177,11 @@ class UserTest {
             return -1;
         }
         sc.useDelimiter(",");
-        for(int i =0; i < line, ++i){
+        for(int i =0; i < line; ++i){
             sc.nextLine();
         }
         for(int i = 0; i < 6; ++i){
-            comp1[i] = sc.next();
+            components[i] = sc.next();
         }
         return 0;
     }
