@@ -2,7 +2,6 @@ package com.Overlord;
 
 import com.DataBaseManager.DataBaseManager;
 import com.DataClasses.*;
-import com.ReadWrite.ReadWrite;
 
 /**
  * Overlord of layers
@@ -254,7 +253,7 @@ public class Overlord extends DataBaseManager {
       return -2;
     try {
       Provider current = (Provider) currentUser;
-      current.displayServices();
+      current.getServices();
       //return displayStream
       return 1;
     }
