@@ -98,7 +98,7 @@ class OverlordTest {
   void suspendMember() {
     Overlord overlord = new Overlord();
 
-    assertEquals(-2, overlord.suspendMember("012345678"));
+    assertEquals(-2, overlord.suspendMember("012345678"), "not manager returns -2");
 
     overlord.login(1, "012345678");
 
