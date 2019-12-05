@@ -364,7 +364,7 @@ public class Overlord extends DataBaseManager {
       for(int i = 0; i < input.length; i++) {
         String[] data = new String[1];
         data[0] = input[i];
-        ReadWrite.fileWrite("data/" + currentMember.get(1) + ".csv", data, true);
+        ReadWrite.fileWrite("records/" + currentMember.get(1) + ".csv", data, true);
       }
     }
     catch (IOException a) {

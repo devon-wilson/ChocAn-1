@@ -9,13 +9,8 @@ public class Record {
     private String serviceCode;
     private String comment;
 
-    public Record(){
-        currDateTime = null;
-        dateProvided = null;
-        providerID = null;
-        memberID = null;
-        serviceCode = null;
-        comment = null;
+    public Record(String[] input){
+        build(input);
     }
 
     //THIS FUNCTION MUST BE CALLED FIRST
@@ -97,7 +92,6 @@ public class Record {
         System.out.println(comment);
         return 0;
     }
-
 
     public String [] getAll(){
         //Returns all the fields in an array of

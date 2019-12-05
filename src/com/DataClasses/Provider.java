@@ -8,21 +8,17 @@ public class Provider extends User{
 
     public Provider(){
         super();
-        services = null;
+        services = new Vector<>();
     }
 
     public Provider(String[] userData) {
         super(userData);
 
         //Builds a vector of initial services.
-
+        services = new Vector<>();
         for(int i = 6; i < userData.length; ++i){
             services.add(userData[i]);
         }
-        //Old code
-        //int serviceCount = (userData.length)-6;
-        //this.services = new String[serviceCount];
-        //System.arraycopy(userData,6 , services, 0, serviceCount);
     }
 
     public String[] getServices() {
