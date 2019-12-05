@@ -100,10 +100,17 @@ class OverlordTest {
 
     assertEquals(-2, overlord.suspendMember("012345678"), "not manager returns -2");
 
-    overlord.login(1, "012345678");
+    overlord.login(0, "012345678");
 
-    assertEquals(-1, overlord.suspendMember("012345678"));
-    assertEquals(-1, overlord.renewMember("012345678"));
+    assertEquals(1, overlord.suspendMember("012345678"), "suspend from manager");
+
+    overlord.logout();
+
+    assertEquals(-1, overlord.renewMember("012345678"), "renew without manager");
+
+    overlord.login(0, "012345678");
+
+    assertEquals(1, overlord.renewMember("012345678"), "renew with manager");
   }
 
   @ParameterizedTest(name = "{2}")
