@@ -8,16 +8,25 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Terminal extends IOAuthorization {
-  public String member_number = " ";
-  public String member_status = "unsuspended";//suspended or unsuspended
-  public String date_of_service = " ";
+  private String member_number = " ";
+  private String member_status = "unsuspended";//Valid or Suspended
+  private String date_of_service = " ";
+  private Overlord overlord;
 
   public static void main(String[] args) {
     Overlord overlord = new Overlord();
-    Terminal terminal = new Terminal();
+    Terminal terminal = new Terminal(overlord);
     terminal.begin();
   }
 
+  public Terminal(Overlord overlord) {
+    super();
+    this.overlord = overlord;
+  }
+
+  /**
+   * Begin terminal emulation
+   */
   public void begin() {
     while (true) {
       boolean switcher = true;
@@ -39,7 +48,7 @@ public class Terminal extends IOAuthorization {
       if (validate_member_number(in)) {
         System.out.print("Validated\n");
       }
-      if (stringCompare(prov, user_type) == 0) {
+      if (prov.equals(user_type)) {
         //Provider_Terminal a_terminal = new Provider_Terminal(name, member_number);
         //a_terminal.print();
         System.out.print("1 - Check in member\n" +
@@ -103,7 +112,7 @@ public class Terminal extends IOAuthorization {
     }
   }
 
-  public boolean validate_member_number(Scanner in) {
+  private boolean validate_member_number(Scanner in) {
     System.out.print("Enter your member number: ");
     member_number = in.next();
     int result = validateID(member_number, 9);
@@ -120,22 +129,22 @@ public class Terminal extends IOAuthorization {
   }
 
   //function's for each menu item
-  public void Check_in_member(Scanner in, String member_number) {
+  private void Check_in_member(Scanner in, String member_number) {
     //overlord.memberCheckIn(member_number);
   }
 
-  public void Generate_record_of_service(Scanner in) {
+  private void Generate_record_of_service(Scanner in) {
     // overlord.generateServiceRecord();
   }
 
-  public void Request_provider_directory(Scanner in) {
+  private void Request_provider_directory(Scanner in) {
     //overlord.requestDirectory();
   }
 
-  public boolean Generate_Chocan_bill(Scanner in) {
+  private boolean Generate_Chocan_bill(Scanner in) {
     System.out.println("Generate ChocAn Bill");
-    String date = " ";
-    String service_code = " ";
+    String date;
+    String service_code;
     validate_member_number(in);
     System.out.print("Enter date of service(MM-DD-YYYY)");
     date = in.next();
@@ -163,7 +172,7 @@ public class Terminal extends IOAuthorization {
     return true;
   }
 
-  public void Manage_members(Scanner in) {
+  private void Manage_members(Scanner in) {
     /*name,number,address,city,state,zip*/
     System.out.print("1 - Add member\n" +
             "2 - Delete member\n" +
@@ -199,7 +208,7 @@ public class Terminal extends IOAuthorization {
 
   }
 
-  public void Manage_providers_and_services(Scanner in) {
+  private void Manage_providers_and_services(Scanner in) {
     System.out.print("1 - Add provider\n" +
             "2 - Delete provider\n" +
             "3 - Search provider\n" +
@@ -237,39 +246,15 @@ public class Terminal extends IOAuthorization {
 
   }
 
-  public void Generate_reports(Scanner in) {
+  private void Generate_reports(Scanner in) {
     //overlord.genMemberReport;
   }
 
-  public void View_reports(Scanner in) {
+  private void View_reports(Scanner in) {
     //overlord.
   }
 
-  public int stringCompare(String str1, String str2) {//had problems with comparing strings, so I did it lexicographically{
-    int l1 = str1.length();
-    int l2 = str2.length();
-    int lmin = Math.min(l1, l2);
-    for (int i = 0; i < lmin; i++) {
-      int str1_ch = (int) str1.charAt(i);
-      int str2_ch = (int) str2.charAt(i);
-
-      if (str1_ch != str2_ch) {
-        return str1_ch - str2_ch;
-      }
-    }
-    // Edge case for strings like
-    // String 1="Geeks" and String 2="Geeksforgeeks"
-    if (l1 != l2) {
-      return l1 - l2;
-    }
-    // If none of the above conditions is true,
-    // it implies both the strings are equal
-    else {
-      return 0;
-    }
-  }
-
-  public String get_service_code(Scanner in) {
+  private String get_service_code(Scanner in) {
     System.out.print("please enter service code");
     String service_code = in.next();
     int result = validateID(service_code, 6);
