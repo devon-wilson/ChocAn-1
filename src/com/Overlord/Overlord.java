@@ -4,6 +4,10 @@ import com.DataBaseManager.DataBaseManager;
 import com.DataClasses.*;
 import com.ReadWrite.ReadWrite;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Overlord of layers
  *
@@ -275,7 +279,6 @@ public class Overlord extends DataBaseManager {
     return 1;
   }
 
-
   public Service searchService(String query) {
     try {
       return (Service) findData(2, query);
@@ -317,9 +320,41 @@ public class Overlord extends DataBaseManager {
     return 0;
   }
 
+  public String[] getService(String code) {
+      try {
+        Service toReturn = (Service) findData(3, code);
+        if (toReturn == null)
+          return null;
+        return toReturn.getAll();
+      }
+      catch (ClassCastException a) {
+        return null;
+      }
+  }
 
+  private String getCurrentTime() {
+    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/YYYY");
+    LocalDateTime time = LocalDateTime.now();
+    String currentDate = dateFormat.format(time);
+    dateFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+    currentDate += " " + dateFormat.format(time);
+    return currentDate;
+  }
 
-  public int generateServiceRecord() {
+  public int generateServiceRecord(String[] input) {
+    Record newRecord = new Record(input);
+    try {
+      if (currentMember == null)
+        return -1;
+      for(int i = 0; i < input.length; i++) {
+        String[] data = new String[1];
+        data[0] = input[i];
+        ReadWrite.fileWrite("data/" + currentMember.get(1) + ".csv", data, true);
+      }
+    }
+    catch (IOException a) {
+      return -1;
+    }
     return 0;
   }
 

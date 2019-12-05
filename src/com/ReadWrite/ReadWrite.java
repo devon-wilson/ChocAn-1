@@ -5,42 +5,30 @@ import java.util.ArrayList;
 
 public class ReadWrite
 {
-    public static String[] fileRead(String filename) throws IOException
+    public static String[] fileRead(String filename)
     {
-        FileReader file;
-        ArrayList<String> input = new ArrayList<String>();
-        String[] data;
-        int i = 0;
-        int c;
+        try {
+            BufferedReader file = new BufferedReader(new FileReader(filename));
+            ArrayList<String> input = new ArrayList<>();
+            String line;
 
-        try
-        {
-            file = new FileReader(filename);
+            while ((line = file.readLine()) != null) {
+                input.add(line);
+            }
+            file.close();
+
+            int size = input.size();
+            String[] data = new String[size];
+
+            for (int i = 0; i < size; ++i)
+                data[i] = input.get(i);
+
+            return data;
         }
-        catch(FileNotFoundException e)
-        {
-            System.out.println("File not found.");
+        catch (IOException a) {
+            System.out.println("Could not open " + filename);
             return null;
         }
-
-        input.add("");
-        while((c = file.read()) != -1)
-        {
-            if (c == ',')
-            {
-                input.add("");
-                ++i;
-            } else
-                input.set(i, input.get(i) + (char) c);
-        }
-        file.close();
-
-        c = input.size();
-        data = new String[c];
-        for(i = 0; i < c; ++i)
-            data[i] = input.get(i);
-
-        return data;
     }
 
     public static String[][] fileReadAll(String filename) throws IOException
