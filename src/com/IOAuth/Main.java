@@ -30,6 +30,9 @@ public class Main {
         runTest(timeTestFile, "time", verbose);
         runTest(menuTestFile, "menu", verbose);
         runTest(commentTestFile, "comment", verbose);
+
+        IOAuthorization IO = new IOAuthorization();
+        System.out.println(IO.validateCurrency("99999", 99999.99));
     }
 
     private static boolean runTest(String fileName, String testName, boolean verbose) {

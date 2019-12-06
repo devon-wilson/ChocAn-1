@@ -25,6 +25,25 @@ public class IOAuthorization {
     }
 
 	/**
+	 * Verify that dollars entered is in correct format
+	 * @param input String to test containing currency
+	 * @return 0 for success, -1 for failure
+	 */
+	protected int validateCurrency(String input, double maxValue) {
+		if (isNotType(input, "double"))
+			return -1;
+
+		// should be an int, okay to cast
+		double inputCurrency = Float.parseFloat(input);
+
+		if (inputCurrency <= 0 || inputCurrency >= maxValue)
+			return -1;
+
+		// all tests passed
+		return 0;
+	}
+
+	/**
    * Verify that date entered is in correct format
 	 * <p>
 	 *   Expects MM-DD-YYYY

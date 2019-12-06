@@ -576,6 +576,11 @@ public class Terminal extends IOAuthorization {
             if (rejected)
               System.out.println("\nEntered %s not valid format (MM-DD-YYYY)");
             break;
+          case currency:
+            rejected = validateCurrency(input, field.maxLength) < 0;
+            if (rejected)
+              System.out.println("\nEntered %s too high");
+            break;
           default:
             break;
         }

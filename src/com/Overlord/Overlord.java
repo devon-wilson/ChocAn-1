@@ -92,9 +92,22 @@ public class Overlord extends DataBaseManager<Object> {
   }
 
   public boolean isMemberCheckedIn() {
-    return (currentMember == null);
+    return (currentMember != null);
   }
 
+  public boolean isMemberValid() {
+    if (currentMember == null)
+      return false;
+
+    return (currentMember.getStatus().equalsIgnoreCase("valid"));
+  }
+
+  public boolean isMemberSuspended() {
+    if (currentMember == null)
+      return false;
+
+    return (currentMember.getStatus().equalsIgnoreCase("suspended"));
+  }
   /**
    * View Member
    *
