@@ -249,9 +249,9 @@ public class Terminal extends IOAuthorization {
     breadcrumbs.push("members");
 
     do {
-      System.out.print("\nManage member options:" +
-              "\n 1 - Select" +
-              "\n 2 - View" +
+      System.out.println("\nManage member options:" +
+              "\n 1 - View one" +
+              "\n 2 - View all" +
               "\n 3 - Add" +
               "\n 4 - Delete" +
               "\n 5 - Suspend" +
@@ -260,19 +260,30 @@ public class Terminal extends IOAuthorization {
       );
       breadcrumbPrompt();
       choice = getChoice();
+      String MID = null;
 
       switch (choice) {
-        case '1': // select
-          checkInMember();
+        case '1': // view
+          MID = getID(dataType.MEMBER);
+          if(MID == null){
+            break;
+          }
+          String [] components = overlord.getMember(MID);
+          System.out.println("Member info");
+          display(components);
           break;
-        case '2': // view
-          overlord.viewMember();
+        case '2':
+          overlord.viewMembers();
           break;
         case '3': // add
           addMember();
           break;
         case '4': // delete
-          overlord.removeMember("");
+          MID = getID(dataType.MEMBER);
+          if(MID == null){
+            break;
+          }
+          overlord.removeMember(MID);
           break;
         case '5': // suspend
 
@@ -300,10 +311,11 @@ public class Terminal extends IOAuthorization {
     breadcrumbs.push("providers");
 
     do {
-      System.out.print("\nManage provider options:" +
-              "\n 1 - View" +
-              "\n 2 - Add" +
-              "\n 3 - Delete" +
+      System.out.println("\nManage provider options:" +
+              "\n 1 - View one" +
+              "\n 2 - View all" +
+              "\n 3 - Add" +
+              "\n 4 - Delete" +
               "\n q - Quit"
       );
       breadcrumbPrompt();
@@ -313,14 +325,24 @@ public class Terminal extends IOAuthorization {
       switch (choice) {
         case '1': // view
           PID = getID(dataType.PROVIDER);
+          if(PID == null){
+            break;
+          }
           String [] components = overlord.getProvider(PID);
+          System.out.println("Provider info");
           display(components);
           break;
-        case '2': // add
+        case '2':
+          overlord.viewProviders();
+          break;
+        case '3': // add
           addProvider();
           break;
-        case '3': // delete
+        case '4': // delete
           PID = getID(dataType.PROVIDER);
+          if(PID == null){
+            break;
+          }
           overlord.removeProvider("");
           break;
         case 'q':
@@ -341,10 +363,11 @@ public class Terminal extends IOAuthorization {
     breadcrumbs.push("members");
 
     do {
-      System.out.print("\nManage service options:" +
-              "\n 1 - View" +
-              "\n 2 - Add" +
-              "\n 3 - Delete" +
+      System.out.println("\nManage service options:" +
+              "\n 1 - View one" +
+              "\n 2 - View all" +
+              "\n 3 - Add" +
+              "\n 4 - Delete" +
               "\n q - Quit"
       );
       breadcrumbPrompt();
@@ -353,13 +376,24 @@ public class Terminal extends IOAuthorization {
       switch (choice){
         case '1': // view
           SID = getID(dataType.SERVICE);
-          overlord.getService(SID);
+          if(SID == null){
+            break;
+          }
+          String [] components = overlord.getService(SID);
+          System.out.println("Service info");
+          display(components);
           break;
-        case '2': // add
+        case '2':
+          overlord.viewServices();
+          break;
+        case '3': // add
           addService();
           break;
-        case '3': // delete
+        case '4': // delete
           SID = getID(dataType.SERVICE);
+          if(SID == null){
+            break;
+          }
           overlord.removeService(SID);
           break;
         case 'q':
@@ -379,9 +413,12 @@ public class Terminal extends IOAuthorization {
     breadcrumbs.push("members");
     System.out.println("Enter Provider ID");
     String PID = getID(dataType.PROVIDER);
+    if(PID == null){
+      return;
+    }
 
     do {
-      System.out.print("\nManage directory options:" +
+      System.out.println("\nManage directory options:" +
               "\n 1 - View" +
               "\n 2 - Add" +
               "\n 3 - Delete" +
@@ -393,14 +430,23 @@ public class Terminal extends IOAuthorization {
       switch (choice){
         case '1': // view
           SID = getID(dataType.SERVICE);
+          if(SID == null){
+            break;
+          }
           overlord.viewDirectory(PID);
           break;
         case '2': // add
           SID = getID(dataType.SERVICE);
+          if(SID == null){
+            break;
+          }
           overlord.addService(PID, SID);
           break;
         case '3': // delete
           SID = getID(dataType.SERVICE);
+          if(SID == null){
+            break;
+          }
           overlord.removeService(PID, SID);
           break;
         case 'q':
@@ -446,7 +492,7 @@ public class Terminal extends IOAuthorization {
   private boolean isNotValidID(String ID, int expected, String name) {
     int returnCode = validateID(ID, expected);
     if (returnCode < 0) {
-      System.out.print("Not valid " + name);
+      System.out.println("Not valid " + name);
       return true;
     }
     return false;
@@ -495,6 +541,11 @@ public class Terminal extends IOAuthorization {
     String input;
     do {
       input = in.nextLine();
+      System.out.println("Press q to quit.");
+      if(input.equals('q') == true){
+        return null;
+      }
+
     } while(isNotValidID(input, length, name));
     return input;
   }

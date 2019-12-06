@@ -377,6 +377,17 @@ public class Overlord extends DataBaseManager<Object> {
     return 0;
   }
 
+  public String[] getMember(String code){
+    try {
+      Member toReturn = (Member) findData(1, code);
+      if (toReturn == null)
+        return null;
+      return toReturn.getAll();
+    }
+    catch (ClassCastException a) {
+      return null;
+    }
+  }
   public String[] getProvider(String code){
     try {
       Provider toReturn = (Provider) findData(1, code);
@@ -398,6 +409,16 @@ public class Overlord extends DataBaseManager<Object> {
       catch (ClassCastException a) {
         return null;
       }
+  }
+
+  public void viewMembers(){
+
+  }
+  public void viewProviders(){
+
+  }
+  public void viewServices(){
+
   }
   public void viewDirectory(String PID){
     try {
