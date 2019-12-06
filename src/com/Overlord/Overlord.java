@@ -426,13 +426,25 @@ public class Overlord extends DataBaseManager<Object> {
   }
 
   public void viewMembers(){
-
+      ArrayList<Member> members = getAll(2);
+      for(int i = 0; i < members.size(); ++i){
+          Member myMember = members.get(i);
+          myMember.display();
+      }
   }
   public void viewProviders(){
-
+      ArrayList<Provider> providers = getAll(1);
+      for(int i = 0; i < providers.size(); ++i){
+          Provider myProvider = providers.get(i);
+          myProvider.display();
+      }
   }
   public void viewServices(){
-
+      ArrayList<Service> services = getAll(3);
+      for(int i = 0; i < services.size(); ++i){
+          Service myService = services.get(i);
+          myService.display();
+      }
   }
   public void viewDirectory(String PID){
     try {
