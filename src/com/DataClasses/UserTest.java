@@ -165,7 +165,7 @@ class UserTest {
     @Test
     void get() {
         Member myMember = new Member();
-        String [] components = null;
+        String [] components = new String [6];
         buildUser(0, components);
         myMember.build(components);
         for(int i = 0; i < 6; ++i){
