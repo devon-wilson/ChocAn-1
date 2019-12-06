@@ -651,19 +651,13 @@ public class Terminal extends IOAuthorization {
 
   private void generateRecordOfService() {
     /*
-    currDateTime
     dateProvided
-    providerID
-    memberID
     serviceCode
     comment
      */
 
     final Field[] serviceReportFields = {
-            new Field("Current Date", 0, datetime),
             new Field("Date Provided", 0, date),
-            new Field("Provider ID", 9, id),
-            new Field("Member ID", 9, id),
             new Field("Service Code", 6, id),
             new Field("Comments", 100, text),
     };
@@ -672,10 +666,9 @@ public class Terminal extends IOAuthorization {
 
     int returnCode = overlord.generateServiceRecord(reportInfo);
     if (returnCode < 0) {
-      String[] translations = {"Failed to generate service record", "Not authorized for this action"};
+      String[] translations = {"Failed to generate service record", "Not authorized for this action or no member checked in"};
       System.out.println(translations[getReturnCodeIndex(returnCode)]);
     }
-    // todo: This should work without member checked in
   }
 
   private void requestProviderDirectory() {
