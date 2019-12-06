@@ -8,6 +8,7 @@ public class Record {
     private String memberID;
     private String serviceCode;
     private String comment;
+    private String cost;
 
     public Record(String[] input){
         build(input);
@@ -21,10 +22,10 @@ public class Record {
         if(components == null){
             return -1;
         }
-        if(components.length != 6){
+        if(components.length != 7){
             return -1;
         }
-        for(int i = 0; i < 6; ++i){
+        for(int i = 0; i < 7; ++i){
             if(components[i] == null){
                 return -1;
             }
@@ -35,61 +36,7 @@ public class Record {
         this.memberID = components[3];
         this.serviceCode = components[4];
         this.comment = components[5];
-        return 0;
-    }
-
-    //Changes a given field based on the string
-    //passed in. Must be built fist.
-    public int changeCurrDT(String toChange){
-        if(toChange == null){
-            return -1;
-        }
-        this.currDateTime = toChange;
-        return 0;
-    }
-    public int changeDateP(String toChange){
-        if(toChange == null){
-            return -1;
-        }
-        this.dateProvided = toChange;
-        return 0;
-    }
-    public int changePID(String toChange){
-        if(toChange == null){
-            return -1;
-        }
-        this.providerID = toChange;
-        return 0;
-    }
-    public int changeMID(String toChange){
-        if(toChange == null){
-            return -1;
-        }
-        this.memberID = toChange;
-        return 0;
-    }
-    public int changeCode(String toChange) {
-        if(toChange == null){
-            return -1;
-        }
-        this.serviceCode = toChange;
-        return 0;
-    }
-    public int changeComment(String toChange){
-        if(toChange == null){
-            return -1;
-        }
-        this.comment = toChange;
-        return 0;
-    }
-
-    public int display(){
-        System.out.println(currDateTime);
-        System.out.println(dateProvided);
-        System.out.println(providerID);
-        System.out.println(memberID);
-        System.out.println(serviceCode);
-        System.out.println(comment);
+        this.cost = components[6];
         return 0;
     }
 

@@ -315,13 +315,9 @@ public class Overlord extends DataBaseManager<Object> {
 
       if (member == null)
         return -1;
-      try {
-        ReadWrite.fileWrite("records/" + memberID, member.getAll(), true);
-        return 1;
-      }
-      catch (IOException a) {
-        return -1;
-      }
+
+      //ReadWrite.fileWrite("records/" + memberID, member.getAll(), true);
+      return 1;
     }
     catch (ClassCastException a) {
       return -1;
@@ -387,17 +383,42 @@ public class Overlord extends DataBaseManager<Object> {
   }
 
   public int generateServiceRecord(String[] input) {
-    String currentTime = getCurrentTime();
-    Record newRecord = new Record(input);
+    /* input should be in the following format:
+     *  date
+     *  serviceID
+     *  comments
+     */
+
+    if (currentMember == null || currentUser == null)
+      return -2;
+    if (!(currentUser instanceof Provider))
+      return -2;
+    if (input == null)
+      return -1;
+
+    // get the service specified by provider
+    Service service = (Service) findData(3, input[1]);
+    if (service == null)
+      return -1;
+
+    String[] data = new String[6];
+    data[0] = getCurrentTime();
+    data[1] = input[0];
+    data[2] = currentMember.get(1);
+    data[3] = currentUser.get(1);
+    data[4] = input[1];
+    data[5] = input[2];
+
+    String[] recordData = new String[7];
+    System.arraycopy(data, 0, recordData, 0, 6);
+    // get cost from service
+    recordData[6] = service.getCost();
+    Record record = new Record(recordData);
+
     try {
-      if (currentMember == null)
-        return -1;
-      for(int i = 0; i < input.length; i++) {
-        String[] data = new String[1];
-        data[0] = input[i];
-        ReadWrite.fileWrite("records/" + currentMember.get(1) + ".csv", data, true);
-      }
-      return 0;
+      ReadWrite.fileWrite("records/" + currentMember.get(1) + ".csv", data, true);
+      //addTreeData(4, currentMember.get(1), record);
+      return 1;
     }
     catch (IOException a) {
       return -1;

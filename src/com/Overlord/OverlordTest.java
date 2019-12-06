@@ -225,6 +225,19 @@ class OverlordTest {
   @Test
   void generateServiceRecord() {
     Overlord overlord = new Overlord();
+
+    assertEquals(-2, overlord.generateServiceRecord(null), "no one logged in");
+
+    overlord.login(1,"012345678");
+    overlord.memberCheckIn("012345678");
+
+    assertEquals(-1, overlord.generateServiceRecord(null), "passed in null pointer");
+
+    String[] testArray = new String[3];
+    testArray[0] = "test date";
+    testArray[1] = "123456";
+    testArray[2] = "test comments";
+    assertEquals(1, overlord.generateServiceRecord(testArray),"wrote file to disk and tree");
   }
 
   @Test
@@ -242,14 +255,13 @@ class OverlordTest {
           "0,member is not checked in",
           "1,member is checked in"
   })
-  void isMemberCheckedIn(boolean expected, String message) {
+  void isMemberCheckedIn() {
     Overlord overlord = new Overlord();
 
-    if (expected) {
-      overlord.login(0, "012345678");
-      overlord.memberCheckIn("012345678");
-    }
-    assertEquals(expected, overlord.isMemberCheckedIn(), message);
+    overlord.login(0, "012345678");
+    overlord.memberCheckIn("012345678");
+
+    assertEquals(true, overlord.isMemberCheckedIn(), "Member is checked in");
   }
 }
 

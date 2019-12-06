@@ -19,6 +19,8 @@ public class Service {
         return name;
     }
 
+    public String getCost() { return cost; }
+
     public String[] getAll(){
         String [] components = new String [3];
         components[0] = name;

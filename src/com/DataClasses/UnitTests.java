@@ -125,8 +125,8 @@ public class UnitTests {
         test.build(toTest);
 
         String [] service = buildMService();
-        success += test.addService(service);
-        success += test.addService(service);
+       // success += test.addService(service);
+       // success += test.addService(service);
         success += testMRServices(test, service);
 
         success += testAllReport(test, original);
@@ -277,6 +277,7 @@ public class UnitTests {
     }
     public int testMRServices(MemberReport toTest, String [] original){
         int success = 0;
+        /*
         Vector<String[]> services = toTest.getServices();
         int size = services.size();
 
@@ -288,6 +289,8 @@ public class UnitTests {
                 }
             }
         }
+
+         */
         return success;
     }
 }
