@@ -8,11 +8,10 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MemberReportTest {
+class ProviderReportTest {
 
     @Test
     void addService() {
-
 
 
     }
@@ -45,7 +44,7 @@ class MemberReportTest {
     }
 
     private int buildService(int line, String [] components){
-        file = new File("data/records.csv");
+        file = new File("data/providerDirectory.csv");
         if(file == null){
             return -1;
         }
@@ -59,7 +58,7 @@ class MemberReportTest {
         for(int i =0; i < line + 1; ++i){
             sc.nextLine();
         }
-        for(int i = 0; i < 7; ++i){
+        for(int i = 0; i < 3; ++i){
             components[i] = sc.next();
         }
         return 0;
