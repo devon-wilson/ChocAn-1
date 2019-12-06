@@ -1,54 +1,48 @@
 package com.DataClasses;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class Provider extends User{
 
-    private Vector<String> services;
+    private ArrayList<String> serviceCodes;
 
     public Provider(){
         super();
-        services = new Vector<>();
+        serviceCodes = new ArrayList<>();
     }
 
     public Provider(String[] userData) {
         super(userData);
 
-        //Builds a vector of initial services.
-        services = new Vector<>();
+        //Builds a vector of initial serviceCodes.
+        serviceCodes = new ArrayList<>();
         for(int i = 6; i < userData.length; ++i){
-            services.add(userData[i]);
+            serviceCodes.add(userData[i]);
         }
     }
 
     public String[] getServices() {
-        //Gets an array of all services
-        if (services == null)
+        //Gets an array of all serviceCodes
+        if (serviceCodes == null)
             return null;
-        String [] components = new String[services.size()];
-        for(int i = 0; i < components.length; ++i){
-            components[i] = new String(services.get(i));
-        }
-        return components;
+        return serviceCodes.toArray(new String[serviceCodes.size()]);
     }
 
     public int removeService(String toRemove){
-        //removes a service
-        for(int i = 0; i < services.size(); ++i){
-            if(toRemove.equals(services.get(i)) == true){
-                services.remove(i);
+        for(int i = 0; i < serviceCodes.size(); ++i){
+            if(toRemove.equals(serviceCodes.get(i))){
+                serviceCodes.remove(i);
                 return 0;
             }
         }
         return -1;
     }
 
-    public int addService(String toChange){
-        //adds a service
-        if(toChange == null){
+    public int addService(String serviceName){
+        if(serviceName == null){
             return -1;
         }
-        services.add(toChange);
+        serviceCodes.add(serviceName);
         return 0;
     }
 

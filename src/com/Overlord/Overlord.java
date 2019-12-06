@@ -7,6 +7,7 @@ import com.ReadWrite.ReadWrite;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Overlord of layers
@@ -21,6 +22,7 @@ import java.time.format.DateTimeFormatter;
 public class Overlord extends DataBaseManager<Object> {
   private User currentUser;
   private Member currentMember;
+  private ArrayList<Service> currentServices;
 
   /**
    * Default Constructor
@@ -30,6 +32,7 @@ public class Overlord extends DataBaseManager<Object> {
 
     this.currentUser = null;
     this.currentMember = null;
+    this.currentServices = null;
   }
 
   /**
@@ -53,6 +56,17 @@ public class Overlord extends DataBaseManager<Object> {
 
       // sets currentUser
       currentUser = login;
+
+      // Fetch all services from service tree
+      if (currentUser instanceof Provider) {
+        currentServices = new ArrayList<Service>();
+        String[] services = ((Provider) currentUser).getServices();
+        Service service;
+        for (String i : services) {
+          if ((service = (Service) findData(3, i)) != null)
+            currentServices.add(service);
+        }
+      }
       return 1;
     }
     catch (ClassCastException a){
@@ -66,12 +80,12 @@ public class Overlord extends DataBaseManager<Object> {
    * @return 1 and cannot fail.
    */
   public int logout() {
-    currentUser = null;
-    currentMember = null;
+    this.currentUser = null;
+    this.currentMember = null;
+    this.currentServices = null;
     return 1;
   }
 
-  // Member functions
   /**
    * Member Check In
    * @param memberID contains id of member
@@ -125,8 +139,6 @@ public class Overlord extends DataBaseManager<Object> {
     return 1;
   }
 
-
-
   /**
    * Member Check Out
    * @return 1 for success, -1 for failure.
@@ -170,6 +182,7 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     return 1;
   }
+
   public int suspendMember(String memberID) {
     // check if there is a user logged in
     if (currentUser == null)
@@ -199,6 +212,7 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     }
   }
+
   public int renewMember(String memberID) {
     // check if there is a user logged in
     if (currentUser == null)
@@ -243,6 +257,7 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
+
   public int removeProvider(String providerID) {
     // check if user is a manager
     if (currentUser == null || !(currentUser instanceof Manager))
@@ -252,13 +267,13 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     return 1;
   }
+
   public int displayCurrentServices() {
     if (currentUser == null || !(currentUser instanceof Provider))
       return -2;
     try {
-      Provider current = (Provider) currentUser;
-      current.getServices();
-      current.display();
+      for (Service i : currentServices)
+        i.display();
       return 1;
     }
     catch (ClassCastException a) {
@@ -279,6 +294,7 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
+
   public int addService(String PID, String SID){
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -290,6 +306,7 @@ public class Overlord extends DataBaseManager<Object> {
 
     return 1;
   }
+
   public int removeService(String serviceID) {
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -300,6 +317,7 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
+
   public int removeService(String PID, String SID){
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -339,13 +357,9 @@ public class Overlord extends DataBaseManager<Object> {
 
       if (member == null)
         return -1;
-      try {
-        ReadWrite.fileWrite("records/" + memberID, member.getAll(), true);
-        return 1;
-      }
-      catch (IOException a) {
-        return -1;
-      }
+
+      //ReadWrite.fileWrite("records/" + memberID, member.getAll(), true);
+      return 1;
     }
     catch (ClassCastException a) {
       return -1;
@@ -457,17 +471,42 @@ public class Overlord extends DataBaseManager<Object> {
   }
 
   public int generateServiceRecord(String[] input) {
-    String currentTime = getCurrentTime();
-    Record newRecord = new Record(input);
+    /* input should be in the following format:
+     *  date
+     *  serviceID
+     *  comments
+     */
+
+    if (currentMember == null || currentUser == null)
+      return -2;
+    if (!(currentUser instanceof Provider))
+      return -2;
+    if (input == null)
+      return -1;
+
+    // get the service specified by provider
+    Service service = (Service) findData(3, input[1]);
+    if (service == null)
+      return -1;
+
+    String[] data = new String[6];
+    data[0] = getCurrentTime();
+    data[1] = input[0];
+    data[2] = currentMember.get(1);
+    data[3] = currentUser.get(1);
+    data[4] = input[1];
+    data[5] = input[2];
+
+    String[] recordData = new String[7];
+    System.arraycopy(data, 0, recordData, 0, 6);
+    // get cost from service
+    recordData[6] = service.getCost();
+    Record record = new Record(recordData);
+
     try {
-      if (currentMember == null)
-        return -1;
-      for(int i = 0; i < input.length; i++) {
-        String[] data = new String[1];
-        data[0] = input[i];
-        ReadWrite.fileWrite("records/" + currentMember.get(1) + ".csv", data, true);
-      }
-      return 0;
+      ReadWrite.fileWrite("records/" + currentMember.get(1) + ".csv", data, true);
+      //addTreeData(4, currentMember.get(1), record);
+      return 1;
     }
     catch (IOException a) {
       return -1;

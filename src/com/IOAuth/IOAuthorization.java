@@ -29,14 +29,19 @@ public class IOAuthorization {
 	 * @param input String to test containing currency
 	 * @return 0 for success, -1 for failure
 	 */
-	protected int validateCurrency(String input, double maxValue) {
-		if (isNotType(input, "double"))
+	protected int validateCurrency(String input, int maxLength) {
+		double maxValue;
+
+		if (isNotType(input, "double") || input.length() > maxLength)
 			return -1;
 
-		// should be an int, okay to cast
-		double inputCurrency = Float.parseFloat(input);
+		maxValue = Math.pow(10, maxLength - 3);
 
-		if (inputCurrency <= 0 || inputCurrency >= maxValue)
+		// should be an int, okay to cast
+		double inputCurrency = Double.parseDouble(input);
+		System.out.printf("validating %f against %f", inputCurrency, maxValue);
+
+		if (inputCurrency < 0 || inputCurrency >= maxValue)
 			return -1;
 
 		// all tests passed

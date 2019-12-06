@@ -42,6 +42,9 @@ public abstract class Report {
         return 0;
     }
 
+    public abstract int display();
+    public abstract int emptyServices();
+
     //change a given field in the report.
     public int changeName(String toChange){
         if(toChange == null){
@@ -119,8 +122,4 @@ public abstract class Report {
             return null;
         }
     }
-
-    public abstract int display();
-    public abstract int emptyServices();
-
 }

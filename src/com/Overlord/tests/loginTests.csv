@@ -1,5 +1,5 @@
 00,000000000,-1,login that doesn't exist
-00,012345678,01,login provider exists
-01,012345678,01,login manager exists
--1,012345678,-1,unacceptable login type: -1
-02,012345678,-1,unacceptable login type: 2
+00,123456789,01,login provider exists
+01,123456789,01,login manager exists
+-1,123456789,-1,unacceptable login type: -1
+02,123456789,-1,unacceptable login type: 2

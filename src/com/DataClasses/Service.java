@@ -2,6 +2,9 @@ package com.DataClasses;
 
 public class Service {
 
+    private String name;
+    private String ID;
+    private String cost;
 
     public Service(){
         name = null;
@@ -19,6 +22,8 @@ public class Service {
         return name;
     }
 
+    public String getCost() { return cost; }
+
     public String[] getAll(){
         String [] components = new String [3];
         components[0] = name;
@@ -27,7 +32,9 @@ public class Service {
         return components;
     }
 
-    private String name;
-    private String ID;
-    private String cost;
+    public void display() {
+        System.out.println("Name:\t" + name + "\n" +
+                            "Code:\t" + ID + "\n" +
+                            "Fee:\t" + cost);
+    }
 }

@@ -59,8 +59,16 @@ public class DataBaseManager<Object> {
                     newObject = (Object) new Record(lineData);
             }
 
-            if (newObject != null)
-                root.put(lineData[1], newObject);
+            if (newObject != null) {
+                /* Add records based on 5th element (service #).
+                Add all other  objects based on 2nd element (ID #).
+                 */
+                if (objectType.equals("Record")) {
+                    root.put(lineData[4], newObject);
+                }else {
+                    root.put(lineData[1], newObject);
+                }
+            }
         }
 
         return root;
@@ -108,6 +116,7 @@ public class DataBaseManager<Object> {
         1 - PROVIDER
         2 - MEMBER
         3 - SERVICE
+        4 - RECORD
          */
         switch(type) {
 
@@ -119,6 +128,8 @@ public class DataBaseManager<Object> {
                 return members.remove(key);
             case (3):
                 return services.remove(key);
+            case (4):
+                return records.remove(key);
         }
         return null;
     }
