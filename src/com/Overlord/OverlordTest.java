@@ -31,7 +31,7 @@ class OverlordTest {
     System.out.println("Testing: logging out");
 
 
-    overlord.login(0, "012345678");
+    overlord.login(0, "123456789");
     assertEquals(1,overlord.logout(), "log out returns 1");
   }
 
@@ -44,9 +44,9 @@ class OverlordTest {
     assertEquals(-2, overlord.memberCheckIn(id), message + " with no provider login");
 
     System.out.println("Testing: " + message + " with provider login");
-    overlord.login(0, "012345678");
+    overlord.login(1, "123456789");
 
-    assertEquals(expected, overlord.memberCheckIn(id), message);
+    assertEquals(1, overlord.memberCheckIn("123456789"), message);
   }
 
   @Test
@@ -55,8 +55,8 @@ class OverlordTest {
 
     assertEquals(-2, overlord.viewMember(), "no member checked in");
 
-    overlord.login(0, "012345678");
-    overlord.memberCheckIn("012345678");
+    overlord.login(0, "123456789");
+    overlord.memberCheckIn("123456789");
 
     assertEquals(1, overlord.viewMember(), "member checked in displays");
   }
@@ -68,8 +68,8 @@ class OverlordTest {
 
     assertEquals(-1, overlord.memberCheckOut(), "no member checked in");
 
-    overlord.login(0, "012345678");
-    overlord.memberCheckIn("012345678");
+    overlord.login(0, "123456789");
+    overlord.memberCheckIn("123456789");
 
     assertEquals(1, overlord.memberCheckOut(), "member checked in checks out");
   }
@@ -85,13 +85,13 @@ class OverlordTest {
 
     assertEquals(-2, overlord.addMember(newMember), "add member without manager");
 
-    overlord.login(1, "012345678");
+    overlord.login(1, "123456789");
 
     assertEquals(-2, overlord.addMember(newMember), "add member without manager");
 
     overlord.logout();
 
-    overlord.login(0, "012345678");
+    overlord.login(0, "123456789");
 
     assertEquals(1, overlord.addMember(newMember), "add member without manager");
 
@@ -103,19 +103,19 @@ class OverlordTest {
   void suspendMember() {
     Overlord overlord = new Overlord();
 
-    assertEquals(-1, overlord.suspendMember("012345678"), "not manager returns -1");
+    assertEquals(-1, overlord.suspendMember("123456789"), "not manager returns -1");
 
-    overlord.login(0, "012345678");
+    overlord.login(0, "123456789");
 
-    assertEquals(1, overlord.suspendMember("012345678"), "suspend from manager");
+    assertEquals(1, overlord.suspendMember("123456789"), "suspend from manager");
 
     overlord.logout();
 
-    assertEquals(-1, overlord.renewMember("012345678"), "renew without manager");
+    assertEquals(-1, overlord.renewMember("123456789"), "renew without manager");
 
-    overlord.login(1, "012345678");
+    overlord.login(1, "123456789");
 
-    assertEquals(-2, overlord.renewMember("012345678"), "cannot renew as a provider");
+    assertEquals(-2, overlord.renewMember("123456789"), "cannot renew as a provider");
   }
 
   @Test
@@ -129,7 +129,7 @@ class OverlordTest {
     assertEquals(-2, overlord.addProvider(testArray), "add member fails on null");
 
     overlord.logout();
-    overlord.login(0, "012345678");
+    overlord.login(0, "123456789");
 
     assertEquals(-1, overlord.addProvider(null), "null string provided");
     assertEquals(1, overlord.addProvider(testArray), "user is not a manager");
@@ -144,14 +144,14 @@ class OverlordTest {
 
     assertEquals(-2, overlord.displayCurrentServices(), "no member checked in");
 
-    overlord.login(0, "012345678");
-    overlord.memberCheckIn("012345678");
+    overlord.login(0, "123456789");
+    overlord.memberCheckIn("123456789");
 
     assertEquals(-2, overlord.displayCurrentServices(), "user is a manager, not a provider");
 
     overlord.logout();
-    overlord.login(1, "012345678");
-    overlord.memberCheckIn("012345678");
+    overlord.login(1, "123456789");
+    overlord.memberCheckIn("123456789");
 
     assertEquals(1, overlord.displayCurrentServices(), "services have been displayed");
   }
@@ -164,12 +164,12 @@ class OverlordTest {
     assertEquals(-2, overlord.addService(newService), "no current user");
     assertEquals(-2, overlord.removeService("000001"), "no current user");
 
-    overlord.login(1, "012345678");
+    overlord.login(1, "123456789");
 
     assertEquals(-2, overlord.addService(newService), "current user is not a manager");
 
     overlord.logout();
-    overlord.login(0, "012345678");
+    overlord.login(0, "123456789");
 
     assertEquals(1, overlord.addService(newService), "correctly added to tree");
 
@@ -186,7 +186,7 @@ class OverlordTest {
 
     assertNull(overlord.searchService(null), "no user, null string");
 
-    overlord.login(1, "012345678");
+    overlord.login(1, "123456789");
     assertNull(overlord.searchService(null), "null string");
     String[] retrieved = overlord.searchService("123456");
     assertArrayEquals(retrieved, overlord.searchService("123456"), "confirms test passes");
@@ -198,8 +198,8 @@ class OverlordTest {
 
     assertEquals(-1, overlord.genMemberReport(null), "passed null to function");
 
-    overlord.login(0, "012345678");
-    assertEquals(1, overlord.genMemberReport("012345678"), "passed actual member id");
+    overlord.login(0, "123456789");
+    assertEquals(1, overlord.genMemberReport("123456789"), "passed actual member id");
   }
 
   @Test
@@ -228,8 +228,8 @@ class OverlordTest {
 
     assertEquals(-2, overlord.generateServiceRecord(null), "no one logged in");
 
-    overlord.login(1,"012345678");
-    overlord.memberCheckIn("012345678");
+    overlord.login(1,"123456789");
+    overlord.memberCheckIn("123456789");
 
     assertEquals(-1, overlord.generateServiceRecord(null), "passed in null pointer");
 
@@ -258,8 +258,8 @@ class OverlordTest {
   void isMemberCheckedIn() {
     Overlord overlord = new Overlord();
 
-    overlord.login(0, "012345678");
-    overlord.memberCheckIn("012345678");
+    overlord.login(0, "123456789");
+    overlord.memberCheckIn("123456789");
 
     assertEquals(true, overlord.isMemberCheckedIn(), "Member is checked in");
   }
