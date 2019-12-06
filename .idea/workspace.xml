@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a158f4f5-30b7-4781-ac6a-acd3c461bf11" name="Default Changelist" comment="Added basic database management functionality:&#10;build, add, remove, find, update">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f2b41691-6ae0-4817-baa2-922bc21ef93c" name="Default Changelist" comment="code updates and updated terminal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/DataBaseManager/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/DataBaseManager/DataBaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChocAn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ChocAn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/DataClasses/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/DataClasses/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/DataClasses/MemberReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/DataClasses/MemberReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/DataClasses/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/DataClasses/Provider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/DataClasses/ReportTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/DataClasses/ReportTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/IOAuth/IOAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/IOAuth/IOAuthorization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Overlord/Overlord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Overlord/Overlord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Terminal/Terminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Terminal/Terminal.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,24 +22,77 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dataclasses" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="git@github.com:CS300-Group-4/ChocAn.git" />
+      </set>
+    </option>
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
       <set>
-        <option value="C:\Users\Brandon\IdeaProjects\ChocAn\.idea" />
+        <option value="$PROJECT_DIR$/.idea" />
       </set>
     </option>
   </component>
-  <component name="ProjectId" id="1U2EPagPugxXSISsufJ9lEfJSJF" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1TaNXq18bNPfyzq09T13nrCVC7T" />
+  <component name="ProjectViewState">
+    <option name="foldersAlwaysOnTop" value="false" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../firstProject" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="12" />
+    <property name="last_opened_file_path" value="$USER_HOME$/cs202/program5" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.DataClasses" />
+      <recent name="com.ReadWrite" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\PSU\cs300\ChocAn" />
+      <recent name="C:\dev\PSU\cs300\pulltest3\ChocAn\src\com\Overlord" />
+      <recent name="$PROJECT_DIR$/files" />
+      <recent name="$PROJECT_DIR$/src/com" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\PSU\cs300\ChocAn\src\com\Overlord\tests" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -47,26 +106,291 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="JUnit.ReportTest">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.Main" />
+      <module name="ChocAn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in ChocAn" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="ChocAn" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OverlordTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="ChocAn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.Overlord.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.Overlord" />
+      <option name="MAIN_CLASS_NAME" value="com.Overlord.OverlordTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReadWriteTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="ChocAn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ReadWrite.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ReadWrite" />
+      <option name="MAIN_CLASS_NAME" value="com.ReadWrite.ReadWriteTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReportTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="ChocAn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.DataClasses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.DataClasses" />
+      <option name="MAIN_CLASS_NAME" value="com.DataClasses.ReportTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReportTest.build" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChocAn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.DataClasses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.DataClasses" />
+      <option name="MAIN_CLASS_NAME" value="com.DataClasses.ReportTest" />
+      <option name="METHOD_NAME" value="build" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReportTest.get" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ChocAn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.DataClasses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.DataClasses" />
+      <option name="MAIN_CLASS_NAME" value="com.DataClasses.ReportTest" />
+      <option name="METHOD_NAME" value="get" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="ChocAn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.DataClasses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.DataClasses" />
+      <option name="MAIN_CLASS_NAME" value="com.DataClasses.UserTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.All in ChocAn" />
+      <item itemvalue="JUnit.ReadWriteTest" />
+      <item itemvalue="JUnit.OverlordTest" />
+      <item itemvalue="JUnit.UserTest" />
+      <item itemvalue="JUnit.ReportTest" />
+      <item itemvalue="JUnit.ReportTest.build" />
+      <item itemvalue="JUnit.ReportTest.get" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ReportTest.get" />
+        <item itemvalue="JUnit.ReportTest.build" />
+        <item itemvalue="JUnit.ReportTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a158f4f5-30b7-4781-ac6a-acd3c461bf11" name="Default Changelist" comment="" />
-      <created>1574546266847</created>
+      <changelist id="f2b41691-6ae0-4817-baa2-922bc21ef93c" name="Default Changelist" comment="Updated tests and updated documentation for clarity of use" />
+      <created>1575340704106</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1574546266847</updated>
+      <updated>1575340704106</updated>
+      <workItem from="1575340710461" duration="1416000" />
+      <workItem from="1575342493748" duration="186000" />
+      <workItem from="1575356631423" duration="136000" />
+      <workItem from="1575356857972" duration="3754000" />
+      <workItem from="1575362847281" duration="571000" />
+      <workItem from="1575407797376" duration="1831000" />
+      <workItem from="1575411409533" duration="43000" />
+      <workItem from="1575411937340" duration="974000" />
+      <workItem from="1575412979267" duration="773000" />
+      <workItem from="1575414131251" duration="53000" />
+      <workItem from="1575418468104" duration="2181000" />
+      <workItem from="1575422332878" duration="7150000" />
+      <workItem from="1575503869285" duration="477000" />
+      <workItem from="1575504602315" duration="7618000" />
+      <workItem from="1575514705752" duration="1837000" />
+      <workItem from="1575516569198" duration="37000" />
+      <workItem from="1575522879998" duration="1151000" />
+      <workItem from="1575527060568" duration="534000" />
+      <workItem from="1575528087437" duration="2491000" />
+      <workItem from="1575530583119" duration="8021000" />
+      <workItem from="1575540162888" duration="2497000" />
     </task>
-    <task id="LOCAL-00001" summary="Added basic database management functionality:&#10;build, add, remove, find, update">
-      <created>1574898005892</created>
+    <task id="LOCAL-00001" summary="Readded module and package files">
+      <created>1575340829295</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1574898005892</updated>
+      <updated>1575340829295</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed small overlord test bugs and added test Junit path">
+      <created>1575341371030</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575341371030</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Changed test dependency to use junit to read files">
+      <created>1575357071673</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575357071673</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added 3rd item to services.csv so overlord can instantiate">
+      <created>1575413664535</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575413664535</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added more tests and passed more tests">
+      <created>1575493838567</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575493838567</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added more tests and passed more tests">
+      <created>1575504240170</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575504240170</updated>
+    </task>
+    <task id="LOCAL-00007" summary="updated ReadWrite class and dependent exception handling">
+      <created>1575510699224</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575510699224</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Adding terminal and updating overlord">
+      <created>1575512301733</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1575512301733</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Merged IOAuth package and commented out some tests">
+      <created>1575515791275</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1575515791275</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Merged IOAuth package and commented out some tests">
+      <created>1575523013287</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1575523013287</updated>
+    </task>
+    <task id="LOCAL-00011" summary="removed bad xml non comments">
+      <created>1575528136756</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1575528136756</updated>
+    </task>
+    <task id="LOCAL-00012" summary="changed terminal to camelCase">
+      <created>1575529626343</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1575529626343</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Restructured Terminal menu flow">
+      <created>1575532888539</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1575532888539</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added member check in">
+      <created>1575535904191</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1575535904191</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added test to isMemberCheckedIn">
+      <created>1575539352156</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1575539352156</updated>
+    </task>
+    <task id="LOCAL-00016" summary="code updates and updated terminal">
+      <created>1575542419035</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1575542419035</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -80,9 +404,197 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/io-auth" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added basic database management functionality:&#10;build, add, remove, find, update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added basic database management functionality:&#10;build, add, remove, find, update" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="Added main class as a framework" />
+    <MESSAGE value="Added isInputNumber and isType with loop for testing. Need to write comprehensive tests." />
+    <MESSAGE value="Added validateUserID, made functions that actually do the work private. Need to create a robust testing class." />
+    <MESSAGE value="Added a csv to automate tests. Need to implement a date io function." />
+    <MESSAGE value="Added Terminal class that extends IO Auth class" />
+    <MESSAGE value="Updated tests and updated documentation for clarity of use" />
+    <MESSAGE value="Readded module and package files" />
+    <MESSAGE value="fixed small overlord test bugs and added test Junit path" />
+    <MESSAGE value="Changed test dependency to use junit to read files" />
+    <MESSAGE value="added 3rd item to services.csv so overlord can instantiate" />
+    <MESSAGE value="added more tests and passed more tests" />
+    <MESSAGE value="updated ReadWrite class and dependent exception handling" />
+    <MESSAGE value="Adding terminal and updating overlord" />
+    <MESSAGE value="Merged IOAuth package and commented out some tests" />
+    <MESSAGE value="removed bad xml non comments" />
+    <MESSAGE value="changed terminal to camelCase" />
+    <MESSAGE value="Restructured Terminal menu flow" />
+    <MESSAGE value="Added member check in" />
+    <MESSAGE value="added test to isMemberCheckedIn" />
+    <MESSAGE value="code updates and updated terminal" />
+    <option name="LAST_COMMIT_MESSAGE" value="code updates and updated terminal" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="563" y="175" key="#All_in_ChocAn" timestamp="1575498770519">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="563" y="175" key="#All_in_ChocAn/0.0.1920.1040@0.0.1920.1040" timestamp="1575498770519" />
+    <state x="686" y="172" key="#Main" timestamp="1575498780316">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="686" y="172" key="#Main/0.0.1920.1040@0.0.1920.1040" timestamp="1575498780316" />
+    <state x="361" y="73" key="#Notifications" timestamp="1575515821959">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="73" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1575515821959" />
+    <state x="371" y="92" key="#OverlordTest" timestamp="1575432718575">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="371" y="92" key="#OverlordTest/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432718575" />
+    <state x="371" y="92" key="#UserTest" timestamp="1575432723006">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="371" y="92" key="#UserTest/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432723006" />
+    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575432734247">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575432734247" />
+    <state x="223" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1575418699291" />
+    <state x="623" y="254" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575498777442">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="498" y="201" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1575339769304" />
+    <state x="623" y="254" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575498777442" />
+    <state x="620" y="303" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1575503904031">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="620" y="303" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" timestamp="1575503904031" />
+    <state x="598" y="280" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog" timestamp="1575536145385">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="598" y="280" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575536145385" />
+    <state x="520" y="157" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1575542770913">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="520" y="157" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575542770913" />
+    <state x="520" y="157" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1575340968774" />
+    <state x="129" y="26" width="1407" height="798" key="CommitChangelistDialog2" timestamp="1575542800211">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="129" y="26" width="1407" height="798" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575542800211" />
+    <state x="375" y="11" width="1005" height="802" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1575515790335" />
+    <state x="18" y="14" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1575498728136" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1575541984674">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575541984674" />
+    <state x="93" y="93" width="1350" height="638" maximized="true" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1575515699238" />
+    <state x="652" y="169" key="FileChooserDialogImpl" timestamp="1575542761291">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="652" y="169" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575542761291" />
+    <state x="652" y="169" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1575509105600" />
+    <state width="1493" height="227" key="GridCell.Tab.0.bottom" timestamp="1575542800256">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="227" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575542800256" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575430057133" />
+    <state width="1493" height="197" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1575512803864" />
+    <state width="1493" height="227" key="GridCell.Tab.0.center" timestamp="1575542800256">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="227" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575542800256" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575430057133" />
+    <state width="1493" height="197" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1575512803864" />
+    <state width="1493" height="227" key="GridCell.Tab.0.left" timestamp="1575542800256">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="227" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575542800256" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575430057133" />
+    <state width="1493" height="197" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1575512803864" />
+    <state width="1493" height="227" key="GridCell.Tab.0.right" timestamp="1575542800256">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="227" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575542800256" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575430057133" />
+    <state width="1493" height="197" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1575512803864" />
+    <state x="27" y="64" key="MergeDialog" timestamp="1575515523591">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="27" y="64" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1575515523591" />
+    <state x="242" y="129" width="812" height="566" key="MultipleFileMergeDialog" timestamp="1575515532057">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="242" y="129" width="812" height="566" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1575515532057" />
+    <state x="601" y="125" key="RollbackChangesDialog" timestamp="1575541761448">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="601" y="125" key="RollbackChangesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575541761448" />
+    <state x="601" y="125" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1575514772592" />
+    <state x="352" y="0" key="SettingsEditor" timestamp="1575530613457">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="352" y="0" key="SettingsEditor/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575530613457" />
+    <state x="352" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1575509111100" />
+    <state x="440" y="97" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1575498742138" />
+    <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog" timestamp="1575515699238">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog/0.0.1536.824@0.0.1536.824" timestamp="1575515699238" />
+    <state x="361" y="147" key="Vcs.Push.Dialog.v2" timestamp="1575542425049">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="147" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575542425049" />
+    <state x="361" y="147" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1575515808333" />
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1575528087087">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575528087087" />
+    <state x="477" y="239" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1575516572315" />
+    <state x="498" y="313" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1575341101179">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="313" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1575341101179" />
+    <state x="2651" y="251" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1575427531493">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2651" y="251" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575427531493" />
+    <state x="496" y="215" key="git4idea.merge.GitPullDialog" timestamp="1575534835701">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="215" key="git4idea.merge.GitPullDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1575534835701" />
+    <state x="496" y="215" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1575514826896" />
+    <state x="620" y="271" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575493311714" />
+    <state x="209" y="38" key="new project wizard" timestamp="1575340078267">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="209" y="38" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1575340078267" />
+    <state x="410" y="139" width="700" height="530" key="recent.locations.popup" timestamp="1575511907176">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="410" y="139" width="700" height="530" key="recent.locations.popup/0.0.1536.824@0.0.1536.824" timestamp="1575511907176" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1575429930147">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1575429930147" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ChocAn$All_in_ChocAn.ic" NAME="All in ChocAn Coverage Results" MODIFIED="1575511369820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ChocAn2$Main.ic" NAME="Main Coverage Results" MODIFIED="1575489228719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ChocAn2$UserTest.ic" NAME="UserTest Coverage Results" MODIFIED="1575489648123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.DataClasses.*</FILTER>
+    </SUITE>
   </component>
 </project>

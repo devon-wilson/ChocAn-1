@@ -61,6 +61,9 @@ public class MemberReport extends Report{
         //2 - number of services provided
         //3 - total fee of all services
         //4 - each cell contains a comma seperated list of services
+        if(services == null){
+            return null;
+        }
         String [] components = new String [3 + services.size()];
         components[0] = super.name + "," + super.number + "," + super.address + "," + super.city + "," + super.state + "," + super.zip;
         for(int i = 0; i < services.size(); ++i){
