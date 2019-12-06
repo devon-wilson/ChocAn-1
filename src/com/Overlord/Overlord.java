@@ -279,6 +279,17 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
+  public int addService(String PID, String SID){
+    if (currentUser == null || !(currentUser instanceof Manager))
+      return -2;
+
+    Provider toReturnP = (Provider) findData(1, PID);
+    if(toReturnP == null)
+      return -1;
+    toReturnP.addService(SID);
+
+    return 1;
+  }
   public int removeService(String serviceID) {
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -288,6 +299,19 @@ public class Overlord extends DataBaseManager<Object> {
     if(removeTreeData(3, serviceID) == null)
       return 1;
     return -1;
+  }
+  public int removeService(String PID, String SID){
+    if (currentUser == null || !(currentUser instanceof Manager))
+      return -2;
+
+    Provider toReturnP = (Provider) findData(1, PID);
+    if(toReturnP == null)
+      return -1;
+    if(toReturnP.removeService(SID) == -1){
+      return -1;
+    }
+
+    return 1;
   }
 
   public String[] searchService(String query) {
@@ -360,7 +384,6 @@ public class Overlord extends DataBaseManager<Object> {
       return null;
     }
   }
-
   public String[] getService(String code) {
       try {
         Service toReturn = (Service) findData(3, code);
@@ -371,6 +394,32 @@ public class Overlord extends DataBaseManager<Object> {
       catch (ClassCastException a) {
         return null;
       }
+  }
+  public void viewDirectory(String PID){
+    try {
+      Provider toReturnP = (Provider) findData(1, PID);
+      if (toReturnP == null)
+        return;
+      String [] services = toReturnP.getServices();
+      String [] service = null;
+      if(services == null){
+        return;
+      }
+      Service toReturnS = null;
+      String [] components = null;
+      for(int i = 0; i < services.length; ++i){
+        toReturnS = (Service) findData(1, services[i]);
+        components = toReturnS.getAll();
+        for(int j = 0; j < components.length; ++j){
+          System.out.println(components[i]);
+        }
+        System.out.println();
+      }
+
+    }
+    catch (ClassCastException a) {
+      return;
+    }
   }
 
   private String getCurrentTime() {

@@ -373,7 +373,7 @@ public class Terminal extends IOAuthorization {
     String managerID;
     System.out.println("Terminal.manageDirectory");
     breadcrumbs.push("members");
-    System.out.println("Eneter Provider ID");
+    System.out.println("Enter Provider ID");
     String PID = getID(dataType.PROVIDER);
 
     do {
@@ -389,14 +389,15 @@ public class Terminal extends IOAuthorization {
       switch (choice){
         case '1': // view
           SID = getID(dataType.SERVICE);
-          overlord.getService(SID);
+          overlord.viewDirectory(PID);
           break;
         case '2': // add
-          addService();
+          SID = getID(dataType.SERVICE);
+          overlord.addService(PID, SID);
           break;
         case '3': // delete
           SID = getID(dataType.SERVICE);
-          overlord.removeService(SID);
+          overlord.removeService(PID, SID);
           break;
         case 'q':
           break;
