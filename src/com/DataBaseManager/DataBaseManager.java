@@ -3,6 +3,9 @@ package com.DataBaseManager;
 import com.DataClasses.*;
 import com.ReadWrite.ReadWrite;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.TreeMap;
 
 public class DataBaseManager<Object> {
@@ -192,5 +195,49 @@ public class DataBaseManager<Object> {
                 return records.replace(key, obj);
         }
         return null;
+    }
+
+    protected ArrayList<Object> getAll(int type) {
+        if (type < 0 || type > 4)
+            return null;
+
+        Collection<Object> values = null;
+
+        try {
+            /*
+            Each tree has it's own integer code
+            0 - MANAGER
+            1 - PROVIDER
+            2 - MEMBER
+            3 - SERVICE
+            4 - RECORD
+             */
+            switch(type) {
+
+                case (0):
+                    values = managers.values();
+                    break;
+                case (1):
+                    values = providers.values();
+                    break;
+                case (2):
+                    values = members.values();
+                    break;
+                case (3):
+                    values = services.values();
+                    break;
+                case (4):
+                    values = records.values();
+                    break;
+            }
+            if (values == null)
+                return null;
+
+            return new ArrayList<>(values);
+        }
+        catch (ClassCastException a) {
+            return null;
+        }
+
     }
 }

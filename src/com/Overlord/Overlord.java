@@ -182,6 +182,7 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     return 1;
   }
+
   public int suspendMember(String memberID) {
     // check if there is a user logged in
     if (currentUser == null)
@@ -211,6 +212,7 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     }
   }
+
   public int renewMember(String memberID) {
     // check if there is a user logged in
     if (currentUser == null)
@@ -255,6 +257,7 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
+
   public int removeProvider(String providerID) {
     // check if user is a manager
     if (currentUser == null || !(currentUser instanceof Manager))
@@ -291,6 +294,7 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
+
   public int addService(String PID, String SID){
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -302,6 +306,7 @@ public class Overlord extends DataBaseManager<Object> {
 
     return 1;
   }
+
   public int removeService(String serviceID) {
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -312,6 +317,7 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
+
   public int removeService(String PID, String SID){
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -325,6 +331,7 @@ public class Overlord extends DataBaseManager<Object> {
 
     return 1;
   }
+
   public String[] searchService(String query) {
     if (currentUser == null || query == null)
         return null;
@@ -418,52 +425,65 @@ public class Overlord extends DataBaseManager<Object> {
       }
   }
 
-
-/*
   public void viewMembers(){
-      ArrayList<Member> members = getAll(2);
-      for(int i = 0; i < members.size(); ++i){
-          Member myMember = members.get(i);
-          myMember.display();
+    ArrayList<Object> allMembers = getAll(2);
+    if (allMembers == null)
+      return;
+    try {
+      for (Object i : allMembers) {
+        Member member = (Member) i;
+        member.display();
       }
+    }
+    catch (ClassCastException a) {
+      return;
+    }
   }
+
   public void viewProviders(){
-      ArrayList<Provider> providers = getAll(1);
-      for(int i = 0; i < providers.size(); ++i){
-          Provider myProvider = providers.get(i);
-          myProvider.display();
+    ArrayList<Object> allProviders = getAll(1);
+    if (allProviders == null)
+      return;
+    try {
+      for (Object i : allProviders) {
+        Provider provider = (Provider) i;
+        provider.display();
       }
+    }
+    catch (ClassCastException a) {
+      return;
+    }
   }
+
   public void viewServices(){
-      ArrayList<Service> services = getAll(3);
-      for(int i = 0; i < services.size(); ++i){
-          Service myService = services.get(i);
-          myService.display();
+    ArrayList<Object> allServices = getAll(3);
+    if (allServices == null)
+      return;
+    try {
+      for (Object i : allServices) {
+        Service service = (Service) i;
+        service.display();
       }
+    }
+    catch (ClassCastException a) {
+      return;
+    }
   }
- */
 
   public void viewDirectory(String PID){
     try {
       Provider toReturnP = (Provider) findData(1, PID);
       if (toReturnP == null)
         return;
-      String [] services = toReturnP.getServices();
-      String [] service = null;
-      if(services == null){
-        return;
-      }
-      Service toReturnS = null;
-      String [] components = null;
-      for(int i = 0; i < services.length; ++i){
-        toReturnS = (Service) findData(1, services[i]);
-        components = toReturnS.getAll();
-        for(int j = 0; j < components.length; ++j){
-          System.out.println(components[i]);
-        }
-        System.out.println();
+      String [] serviceCodes = toReturnP.getServices();
+      Service[] serviceArray = new Service[serviceCodes.length];
+
+      for (int i = 0; i < serviceArray.length; i++){
+        serviceArray[i] = (Service) findData(3, serviceCodes[i]);
       }
 
+      for (Service i : serviceArray)
+        i.display();
     }
     catch (ClassCastException a) {
       return;
