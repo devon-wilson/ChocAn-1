@@ -194,7 +194,7 @@ public class Terminal extends IOAuthorization {
     System.out.print("Login" + prompt);
     managerID = in.nextLine();
 
-    if (isNotValidID(managerID, 9, "Member ID")) {
+    if (isNotValidID(managerID, 9, "Manager ID")) {
       breadcrumbs.pop();
       return;
     }
@@ -211,6 +211,7 @@ public class Terminal extends IOAuthorization {
               "\n 1 - Manage members" +
               "\n 2 - Manage providers" +
               "\n 3 - Manage services" +
+              "\n 4 - Manage provider directories" +
               "\n q - Quit"
       );
       breadcrumbPrompt();
@@ -221,10 +222,13 @@ public class Terminal extends IOAuthorization {
           manageMembers();
           break;
         case '2':
-          manageProvidersAndServices();
+          manageProviders();
           break;
         case '3':
-          System.out.println("should this be separate?");
+          manageServices();
+          break;
+        case '4':
+          manageProviderDirectory();
           break;
         case 'q':
           break;
@@ -656,43 +660,7 @@ public class Terminal extends IOAuthorization {
     return true;
   }
 
-  private void manageProvidersAndServices() {
-    System.out.print("1 - Add provider\n" +
-            "2 - Delete provider\n" +
-            "3 - Search provider\n" +
-            "4 - Add services\n" +
-            "5 - Remove services\n" +
-            "6 - Search services\n");
-    String choice = in.next();
-    while (true) {
-      if (validateMenu(choice, 6) == -1) {
-        System.out.print("invalid choice(1-9), try again");
-        choice = in.next();
-      } else {
-        break;
-      }
-    }
-    int aChoice = Integer.parseInt(choice); //convert string to integer for menu switch
-    switch (aChoice) {
-      case 1:
-        //overlord.addProvider(String providerData);
-        break; // break is optional
-      case 2:
-        //removeProvider(String providerID);
-        break;
-      case 3:
-        //overlord.searchProvider(String query);
-        break;
-      case 4:
-        //overlord.addService(String[] serviceData);
-      case 5:
-        //overlord.removeService(String serviceID);
-      case 6:
-        //overlord.searchService(String query);
-        break;
-    }
 
-  }
 
   private void generateReports() {
     //overlord.genMemberReport;
