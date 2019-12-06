@@ -39,7 +39,6 @@ public class IOAuthorization {
 
 		// should be an int, okay to cast
 		double inputCurrency = Double.parseDouble(input);
-		System.out.printf("validating %f against %f", inputCurrency, maxValue);
 
 		if (inputCurrency < 0 || inputCurrency >= maxValue)
 			return -1;
