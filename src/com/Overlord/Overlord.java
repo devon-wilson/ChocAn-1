@@ -425,6 +425,7 @@ public class Overlord extends DataBaseManager<Object> {
       }
   }
 
+  /*
   public void viewMembers(){
       ArrayList<Member> members = getAll(2);
       for(int i = 0; i < members.size(); ++i){
@@ -446,6 +447,7 @@ public class Overlord extends DataBaseManager<Object> {
           myService.display();
       }
   }
+  */
   public void viewDirectory(String PID){
     try {
       Provider toReturnP = (Provider) findData(1, PID);
