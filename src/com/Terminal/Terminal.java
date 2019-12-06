@@ -289,8 +289,6 @@ public class Terminal extends IOAuthorization {
 
     breadcrumbs.pop();
   }
-
-  /*
   private void manageProviders() {
     char choice;
     String managerID;
@@ -306,16 +304,19 @@ public class Terminal extends IOAuthorization {
       );
       breadcrumbPrompt();
       choice = getChoice();
+      String PID = null;
 
       switch (choice) {
         case '1': // view
-          String PID = getID(dataType.PROVIDER);
-          overlord.viewProvider();
+          PID = getID(dataType.PROVIDER);
+          String [] components = overlord.getProvider(PID);
+          display(components);
           break;
         case '2': // add
           addProvider();
           break;
         case '3': // delete
+          PID = getID(dataType.PROVIDER);
           overlord.removeProvider("");
           break;
         case 'q':
@@ -329,46 +330,33 @@ public class Terminal extends IOAuthorization {
 
     breadcrumbs.pop();
   }
-
   private void manageServices() {
     char choice;
     String managerID;
-    System.out.println("Terminal.manageMembers");
+    System.out.println("Terminal.manageServices");
     breadcrumbs.push("members");
 
     do {
-      System.out.print("\nManage member options:" +
-              "\n 1 - Select" +
-              "\n 2 - View" +
-              "\n 3 - Add" +
-              "\n 4 - Delete" +
-              "\n 5 - Suspend" +
-              "\n 6 - Renew" +
+      System.out.print("\nManage service options:" +
+              "\n 1 - View" +
+              "\n 2 - Add" +
+              "\n 3 - Delete" +
               "\n q - Quit"
       );
       breadcrumbPrompt();
       choice = getChoice();
-
-      switch (choice) {
-        case '1': // select
-          checkInMember();
+      String SID = null;
+      switch (choice){
+        case '1': // view
+          SID = getID(dataType.SERVICE);
+          overlord.getService(SID);
           break;
-        case '2': // view
-          overlord.viewMember();
+        case '2': // add
+          addService();
           break;
-        case '3': // add
-          addMember();
-          break;
-        case '4': // delete
-          overlord.removeMember("");
-          break;
-        case '5': // suspend
-
-          overlord.suspendMember("");
-          break;
-        case '6': // renew
-
-          overlord.renewMember("");
+        case '3': // delete
+          SID = getID(dataType.SERVICE);
+          overlord.removeService(SID);
           break;
         case 'q':
           break;
@@ -376,12 +364,62 @@ public class Terminal extends IOAuthorization {
           System.out.println("\nNot a valid response");
           break;
       }
-
     } while (choice != 'q');
 
     breadcrumbs.pop();
   }
-*/
+  private void manageProviderDirectory() {
+    char choice;
+    String managerID;
+    System.out.println("Terminal.manageDirectory");
+    breadcrumbs.push("members");
+    System.out.println("Eneter Provider ID");
+    String PID = getID(dataType.PROVIDER);
+
+    do {
+      System.out.print("\nManage directory options:" +
+              "\n 1 - View" +
+              "\n 2 - Add" +
+              "\n 3 - Delete" +
+              "\n q - Quit"
+      );
+      breadcrumbPrompt();
+      choice = getChoice();
+      String SID = null;
+      switch (choice){
+        case '1': // view
+          SID = getID(dataType.SERVICE);
+          overlord.getService(SID);
+          break;
+        case '2': // add
+          addService();
+          break;
+        case '3': // delete
+          SID = getID(dataType.SERVICE);
+          overlord.removeService(SID);
+          break;
+        case 'q':
+          break;
+        default:
+          System.out.println("\nNot a valid response");
+          break;
+      }
+    } while (choice != 'q');
+
+    breadcrumbs.pop();
+  }
+
+
+  private void display(String [] toDisplay){
+    for(int i = 0; i < toDisplay.length; ++i){
+      System.out.println(toDisplay[i]);
+    }
+  }
+  private String getLine(){
+    String line = null;
+
+    return line;
+  }
 
   private void breadcrumbPrompt() {
     int last = breadcrumbs.size() - 1;
@@ -469,6 +507,40 @@ public class Terminal extends IOAuthorization {
     queryFields(addMemberFields, newMember);
 
     int returnCode = overlord.addMember(newMember);
+    if (returnCode < 0) {
+      String[] translations = {"Failed to add", "Not authorized for this action"};
+      System.out.println(translations[getReturnCodeIndex(returnCode)]);
+    }
+  }
+  private void addProvider() {
+    final Field[] addProviderFields = {
+            new Field("Name", 25, text),
+            new Field("Member ID", 9, id),
+            new Field("Address", 25, text),
+            new Field("City", 14, text),
+            new Field("State", 2, text),
+            new Field("ZIP Code", 5, text),
+    };
+    String[] newProvider = new String[addProviderFields.length + 1];
+    queryFields(addProviderFields, newProvider);
+
+    int returnCode = overlord.addProvider(newProvider);
+    if (returnCode < 0) {
+      String[] translations = {"Failed to add", "Not authorized for this action"};
+      System.out.println(translations[getReturnCodeIndex(returnCode)]);
+    }
+  }
+  private void addService() {
+    final Field[] addServiceFields = {
+            new Field("Name", 25, text),
+            new Field("Code", 6,text),
+            new Field("cost", 6, text),
+            new Field("ID", 9, text),
+    };
+    String[] newService = new String[addServiceFields.length + 1];
+    queryFields(addServiceFields, newService);
+
+    int returnCode = overlord.addService(newService);
     if (returnCode < 0) {
       String[] translations = {"Failed to add", "Not authorized for this action"};
       System.out.println(translations[getReturnCodeIndex(returnCode)]);

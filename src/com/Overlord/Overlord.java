@@ -111,11 +111,6 @@ public class Overlord extends DataBaseManager<Object> {
     currentMember.display();
     return 1;
   }
-  /*
-  public viewProvider(String PID) {
-    String [] Provider = getProvider(PID);
-  }
-  */
 
 
 
@@ -162,7 +157,6 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     return 1;
   }
-
   public int suspendMember(String memberID) {
     // check if there is a user logged in
     if (currentUser == null)
@@ -192,7 +186,6 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     }
   }
-
   public int renewMember(String memberID) {
     // check if there is a user logged in
     if (currentUser == null)
@@ -232,11 +225,11 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
 
     Provider toAdd = new Provider(providerData);
+
     if(addTreeData(1, providerData[1], toAdd) == null)
       return 1;
     return -1;
   }
-
   public int removeProvider(String providerID) {
     // check if user is a manager
     if (currentUser == null || !(currentUser instanceof Manager))
@@ -246,7 +239,6 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     return 1;
   }
-
   public int displayCurrentServices() {
     if (currentUser == null || !(currentUser instanceof Provider))
       return -2;
@@ -274,7 +266,6 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
-
   public int removeService(String serviceID) {
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -323,7 +314,6 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     }
   }
-
   public int genProviderReport(String providerID) {
 
     try {
@@ -339,11 +329,9 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     }
   }
-
   public int genAllMemberReports() {
     return 0;
   }
-
   public int genAllProvidersReports() {
     return 0;
   }
