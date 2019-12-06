@@ -9,7 +9,7 @@ public class IOAuthorization {
     // Validates menu choice. Menus shouldn't be longer than 2 digits
 		protected int validateMenu(String input, int maxMenuSize) {
 
-        if (!isType(input, "int"))
+        if (isNotType(input, "int"))
         	return -1;
 
 		// should be an int, okay to cast
@@ -57,7 +57,7 @@ public class IOAuthorization {
 			return -1;
 
 		// Check if input is an int
-		if(!isType(input, "int"))
+		if(isNotType(input, "int"))
 			return -1;
 
 		// should be an int, okay to cast
@@ -72,7 +72,7 @@ public class IOAuthorization {
 
 	// Validates most input. Most input expects a certain length of characters
 	// See requirements document for specific lengths of specific fields
-	int validateTextLength(String input, int maxLength) {
+	protected int validateTextLength(String input, int maxLength) {
 	    if (input.length() > maxLength)
 	    	return -1;
 	    return 0;
@@ -82,16 +82,16 @@ public class IOAuthorization {
 
     private boolean isNegative(int input) { return input < 0; }
 
-	private boolean isType(String testStr, String type) {
+	private boolean isNotType(String testStr, String type) {
 		try {
 			if (type.equalsIgnoreCase("int")) {
 				Integer.parseInt(testStr);
 			} else if (type.equalsIgnoreCase("double")) {
 				Double.parseDouble(testStr);
 			}
-			return true;
-		} catch (NumberFormatException a) {
 			return false;
+		} catch (NumberFormatException a) {
+			return true;
 		}
 	}
 }
