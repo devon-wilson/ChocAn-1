@@ -299,16 +299,27 @@ public class Overlord extends DataBaseManager<Object> {
   }
 
   public int genMemberReport(String memberID) {
+    if (memberID == null)
+      return -1;
     try {
-      Member member = (Member) findData(2, memberID);
+
+      Member member;
+      if (currentMember != null && currentMember.get(1).equals(memberID))
+        member = currentMember;
+      else
+        member = (Member) findData(2, memberID);
+
       if (member == null)
         return -1;
-      //ReadWrite.fileWrite("Report" + memberID, member.toString(), false);
-
-      return 0;
+      try {
+        ReadWrite.fileWrite("records/" + memberID, member.getAll(), true);
+        return 1;
+      }
+      catch (IOException a) {
+        return -1;
+      }
     }
-    catch (ClassCastException a)
-    {
+    catch (ClassCastException a) {
       return -1;
     }
   }
@@ -375,6 +386,7 @@ public class Overlord extends DataBaseManager<Object> {
   }
 
   public int generateServiceRecord(String[] input) {
+    String currentTime = getCurrentTime();
     Record newRecord = new Record(input);
     try {
       if (currentMember == null)
@@ -384,11 +396,11 @@ public class Overlord extends DataBaseManager<Object> {
         data[0] = input[i];
         ReadWrite.fileWrite("records/" + currentMember.get(1) + ".csv", data, true);
       }
+      return 0;
     }
     catch (IOException a) {
       return -1;
     }
-    return 0;
   }
 
   public int requestDirectory() {
