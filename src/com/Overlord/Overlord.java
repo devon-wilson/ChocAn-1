@@ -182,7 +182,6 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     return 1;
   }
-
   public int suspendMember(String memberID) {
     // check if there is a user logged in
     if (currentUser == null)
@@ -212,7 +211,6 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     }
   }
-
   public int renewMember(String memberID) {
     // check if there is a user logged in
     if (currentUser == null)
@@ -257,7 +255,6 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
-
   public int removeProvider(String providerID) {
     // check if user is a manager
     if (currentUser == null || !(currentUser instanceof Manager))
@@ -294,7 +291,6 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
-
   public int addService(String PID, String SID){
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -306,7 +302,6 @@ public class Overlord extends DataBaseManager<Object> {
 
     return 1;
   }
-
   public int removeService(String serviceID) {
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -317,7 +312,6 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
-
   public int removeService(String PID, String SID){
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -331,7 +325,6 @@ public class Overlord extends DataBaseManager<Object> {
 
     return 1;
   }
-
   public String[] searchService(String query) {
     if (currentUser == null || query == null)
         return null;
@@ -425,7 +418,8 @@ public class Overlord extends DataBaseManager<Object> {
       }
   }
 
-  /*
+
+/*
   public void viewMembers(){
       ArrayList<Member> members = getAll(2);
       for(int i = 0; i < members.size(); ++i){
@@ -447,7 +441,8 @@ public class Overlord extends DataBaseManager<Object> {
           myService.display();
       }
   }
-  */
+ */
+
   public void viewDirectory(String PID){
     try {
       Provider toReturnP = (Provider) findData(1, PID);

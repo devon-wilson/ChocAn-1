@@ -273,7 +273,7 @@ public class Terminal extends IOAuthorization {
           display(components);
           break;
         case '2':
-          overlord.viewMembers();
+          //overlord.viewMembers();
           break;
         case '3': // add
           addMember();
@@ -333,7 +333,7 @@ public class Terminal extends IOAuthorization {
           display(components);
           break;
         case '2':
-          overlord.viewProviders();
+          //overlord.viewProviders();
           break;
         case '3': // add
           addProvider();
@@ -384,7 +384,7 @@ public class Terminal extends IOAuthorization {
           display(components);
           break;
         case '2':
-          overlord.viewServices();
+          //overlord.viewServices();
           break;
         case '3': // add
           addService();

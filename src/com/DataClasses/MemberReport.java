@@ -64,7 +64,7 @@ public class MemberReport extends Report{
         if(services == null){
             return null;
         }
-        String [] components = new String [3 + services.size()];
+        String [] components = new String [1 + services.size()];
         components[0] = super.name + "," + super.number + "," + super.address + "," + super.city + "," + super.state + "," + super.zip;
         for(int i = 0; i < services.size(); ++i){
             String [] temp = services.get(i);
