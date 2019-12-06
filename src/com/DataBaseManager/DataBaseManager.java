@@ -15,12 +15,14 @@ public class DataBaseManager<Object> {
     protected TreeMap<String, Object> providers;
     protected TreeMap<String, Object> members;
     protected TreeMap<String, Object> services;
+    protected TreeMap<String, Object> records;
 
     public DataBaseManager() {
         this.managers = buildTree("data/managers.csv");
         this.providers = buildTree("data/providers.csv");
         this.members = buildTree("data/members.csv");
         this.services = buildTree("data/providerDirectory.csv");
+        this.records = buildTree("data/records.csv");
     }
 
     private TreeMap<String, Object> buildTree(String filename) {
@@ -53,6 +55,8 @@ public class DataBaseManager<Object> {
                 case "Directory":
                     newObject = (Object) new Service(lineData);
                     break;
+                case "Record":
+                    newObject = (Object) new Record(lineData);
             }
 
             if (newObject != null)
@@ -74,6 +78,7 @@ public class DataBaseManager<Object> {
         1 - PROVIDER
         2 - MEMBER
         3 - SERVICE
+        4 - RECORD
          */
         switch(type) {
 
@@ -85,6 +90,8 @@ public class DataBaseManager<Object> {
                 return members.get(key);
             case (3):
                 return services.get(key);
+            case (4):
+                return records.get(key);
         }
         return null;
     }
@@ -128,6 +135,7 @@ public class DataBaseManager<Object> {
         1 - PROVIDER
         2 - MEMBER
         3 - SERVICE
+        4 - RECORD
          */
         switch(type) {
 
@@ -139,6 +147,8 @@ public class DataBaseManager<Object> {
                 return members.put(key, obj);
             case (3):
                 return services.put(key, obj);
+            case (4):
+                return records.put(key, obj);
         }
         return null;
     }
@@ -155,6 +165,7 @@ public class DataBaseManager<Object> {
         1 - PROVIDER
         2 - MEMBER
         3 - SERVICE
+        4 - RECORD
          */
         switch(type) {
 
@@ -166,6 +177,8 @@ public class DataBaseManager<Object> {
                 return members.replace(key, obj);
             case (3):
                 return services.replace(key, obj);
+            case (4):
+                return records.replace(key, obj);
         }
         return null;
     }
