@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class IOAuthorization {
+		final protected SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+		final protected SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 
     // Validates menu choice. Menus shouldn't be longer than 2 digits
 		protected int validateMenu(String input, int maxMenuSize) {
@@ -22,13 +24,18 @@ public class IOAuthorization {
 		return 0;
     }
 
-	// Verify that date entered is in correct format
-	// Expects MM/DD/YEAR
+	/**
+   * Verify that date entered is in correct format
+	 * <p>
+	 *   Expects MM-DD-YYYY
+	 * </p>
+	 * @param input String to test containing date
+	 * @return 0 for success, -1 for failure
+	 */
 	protected int validateDate(String input) {
-		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-		format.setLenient(false);
+		dateFormat.setLenient(false);
 		try {
-			Date inputDate = format.parse(input);
+			Date inputDate = dateFormat.parse(input);
 			return 0;
 		}
 		catch (ParseException a) {
@@ -36,7 +43,30 @@ public class IOAuthorization {
 		}
 	}
 
-	// Verify that time entered is in correct format
+	/**
+	 * Verify that date and time entered is in correct format
+	 * <p>
+	 *   Expects MM-DD-YYYY HH:MM:SS
+	 * </p>
+	 * @param input String to test
+	 * @return 0 for success, -1 for failure
+	 */
+	protected int validateDateTime(String input) {
+		dateTimeFormat.setLenient(false);
+		try {
+			Date inputDate = dateTimeFormat.parse(input);
+			return 0;
+		}
+		catch (ParseException a) {
+			return -1;
+		}
+	}
+
+	/**
+	 * Verify that time entered is in correct format
+	 * @param input String to test containing a time
+	 * @return 0 for success, -1 for failure
+	 */
 	int validateTime(String input) {
 		SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 		format.setLenient(false);

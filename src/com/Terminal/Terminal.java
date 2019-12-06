@@ -3,17 +3,20 @@ package com.Terminal;
 import com.IOAuth.IOAuthorization;
 import com.Overlord.Overlord;
 
+import java.util.Date;
 import java.util.Scanner;
 import java.util.Stack;
+
+import static com.Terminal.FieldType.*;
 
 /**
  * Terminal
  * <p>
- *   extends Chocan's IO Authorization class
+ *   extends ChocAn's IO Authorization class
  * </p>
  */
 public class Terminal extends IOAuthorization {
-  private Overlord overlord;
+  final private Overlord overlord;
   final private Scanner in;
   final String prompt = "$ ";
   final private Stack<String> breadcrumbs;
@@ -21,7 +24,7 @@ public class Terminal extends IOAuthorization {
   /**
    * Terminal Constructor
    *
-   * @param overlord ChocaAn API to send and recieve information from users
+   * @param overlord ChocAn API to send and receive information from users
    */
   public Terminal(Overlord overlord) {
     super();
@@ -59,7 +62,7 @@ public class Terminal extends IOAuthorization {
         case 'q':
           break;
         default:
-          System.out.println("Not a valid response");
+          System.out.println("\nNot a valid response");
           break;
       }
 
@@ -120,7 +123,7 @@ public class Terminal extends IOAuthorization {
         case 'q':
           break;
         default:
-          System.out.println("Not a valid response");
+          System.out.println("\nNot a valid response");
           break;
       }
 
@@ -170,7 +173,7 @@ public class Terminal extends IOAuthorization {
         case 'q':
           break;
         default:
-          System.out.println("Not a valid response");
+          System.out.println("\nNot a valid response");
           break;
       }
 
@@ -225,7 +228,7 @@ public class Terminal extends IOAuthorization {
         case 'q':
           break;
         default:
-          System.out.println("Not a valid response");
+          System.out.println("\nNot a valid response");
           break;
       }
 
@@ -277,7 +280,7 @@ public class Terminal extends IOAuthorization {
         case 'q':
           break;
         default:
-          System.out.println("Not a valid response");
+          System.out.println("\nNot a valid response");
           break;
       }
 
@@ -341,32 +344,75 @@ public class Terminal extends IOAuthorization {
     } while(isNotValidID(input, 9, "MemberID"));
     return input;
   }
+
   private void addMember() {
     final String[] fields = {"Name", "ID", "Address", "City", "State", "ZIP"};
     final int[] inputLengths = {25, 9, 25, 14, 2, 5};
     String[] newMember = new String[fields.length + 1];
+    final int indexOfID = 0b10;
+    queryFields(fields, inputLengths, newMember, indexOfID);
+    int returnCode = overlord.addMember(newMember);
+    if (returnCode < 0) {
+      String[] translations = {"Failed to add", "Not authorized for this action"};
+      System.out.println(translations[getReturnCodeIndex(returnCode)]);
+    }
+  }
+
+  void queryFields(String[] fields, int[] inputLengths, String[] inputArray, int indexMaskOfID) {
     boolean accepted;
     for (int i = 0; i < fields.length; i++) {
       String field = fields[i];
       do {
         System.out.printf("Enter %s: ", field);
-        newMember[i] = in.nextLine();
-        if (i == 1) {
-          accepted = validateID(newMember[i], inputLengths[i]) >= 0;
+        inputArray[i] = in.nextLine();
+        if (i == indexMaskOfID) {
+          accepted = validateID(inputArray[i], inputLengths[i]) >= 0;
           if (!accepted)
             System.out.println("\nMember number requires 9 digits");
         }
         else {
-          accepted = validateTextLength(newMember[i], inputLengths[i]) >= 0;
+          accepted = validateTextLength(inputArray[i], inputLengths[i]) >= 0;
           if (!accepted)
             System.out.printf("\nEntered %s is too long\n", field);
         }
       } while (!accepted);
     }
-    int returnCode = overlord.addMember(newMember);
-    if (returnCode < 0) {
-      String[] translations = {"Failed to add", "Not authorized for this action"};
-      System.out.println(translations[getReturnCodeIndex(returnCode)]);
+  }
+
+  void queryFields(Field[] fields, String[] inputArray) {
+    boolean rejected = true;
+    for (int i = 0; i < fields.length; i++) {
+      Field field = fields[i];
+      String input;
+      do {
+        System.out.printf("Enter %s: ", field);
+        input = in.nextLine();
+        switch (field.fieldType) {
+          case text:
+            rejected = validateTextLength(input, field.maxLength) < 0;
+            if (rejected)
+              System.out.printf("\nEntered %s is too long\n", field);
+            break;
+          case id:
+            rejected = validateID(input, field.maxLength) < 0;
+            if (rejected)
+              System.out.printf("\nEntered is not valid %s\n", field);
+            break;
+          case datetime:
+            input = dateTimeFormat.format(new Date());
+            System.out.println("Time stamping record at " + input);
+            rejected = false;
+            break;
+          case date:
+            rejected = validateDate(input) < 0;
+            if (rejected)
+              System.out.println("\nEntered %s not valid format (MM-DD-YYYY)");
+            break;
+          default:
+            break;
+        }
+      } while (rejected);
+      inputArray[i] = input;
     }
   }
 
@@ -375,18 +421,44 @@ public class Terminal extends IOAuthorization {
   }
 
   private void generateRecordOfService() {
-    //overlord.generateServiceRecord();
+    /*
+    currDateTime
+    dateProvided
+    providerID
+    memberID
+    serviceCode
+    comment
+     */
+
+    final String[] fields = {"Current Date", "Date Provided", "Provider ID", "Member ID", "Service ID", "comment"};
+    final int[] inputLengths = {0,0,9,9,6,100};
+
+    Field[] serviceReportFields = {
+            new Field("Current Date", 0, datetime),
+            new Field("Date Provided", 0, date),
+            new Field("Provider ID", 9, id),
+            new Field("Member Number", 9, id),
+            new Field("Service Code", 6, id),
+            new Field("Comments", 100, text),
+    };
+    String[] reportInfo = new String[fields.length];
+    queryFields(serviceReportFields, reportInfo);
+
+    int returnCode = overlord.generateServiceRecord(reportInfo);
+    if (returnCode < 0) {
+      String[] translations = {"Failed to generate service record", "Not authorized for this action"};
+      System.out.println(translations[getReturnCodeIndex(returnCode)]);
+    }
+    // todo: This should work without member checked in
   }
 
   private void requestProviderDirectory() {
-    //overlord.requestDirectory();
+    overlord.requestDirectory();
   }
 
   private boolean generateChocAnBill() {
     System.out.println("Generate ChocAn Bill");
     String date;
-    //String serviceID;
-    //boolean usethis = validateMemberID(member);
     System.out.print("Enter date of service(MM-DD-YYYY)");
     date = in.next();
     int result = validateDate(date);
