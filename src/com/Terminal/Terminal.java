@@ -346,36 +346,21 @@ public class Terminal extends IOAuthorization {
   }
 
   private void addMember() {
-    final String[] fields = {"Name", "ID", "Address", "City", "State", "ZIP"};
-    final int[] inputLengths = {25, 9, 25, 14, 2, 5};
-    String[] newMember = new String[fields.length + 1];
-    final int indexOfID = 0b10;
-    queryFields(fields, inputLengths, newMember, indexOfID);
+    final Field[] addMemberFields = {
+            new Field("Name", 25, text),
+            new Field("Member ID", 9, id),
+            new Field("Address", 25, text),
+            new Field("City", 14, text),
+            new Field("State", 2, text),
+            new Field("ZIP Code", 5, text),
+    };
+    String[] newMember = new String[addMemberFields.length + 1];
+    queryFields(addMemberFields, newMember);
+
     int returnCode = overlord.addMember(newMember);
     if (returnCode < 0) {
       String[] translations = {"Failed to add", "Not authorized for this action"};
       System.out.println(translations[getReturnCodeIndex(returnCode)]);
-    }
-  }
-
-  void queryFields(String[] fields, int[] inputLengths, String[] inputArray, int indexMaskOfID) {
-    boolean accepted;
-    for (int i = 0; i < fields.length; i++) {
-      String field = fields[i];
-      do {
-        System.out.printf("Enter %s: ", field);
-        inputArray[i] = in.nextLine();
-        if (i == indexMaskOfID) {
-          accepted = validateID(inputArray[i], inputLengths[i]) >= 0;
-          if (!accepted)
-            System.out.println("\nMember number requires 9 digits");
-        }
-        else {
-          accepted = validateTextLength(inputArray[i], inputLengths[i]) >= 0;
-          if (!accepted)
-            System.out.printf("\nEntered %s is too long\n", field);
-        }
-      } while (!accepted);
     }
   }
 
@@ -430,18 +415,15 @@ public class Terminal extends IOAuthorization {
     comment
      */
 
-    final String[] fields = {"Current Date", "Date Provided", "Provider ID", "Member ID", "Service ID", "comment"};
-    final int[] inputLengths = {0,0,9,9,6,100};
-
-    Field[] serviceReportFields = {
+    final Field[] serviceReportFields = {
             new Field("Current Date", 0, datetime),
             new Field("Date Provided", 0, date),
             new Field("Provider ID", 9, id),
-            new Field("Member Number", 9, id),
+            new Field("Member ID", 9, id),
             new Field("Service Code", 6, id),
             new Field("Comments", 100, text),
     };
-    String[] reportInfo = new String[fields.length];
+    String[] reportInfo = new String[serviceReportFields.length];
     queryFields(serviceReportFields, reportInfo);
 
     int returnCode = overlord.generateServiceRecord(reportInfo);
