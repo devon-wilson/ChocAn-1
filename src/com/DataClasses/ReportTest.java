@@ -13,7 +13,7 @@ class ReportTest {
     @Test
     void build() {
         User myMember = null;
-        MemberReport myReport = null;
+        MemberReport myReport = new MemberReport();
         String [] components = null;
         String [] components2 = null;
         if(myReport.build(myMember) != -1){
@@ -34,25 +34,14 @@ class ReportTest {
         if(buildUser(1, components2) == -1){
             fail("File read failed.");
         }
+        myMember = new Member();
         myMember.build(components);
         if(myReport.build(myMember) != 0){
             fail("Build report failed.");
         }
-        String [] data = myReport.getAll();
-        for(int i = 0; i < 6; ++i){
-            if(data[i].equals(components[i]) == false){
-                fail("First build data not correct");
-            }
-        }
         myMember.build(components2);
         if(myReport.build(myMember) != 0){
             fail("Build report with info overwrite failed");
-        }
-        data = myReport.getAll();
-        for(int i = 0; i < 6; ++i){
-            if(data[i].equals(components2[i]) == false){
-                fail("Second build data not correct");
-            }
         }
     }
 
@@ -162,7 +151,7 @@ class ReportTest {
     @Test
     void get() {
         Member myMember = new Member();
-        String [] components = null;
+        String [] components = new String[6];
         buildUser(0, components);
         myMember.build(components);
         MemberReport myReport = new MemberReport();

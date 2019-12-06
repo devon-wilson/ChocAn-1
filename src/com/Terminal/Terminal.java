@@ -16,6 +16,7 @@ import static com.Terminal.FieldType.*;
  * </p>
  */
 public class Terminal extends IOAuthorization {
+  private enum dataType {MEMBER, PROVIDER, SERVICE;}
   final private Overlord overlord;
   final private Scanner in;
   final String prompt = "$ ";
@@ -289,6 +290,99 @@ public class Terminal extends IOAuthorization {
     breadcrumbs.pop();
   }
 
+  /*
+  private void manageProviders() {
+    char choice;
+    String managerID;
+    System.out.println("Terminal.manageProviders");
+    breadcrumbs.push("providers");
+
+    do {
+      System.out.print("\nManage provider options:" +
+              "\n 1 - View" +
+              "\n 2 - Add" +
+              "\n 3 - Delete" +
+              "\n q - Quit"
+      );
+      breadcrumbPrompt();
+      choice = getChoice();
+
+      switch (choice) {
+        case '1': // view
+          String PID = getID(dataType.PROVIDER);
+          overlord.viewProvider();
+          break;
+        case '2': // add
+          addProvider();
+          break;
+        case '3': // delete
+          overlord.removeProvider("");
+          break;
+        case 'q':
+          break;
+        default:
+          System.out.println("\nNot a valid response");
+          break;
+      }
+
+    } while (choice != 'q');
+
+    breadcrumbs.pop();
+  }
+
+  private void manageServices() {
+    char choice;
+    String managerID;
+    System.out.println("Terminal.manageMembers");
+    breadcrumbs.push("members");
+
+    do {
+      System.out.print("\nManage member options:" +
+              "\n 1 - Select" +
+              "\n 2 - View" +
+              "\n 3 - Add" +
+              "\n 4 - Delete" +
+              "\n 5 - Suspend" +
+              "\n 6 - Renew" +
+              "\n q - Quit"
+      );
+      breadcrumbPrompt();
+      choice = getChoice();
+
+      switch (choice) {
+        case '1': // select
+          checkInMember();
+          break;
+        case '2': // view
+          overlord.viewMember();
+          break;
+        case '3': // add
+          addMember();
+          break;
+        case '4': // delete
+          overlord.removeMember("");
+          break;
+        case '5': // suspend
+
+          overlord.suspendMember("");
+          break;
+        case '6': // renew
+
+          overlord.renewMember("");
+          break;
+        case 'q':
+          break;
+        default:
+          System.out.println("\nNot a valid response");
+          break;
+      }
+
+    } while (choice != 'q');
+
+    breadcrumbs.pop();
+  }
+*/
+
   private void breadcrumbPrompt() {
     int last = breadcrumbs.size() - 1;
     for (int i = 0; i < last; ++i) {
@@ -337,11 +431,28 @@ public class Terminal extends IOAuthorization {
     return true;
   }
 
-  private String getID() {
+  private String getID(dataType type) {
+    String name = null;
+    int length = 0;
+    if(type == type.MEMBER){
+      name = "Member ID";
+      length = 9;
+    }
+    else if(type == type.PROVIDER){
+      name = "Provider ID";
+      length = 9;
+    }
+    else if(type == type.SERVICE){
+      name = "Service ID";
+      length = 6;
+    }
+    else{
+      return null;
+    }
     String input;
     do {
       input = in.nextLine();
-    } while(isNotValidID(input, 9, "MemberID"));
+    } while(isNotValidID(input, length, name));
     return input;
   }
 

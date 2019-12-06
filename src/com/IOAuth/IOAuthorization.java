@@ -80,7 +80,7 @@ public class IOAuthorization {
 	}
 
     // check if input is size of expected length
-		protected int validateID(String input, int expectedLength) {
+	protected int validateID(String input, int expectedLength) {
 
     	// Check if input is correct size
 		if(!isCorrectSize(input, expectedLength))

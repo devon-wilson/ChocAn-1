@@ -111,6 +111,13 @@ public class Overlord extends DataBaseManager<Object> {
     currentMember.display();
     return 1;
   }
+  /*
+  public viewProvider(String PID) {
+    String [] Provider = getProvider(PID);
+  }
+  */
+
+
 
   /**
    * Member Check Out
@@ -332,6 +339,18 @@ public class Overlord extends DataBaseManager<Object> {
 
   public int sendReports(String input) {
     return 0;
+  }
+
+  public String[] getProvider(String code){
+    try {
+      Provider toReturn = (Provider) findData(1, code);
+      if (toReturn == null)
+        return null;
+      return toReturn.getAll();
+    }
+    catch (ClassCastException a) {
+      return null;
+    }
   }
 
   public String[] getService(String code) {
