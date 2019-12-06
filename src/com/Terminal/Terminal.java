@@ -91,16 +91,37 @@ public class Terminal extends IOAuthorization {
 
     do {
       System.out.println("\nChoose Provider option:" +
+              "\n *** Under Construction ***" +
               "\n 1 - Check in member" +
-              "\n q - Quit (logout)"
+              "\n 2 - Generate record of service" +
+              "\n 3 - Request provider directory" +
+              "\n 4 - Generate ChocAn bill" +
+              "\n q - Quit (logout)" +
+              "\n *** Under Construction ***"
       );
       breadcrumbPrompt();
       choice = getChoice();
 
-      if (choice == '1') {
-        if (checkInMember()) {
-          providerCheckedIn();
-        }
+      switch (choice) {
+        case '1':
+          if (checkInMember()) {
+            providerCheckedIn();
+          }
+          break;
+        case '2':
+          generateRecordOfService();
+          break;
+        case '3':
+          requestProviderDirectory();
+          break;
+        case '4':
+          generateChocAnBill();
+          break;
+        case 'q':
+          break;
+        default:
+          System.out.println("Not a valid response");
+          break;
       }
 
     } while (choice != 'q');
@@ -116,9 +137,12 @@ public class Terminal extends IOAuthorization {
     do {
       System.out.println("\nChoose Provider option:" +
               "\n 1 - view member info" +
-              "\n 2 - 2" +
-              "\n 3 - 3" +
-              "\n 4 - 4" +
+              "\n 2 - Generate record of service" +
+              "\n 3 - Request provider directory" +
+              "\n 4 - Generate ChocAn bill" +
+              "\n 5 - 5" +
+              "\n 6 - 6" +
+              "\n 7 - 7" +
               "\n q - Quit (check out)"
       );
       breadcrumbPrompt();
@@ -129,10 +153,19 @@ public class Terminal extends IOAuthorization {
           overlord.viewMember();
           break;
         case '2':
+          generateRecordOfService();
           break;
         case '3':
+          requestProviderDirectory();
           break;
         case '4':
+          generateChocAnBill();
+          break;
+        case '5':
+          break;
+        case '6':
+          break;
+        case '7':
           break;
         case 'q':
           break;
@@ -253,7 +286,7 @@ public class Terminal extends IOAuthorization {
     breadcrumbs.pop();
   }
 
-  void breadcrumbPrompt() {
+  private void breadcrumbPrompt() {
     int last = breadcrumbs.size() - 1;
     for (int i = 0; i < last; ++i) {
       System.out.print(breadcrumbs.get(i) + ".");
@@ -301,6 +334,13 @@ public class Terminal extends IOAuthorization {
     return true;
   }
 
+  private String getID() {
+    String input;
+    do {
+      input = in.nextLine();
+    } while(isNotValidID(input, 9, "MemberID"));
+    return input;
+  }
   private void addMember() {
     final String[] fields = {"Name", "ID", "Address", "City", "State", "ZIP"};
     final int[] inputLengths = {25, 9, 25, 14, 2, 5};
@@ -342,7 +382,7 @@ public class Terminal extends IOAuthorization {
     //overlord.requestDirectory();
   }
 
-  private boolean generateChocanBill() {
+  private boolean generateChocAnBill() {
     System.out.println("Generate ChocAn Bill");
     String date;
     //String serviceID;
