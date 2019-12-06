@@ -195,6 +195,11 @@ class OverlordTest {
   @Test
   void genMemberReport() {
     Overlord overlord = new Overlord();
+
+    assertEquals(-1, overlord.genMemberReport(null), "passed null to function");
+
+    overlord.login(0, "012345678");
+    assertEquals(1, overlord.genMemberReport("012345678"), "passed actual member id");
   }
 
   @Test

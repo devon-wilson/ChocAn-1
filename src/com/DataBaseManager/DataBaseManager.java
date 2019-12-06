@@ -20,7 +20,7 @@ public class DataBaseManager<Object> {
         this.managers = buildTree("data/managers.csv");
         this.providers = buildTree("data/providers.csv");
         this.members = buildTree("data/members.csv");
-        this.services = buildTree("data/services.csv");
+        this.services = buildTree("data/providerDirectory.csv");
     }
 
     private TreeMap<String, Object> buildTree(String filename) {
@@ -50,7 +50,7 @@ public class DataBaseManager<Object> {
                 case "Member":
                     newObject = (Object) new Member(lineData);
                     break;
-                case "Service":
+                case "Directory":
                     newObject = (Object) new Service(lineData);
                     break;
             }
