@@ -444,7 +444,6 @@ public class Terminal extends IOAuthorization {
             break;
           }
           overlord.addService(PID, SID);
-          addService();
           break;
         case '3': // delete
           SID = getID(dataType.SERVICE);
@@ -546,10 +545,11 @@ public class Terminal extends IOAuthorization {
       return null;
     }
     String input;
+    String quit = new String("q");
     do {
       input = in.nextLine();
       System.out.println("Press q to quit.");
-      if(input.equals("q\n") == true){
+      if(input.equals(quit) == true){
         return null;
       }
 
