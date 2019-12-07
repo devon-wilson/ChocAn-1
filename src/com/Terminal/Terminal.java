@@ -16,7 +16,7 @@ import static com.Terminal.FieldType.*;
  * </p>
  */
 public class Terminal extends IOAuthorization {
-  private enum dataType {MEMBER, PROVIDER, SERVICE}
+  private enum userType {MEMBER, PROVIDER, SERVICE}
   final private Overlord overlord;
   final private Scanner in;
   final String prompt = "$ ";
@@ -258,7 +258,7 @@ public class Terminal extends IOAuthorization {
       switch (choice) {
         case '1': // view
           System.out.println("Enter member ID");
-          MID = getID(dataType.MEMBER);
+          MID = getID(userType.MEMBER);
           if(MID == null){
             break;
           }
@@ -274,7 +274,7 @@ public class Terminal extends IOAuthorization {
           break;
         case '4': // delete
           System.out.println("Enter member ID");
-          MID = getID(dataType.MEMBER);
+          MID = getID(userType.MEMBER);
           if(MID == null){
             break;
           }
@@ -282,7 +282,7 @@ public class Terminal extends IOAuthorization {
           break;
         case '5': // suspend
           System.out.println("Enter member ID");
-          MID = getID(dataType.MEMBER);
+          MID = getID(userType.MEMBER);
           if(MID == null){
             break;
           }
@@ -290,7 +290,7 @@ public class Terminal extends IOAuthorization {
           break;
         case '6':
           System.out.println("Enter member ID");
-          MID = getID(dataType.MEMBER);
+          MID = getID(userType.MEMBER);
           if(MID == null){
             break;
           }
@@ -328,7 +328,7 @@ public class Terminal extends IOAuthorization {
       switch (choice) {
         case '1': // view
           System.out.println("Enter provider ID");
-          PID = getID(dataType.PROVIDER);
+          PID = getID(userType.PROVIDER);
           if(PID == null){
             break;
           }
@@ -344,7 +344,7 @@ public class Terminal extends IOAuthorization {
           break;
         case '4': // delete
           System.out.println("Enter provider ID");
-          PID = getID(dataType.PROVIDER);
+          PID = getID(userType.PROVIDER);
           if(PID == null){
             break;
           }
@@ -381,7 +381,7 @@ public class Terminal extends IOAuthorization {
       switch (choice){
         case '1': // view
           System.out.println("Enter service code");
-          SID = getID(dataType.SERVICE);
+          SID = getID(userType.SERVICE);
           if(SID == null){
             break;
           }
@@ -397,7 +397,7 @@ public class Terminal extends IOAuthorization {
           break;
         case '4': // delete
           System.out.println("Enter service code");
-          SID = getID(dataType.SERVICE);
+          SID = getID(userType.SERVICE);
           if(SID == null){
             break;
           }
@@ -419,7 +419,7 @@ public class Terminal extends IOAuthorization {
     System.out.println("Terminal.manageDirectory");
     breadcrumbs.push("members");
     System.out.println("Enter Provider ID");
-    String PID = getID(dataType.PROVIDER);
+    String PID = getID(userType.PROVIDER);
     if(PID == null){
       return;
     }
@@ -440,14 +440,14 @@ public class Terminal extends IOAuthorization {
           break;
         case '2': // add
           System.out.println("Enter service code");
-          SID = getID(dataType.SERVICE);
+          SID = getID(userType.SERVICE);
           if(SID == null){
             break;
           }
           addService(PID, SID);
           break;
         case '3': // delete
-          SID = getID(dataType.SERVICE);
+          SID = getID(userType.SERVICE);
           if(SID == null){
             break;
           }
@@ -530,7 +530,7 @@ public class Terminal extends IOAuthorization {
     }
   }
 
-  private String getID(dataType type) {
+  private String getID(userType type) {
     String name = null;
     int length = 0;
     if(type == type.MEMBER){
@@ -712,7 +712,7 @@ public class Terminal extends IOAuthorization {
 
   private void enterService() {
     char choice;
-      String serviceCode = getID(dataType.SERVICE);
+      String serviceCode = getID(userType.SERVICE);
       System.out.printf("Entered %s\n Is this correct? ");
       choice = getChoice();
     if (choice == 'y')
@@ -720,32 +720,10 @@ public class Terminal extends IOAuthorization {
   }
 
   private boolean generateChocAnBill() {
-    System.out.println("Generate ChocAn Bill");
-    String date;
-    System.out.print("Enter date of service(MM-DD-YYYY)");
-    date = in.next();
-    int result = validateDate(date);
-    while (true) {
-      if (result == -1) {
-        System.out.print("invalid input, try again(MM-DD-YYYY)");
-        date = in.next();
-        result = validateDate(date);
-      } else {
-        break;
-      }
-    }
-    //serviceID = getServiceCode();
-        /*System.out.println("Would you like to add comments to record?");
-        boolean toComment = in.nextBoolean();
-        if(toComment){
-            System.out.print("Enter comments: ");
-            String comments = in.next();
-         }
+    overlord.generateBill();
 
-         */
-    //overlord.generateBill()
-    System.out.println("Fake ChocAn Bill generated(user needs to validate service code, additional comments also optional");
     return true;
+
   }
 
 

@@ -416,8 +416,34 @@ public class Overlord extends DataBaseManager<Object> {
       ReadWrite.fileWrite(outputFile, "", true);
       ReadWrite.fileWrite(outputFile, "Reports: ", true);
       ArrayList<Record> providerRecords = (ArrayList<Record>) findData(4, providerID);
-      for (Record providerRecord : providerRecords)
-        ReadWrite.fileWrite(outputFile, providerRecord.getAll(), true);
+      String [] record;
+      int fee = 0;
+      for(Record providerRecord : providerRecords){
+        record = providerRecord.getAll();
+        try{
+          fee += Integer.parseInt(record[6]);
+        }
+        catch(NumberFormatException e){
+          return -1;
+        }
+        ReadWrite.fileWrite(outputFile, record, true);
+      }
+      try{
+        String number = Integer.toString(providerRecords.size());
+        ReadWrite.fileWrite(outputFile, number, true);
+      }
+      catch(Exception e){
+        return -1;
+      }
+      try{
+        String totalFee = Integer.toString(fee);
+        ReadWrite.fileWrite(outputFile, totalFee, true);
+      }
+      catch(Exception e){
+        return -1;
+      }
+
+
       return 1;
     }
     catch (ClassCastException | IOException a) {
@@ -600,7 +626,16 @@ public class Overlord extends DataBaseManager<Object> {
   }
 
   public int generateBill() {
-    // where do i look at what this is supposed to do?
+    if (currentUser == null)
+      return -2;
+    try{
+      Provider currentProvider = (Provider) currentUser;
+      String PID = currentProvider.get(1);
+      genProviderReport(PID);
+    }
+    catch(ClassCastException e){
+      return -1;
+    }
     return 0;
   }
 
