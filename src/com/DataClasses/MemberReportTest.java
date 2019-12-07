@@ -45,7 +45,7 @@ class MemberReportTest {
     }
 
     private int buildService(int line, String [] components){
-        file = new File("data/records.csv");
+        file = new File("data/providerRecords.csv");
         if(file == null){
             return -1;
         }
