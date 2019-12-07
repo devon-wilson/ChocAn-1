@@ -470,10 +470,48 @@ public class Terminal extends IOAuthorization {
   private void manageReports(){
       char choice;
       String managerID;
-      System.out.println("Terminal.manageMembers");
+      System.out.println("Terminal.manageReports");
       breadcrumbs.push("members");
 
-      
+      do {
+          System.out.println("\nManage report options:" +
+                  "\n 1 - Generate member report" +
+                  "\n 2 - Generate provider report" +
+                  "\n 3 - Generate all reports" +
+                  "\n q - Quit"
+          );
+          breadcrumbPrompt();
+          choice = getChoice();
+          String MID = null;
+          String PID = null;
+          switch (choice){
+              case '1': // view
+                  System.out.println("Enter member ID");
+                  MID = getID(userType.MEMBER);
+                  if(MID == null){
+                      break;
+                  }
+                  overlord.genMemberReport(MID);
+                  break;
+              case '2': // add
+                  System.out.println("Enter service code");
+                  PID = getID(userType.PROVIDER);
+                  if(PID == null){
+                      break;
+                  }
+                  overlord.genProviderReport(PID);
+                  break;
+              case '3': // delete
+                  overlord.genAllMemberReports();
+                  overlord.genAllProvidersReports();
+                  break;
+              case 'q':
+                  break;
+              default:
+                  System.out.println("\nNot a valid response");
+                  break;
+          }
+      } while (choice != 'q');
 
   }
 
