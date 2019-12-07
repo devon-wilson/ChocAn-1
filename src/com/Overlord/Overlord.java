@@ -80,6 +80,8 @@ public class Overlord extends DataBaseManager<Object> {
    * @return 1 and cannot fail.
    */
   public int logout() {
+    // Need to write all trees to disk on logout
+
     this.currentUser = null;
     this.currentMember = null;
     this.currentServices = null;
@@ -329,6 +331,8 @@ public class Overlord extends DataBaseManager<Object> {
         return null;
     try {
       Service found = (Service) findData(3, query);
+      if (found == null)
+        return null;
       return found.getAll();
     }
     catch (ClassCastException a) {
