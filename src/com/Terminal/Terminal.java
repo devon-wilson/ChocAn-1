@@ -451,7 +451,7 @@ public class Terminal extends IOAuthorization {
           if(SID == null){
             break;
           }
-          overlord.removeService(PID, SID);
+          overlord.removeService(SID);
           break;
         case 'q':
           break;

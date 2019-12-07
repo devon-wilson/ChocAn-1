@@ -307,18 +307,6 @@ public class Overlord extends DataBaseManager<Object> {
     }
     return -1;
   }
-  public int addService(String PID, String SID){
-    if (currentUser == null || !(currentUser instanceof Manager))
-      return -2;
-
-    Provider toReturnP = (Provider) findData(1, PID);
-    if(toReturnP == null)
-      return -1;
-    toReturnP.addService(SID);
-
-
-    return 1;
-  }
 
   public int removeService(String serviceID) {
     if (currentUser == null || !(currentUser instanceof Manager))
@@ -326,21 +314,15 @@ public class Overlord extends DataBaseManager<Object> {
     if (serviceID == null)
       return -3;
 
-    if(removeTreeData(3, serviceID) == null)
-      return 1;
-    return -1;
-  }
-  public int removeService(String PID, String SID){
-    if (currentUser == null || !(currentUser instanceof Manager))
-      return -2;
-
-    Provider toReturnP = (Provider) findData(1, PID);
-    if(toReturnP == null)
-      return -1;
-    if(toReturnP.removeService(SID) == -1){
+    Service service = (Service) removeTreeData(3, serviceID);
+    if(service == null){
       return -1;
     }
-
+    String code = service.getCode();
+    ArrayList<Provider> providers = getAll(1);
+    for(Provider i : providers){
+      i.removeService(code);
+    }
     return 1;
   }
 
