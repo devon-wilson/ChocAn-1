@@ -366,7 +366,11 @@ public class Overlord extends DataBaseManager<Object> {
       ReadWrite.fileWrite(outputFile, "Reports:", true);
       ArrayList<Record> userRecords = (ArrayList<Record>) findData(4, memberID);
       for (Record userRecord : userRecords) {
-        ReadWrite.fileWrite(outputFile, userRecord.getAll(), true);
+        String [] components = userRecord.getAll();
+        if(components[3].equals(memberID)){
+          ReadWrite.fileWrite(outputFile, components, true);
+        }
+
       }
       return 1;
     }
@@ -403,13 +407,15 @@ public class Overlord extends DataBaseManager<Object> {
       int fee = 0;
       for(Record providerRecord : providerRecords){
         record = providerRecord.getAll();
-        try{
-          fee += Integer.parseInt(record[6]);
+        if(record[2].equals(providerID) ==  true){
+          try{
+            fee += Integer.parseInt(record[6]);
+          }
+          catch(NumberFormatException e){
+            return -1;
+          }
+          ReadWrite.fileWrite(outputFile, record, true);
         }
-        catch(NumberFormatException e){
-          return -1;
-        }
-        ReadWrite.fileWrite(outputFile, record, true);
       }
       try{
         String number = Integer.toString(providerRecords.size());
@@ -441,9 +447,9 @@ public class Overlord extends DataBaseManager<Object> {
     return 0;
   }
   public int genAllProvidersReports() {
-    ArrayList<Provider> provider = getAll(2);
+    ArrayList<Provider> provider = getAll(1);
     for(Provider i : provider){
-      genMemberReport(i.get(1));
+      genProviderReport(i.get(1));
     }
     return 0;
   }
