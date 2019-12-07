@@ -205,6 +205,7 @@ public class Terminal extends IOAuthorization {
               "\n 2 - Manage providers" +
               "\n 3 - Manage services" +
               "\n 4 - Manage provider directories" +
+              "\n 5 - Generate reports" +
               "\n q - Quit"
       );
       breadcrumbPrompt();
@@ -222,6 +223,9 @@ public class Terminal extends IOAuthorization {
           break;
         case '4':
           manageProviderDirectory();
+          break;
+        case '5':
+          manageReports();
           break;
         case 'q':
           break;
@@ -463,6 +467,53 @@ public class Terminal extends IOAuthorization {
 
     breadcrumbs.pop();
   }
+  private void manageReports(){
+      char choice;
+      String managerID;
+      System.out.println("Terminal.manageReports");
+      breadcrumbs.push("members");
+
+      do {
+          System.out.println("\nManage report options:" +
+                  "\n 1 - Generate member report" +
+                  "\n 2 - Generate provider report" +
+                  "\n 3 - Generate all reports" +
+                  "\n q - Quit"
+          );
+          breadcrumbPrompt();
+          choice = getChoice();
+          String MID = null;
+          String PID = null;
+          switch (choice){
+              case '1': // view
+                  System.out.println("Enter member ID");
+                  MID = getID(userType.MEMBER);
+                  if(MID == null){
+                      break;
+                  }
+                  overlord.genMemberReport(MID);
+                  break;
+              case '2': // add
+                  System.out.println("Enter service code");
+                  PID = getID(userType.PROVIDER);
+                  if(PID == null){
+                      break;
+                  }
+                  overlord.genProviderReport(PID);
+                  break;
+              case '3': // delete
+                  overlord.genAllMemberReports();
+                  overlord.genAllProvidersReports();
+                  break;
+              case 'q':
+                  break;
+              default:
+                  System.out.println("\nNot a valid response");
+                  break;
+          }
+      } while (choice != 'q');
+
+  }
 
 
   private void display(String [] toDisplay){
@@ -533,15 +584,15 @@ public class Terminal extends IOAuthorization {
   private String getID(userType type) {
     String name = null;
     int length = 0;
-    if(type == type.MEMBER){
+    if(type == userType.MEMBER){
       name = "Member ID";
       length = 9;
     }
-    else if(type == type.PROVIDER){
+    else if(type == userType.PROVIDER){
       name = "Provider ID";
       length = 9;
     }
-    else if(type == type.SERVICE){
+    else if(type == userType.SERVICE){
       name = "Service ID";
       length = 6;
     }
@@ -550,17 +601,16 @@ public class Terminal extends IOAuthorization {
     }
     String input;
     String quit = new String("q");
-    boolean valid = false;
+    boolean rejected = true;
     do {
+      System.out.println("Press q to quit.");
+      System.out.printf("Enter %s: ", name);
       input = in.nextLine();
-      valid = isNotValidID(input, length, name);
-      if(valid == false){
-        System.out.println("Press q to quit.");
-        if(input.equals(quit) == true){
-          return null;
-        }
+      rejected = isNotValidID(input, length, name);
+      if(rejected && input.equals(quit)){
+        return null;
       }
-    } while(isNotValidID(input, length, name));
+    } while(rejected);
     return input;
   }
 
@@ -635,7 +685,7 @@ public class Terminal extends IOAuthorization {
     }
   }
 
-  void queryFields(Field[] fields, String[] inputArray) {
+  private void queryFields(Field[] fields, String[] inputArray) {
     boolean rejected = true;
     for (int i = 0; i < fields.length; i++) {
       Field field = fields[i];
@@ -650,7 +700,7 @@ public class Terminal extends IOAuthorization {
           case text:
             rejected = validateTextLength(input, field.maxLength) < 0;
             if (rejected)
-              System.out.printf("\nEntered %s is too long\n", field);
+              System.out.printf("\nEntered is too long\n");
             break;
           case id:
             rejected = validateID(input, field.maxLength) < 0;
@@ -712,11 +762,54 @@ public class Terminal extends IOAuthorization {
 
   private void enterService() {
     char choice;
-      String serviceCode = getID(userType.SERVICE);
-      System.out.printf("Entered %s\n Is this correct? ");
-      choice = getChoice();
-    if (choice == 'y')
-      overlord.searchService(serviceCode);
+    String serviceCode = getID(userType.SERVICE);
+
+    if (serviceCode == null)
+      return;
+
+    System.out.printf("Entered %s\n Is this correct? ", serviceCode);
+    choice = getChoice();
+    if (choice != 'y')
+      return;
+
+    String[] info = overlord.searchService(serviceCode);
+    if (info == null) {
+      System.out.println("\nInvalid Service Code");
+      return;
+    }
+
+    for (String line : info) {
+      System.out.println(line);
+    }
+
+    System.out.print("Is this the correct service? ");
+    choice = getChoice();
+    if (choice != 'y')
+      return;
+
+    String[] reportInfo = new String[3];
+
+    String inputComments;
+    boolean rejected;
+    do {
+      System.out.print("Enter Comments: ");
+      inputComments = in.nextLine();
+      rejected = validateTextLength(inputComments, 100) < 0;
+      if (rejected)
+        System.out.print("\nEntered is too long\n");
+    } while(rejected);
+
+    reportInfo[0] = dateFormat.format(new Date());
+    reportInfo[1] = serviceCode;
+    reportInfo[2] = inputComments;
+
+    int returnCode = overlord.generateServiceRecord(reportInfo);
+    if (returnCode < 0) {
+      String[] translations = {"Failed to generate service record", "Not authorized for this action or no member checked in"};
+      System.out.println(translations[getReturnCodeIndex(returnCode)]);
+    }
+
+    //todo needs testing
   }
 
   private boolean generateChocAnBill() {
@@ -724,44 +817,6 @@ public class Terminal extends IOAuthorization {
       overlord.generateBill();
       return true;
 
-  }
-
-
-
-
-
-  private String getServiceCode() {
-    System.out.print("please enter service code");
-    String serviceID = in.next();
-    int result = validateID(serviceID, 6);
-    while (true) {
-      if (result == -1) {
-        System.out.print("invalid code, try again(6 digit #)");
-        serviceID = in.next();
-        result = validateID(serviceID, 6);
-      } else {
-        break;
-      }
-    }
-    //String service = get_Service("String serviceID");
-    //System.out.print("service found: " + service);
-    //System.out.print("is this service correct?(yes(y) or no(n))");
-    //String correct = in.next();
-        /*while (true) {
-            if (correct != 'y' || correct != 'n') {
-                System.out.print("invalid reply, try again(yes(y) or no(n))");
-                code = in.next();
-            } else {
-                break;
-            }
-        }*/
-    //if(correct == 'n'){
-    //return String getService(in);
-    //}
-    //else{
-    //  return serviceID;
-    //}
-    return serviceID;
   }
 
 }

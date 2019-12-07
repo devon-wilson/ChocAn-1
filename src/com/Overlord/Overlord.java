@@ -330,18 +330,16 @@ public class Overlord extends DataBaseManager<Object> {
 
 
     Service toAdd = new Service(serviceData);
-    if(addTreeData(3, serviceData[1], toAdd) != null) {
-      try {
+    toAdd = (Service) addTreeData(3, serviceData[1], toAdd);
+    try {
         Provider toReturn = (Provider) findData(1, serviceData[3]);
         if (toReturn == null)
           return -1;
         toReturn.addService(serviceData[1]);
         return 1;
-      } catch (ClassCastException a) {
+    } catch (ClassCastException a) {
         return -1;
       }
-    }
-    return -1;
   }
 
   public int removeService(String serviceID) {
@@ -410,7 +408,6 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     }
   }
-
   public int genProviderReport(String providerID) {
     if (providerID == null)
       return -1;
@@ -470,12 +467,18 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     }
   }
-
   public int genAllMemberReports() {
+    ArrayList<Member> member = getAll(2);
+    for(Member i : member){
+      genMemberReport(i.get(1));
+    }
     return 0;
   }
-
   public int genAllProvidersReports() {
+    ArrayList<Provider> provider = getAll(2);
+    for(Provider i : provider){
+      genMemberReport(i.get(1));
+    }
     return 0;
   }
 
