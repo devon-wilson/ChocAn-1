@@ -444,6 +444,7 @@ public class Terminal extends IOAuthorization {
             break;
           }
           overlord.addService(PID, SID);
+          addService(PID, SID);
           break;
         case '3': // delete
           SID = getID(dataType.SERVICE);
@@ -594,6 +595,22 @@ public class Terminal extends IOAuthorization {
     }
   }
   private void addService() {
+    final Field[] addServiceFields = {
+            new Field("Name", 25, text),
+            new Field("Code", 6,text),
+            new Field("cost", 6, currency),
+            new Field("ID", 9, text),
+    };
+    String[] newService = new String[addServiceFields.length + 1];
+    queryFields(addServiceFields, newService);
+
+    int returnCode = overlord.addService(newService);
+    if (returnCode < 0) {
+      String[] translations = {"Failed to add", "Not authorized for this action"};
+      System.out.println(translations[getReturnCodeIndex(returnCode)]);
+    }
+  }
+  private void addService(String PID, String SID) {
     final Field[] addServiceFields = {
             new Field("Name", 25, text),
             new Field("Code", 6,text),
