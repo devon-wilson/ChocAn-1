@@ -202,6 +202,9 @@ public class Overlord extends DataBaseManager<Object> {
       else {
         // pull info from tree
         Member toUpdate = (Member) findData(2, memberID);
+        if(toUpdate == null){
+          return -1;
+        }
         toUpdate.updateStatus("SUSPENDED");
         // put info back on tree
         updateTreeData(2, memberID, toUpdate);
@@ -476,8 +479,6 @@ public class Overlord extends DataBaseManager<Object> {
       return;
     }
   }
-
-
   public void viewDirectory(String PID){
     try {
       Provider toReturnP = (Provider) findData(1, PID);

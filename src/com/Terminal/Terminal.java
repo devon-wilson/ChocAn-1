@@ -286,12 +286,20 @@ public class Terminal extends IOAuthorization {
           overlord.removeMember(MID);
           break;
         case '5': // suspend
-
-          overlord.suspendMember("");
+          System.out.println("Enter member ID");
+          MID = getID(dataType.MEMBER);
+          if(MID == null){
+            break;
+          }
+          overlord.suspendMember(MID);
           break;
-        case '6': // renew
-
-          overlord.renewMember("");
+        case '6':
+          System.out.println("Enter member ID");
+          MID = getID(dataType.MEMBER);
+          if(MID == null){
+            break;
+          }
+          overlord.renewMember(MID);
           break;
         case 'q':
           break;
@@ -547,13 +555,16 @@ public class Terminal extends IOAuthorization {
     }
     String input;
     String quit = new String("q");
+    boolean valid = false;
     do {
       input = in.nextLine();
-      System.out.println("Press q to quit.");
-      if(input.equals(quit) == true){
-        return null;
+      valid = isNotValidID(input, length, name);
+      if(valid == false){
+        System.out.println("Press q to quit.");
+        if(input.equals(quit) == true){
+          return null;
+        }
       }
-
     } while(isNotValidID(input, length, name));
     return input;
   }
