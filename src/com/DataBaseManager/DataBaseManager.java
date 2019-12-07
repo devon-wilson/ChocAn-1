@@ -70,12 +70,16 @@ public class DataBaseManager<Object> {
                 Add all other  objects based on 2nd element (ID #).
                  */
                 if (objectType.equals("Record")) {
-                    recordList = (ArrayList<Record>) recordsList.get(lineData[2]);
+                    recordList = (ArrayList<Record>) root.get(lineData[2]);
                     if(recordList == null){
                         recordList = new ArrayList<Record>();
+                        recordList.add((Record) newObject);
+                        root.put(lineData[2], (Object) recordList);
                     }
-                    recordList.add((Record) newObject);
-                }else {
+                    else
+                        recordList.add((Record) newObject);
+                }
+                else {
                     root.put(lineData[1], newObject);
                 }
             }
