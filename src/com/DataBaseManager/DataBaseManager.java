@@ -3,7 +3,6 @@ package com.DataBaseManager;
 import com.DataClasses.*;
 import com.ReadWrite.ReadWrite;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeMap;
@@ -18,14 +17,14 @@ public class DataBaseManager<Object> {
     protected TreeMap<String, Object> providers;
     protected TreeMap<String, Object> members;
     protected TreeMap<String, Object> services;
-    protected TreeMap<String, Object> records;
+    protected TreeMap<String, Object> recordsList;
 
     public DataBaseManager() {
         this.managers = buildTree("data/managers.csv");
         this.providers = buildTree("data/providers.csv");
         this.members = buildTree("data/members.csv");
         this.services = buildTree("data/providerDirectory.csv");
-        this.records = buildTree("data/records.csv");
+        this.recordsList = buildTree("data/records.csv");
     }
 
     private TreeMap<String, Object> buildTree(String filename) {
@@ -44,6 +43,10 @@ public class DataBaseManager<Object> {
             String[] lineData = fileData[i].split(",");
 
             Object newObject = null;
+            /* Use arrayLists of records
+            store record arrayLists organized by provider ID # as a key.
+             */
+            ArrayList<Record> recordList;
 
             switch (objectType) {
                 case "Manager":
@@ -67,8 +70,16 @@ public class DataBaseManager<Object> {
                 Add all other  objects based on 2nd element (ID #).
                  */
                 if (objectType.equals("Record")) {
-                    root.put(lineData[4], newObject);
-                }else {
+                    recordList = (ArrayList<Record>) root.get(lineData[2]);
+                    if(recordList == null){
+                        recordList = new ArrayList<Record>();
+                        recordList.add((Record) newObject);
+                        root.put(lineData[2], (Object) recordList);
+                    }
+                    else
+                        recordList.add((Record) newObject);
+                }
+                else {
                     root.put(lineData[1], newObject);
                 }
             }
@@ -102,7 +113,7 @@ public class DataBaseManager<Object> {
             case (3):
                 return services.get(key);
             case (4):
-                return records.get(key);
+                return recordsList.get(key);
         }
         return null;
     }
@@ -132,7 +143,7 @@ public class DataBaseManager<Object> {
             case (3):
                 return services.remove(key);
             case (4):
-                return records.remove(key);
+                return recordsList.remove(key);
         }
         return null;
     }
@@ -162,7 +173,7 @@ public class DataBaseManager<Object> {
             case (3):
                 return services.put(key, obj);
             case (4):
-                return records.put(key, obj);
+                return recordsList.put(key, obj);
         }
         return null;
     }
@@ -192,7 +203,7 @@ public class DataBaseManager<Object> {
             case (3):
                 return services.replace(key, obj);
             case (4):
-                return records.replace(key, obj);
+                return recordsList.replace(key, obj);
         }
         return null;
     }
@@ -227,7 +238,7 @@ public class DataBaseManager<Object> {
                     values = services.values();
                     break;
                 case (4):
-                    values = records.values();
+                    values = recordsList.values();
                     break;
             }
             if (values == null)

@@ -95,13 +95,11 @@ public class Terminal extends IOAuthorization {
 
     do {
       System.out.println("\nChoose Provider option:" +
-              "\n *** Under Construction ***" +
               "\n 1 - Check in member" +
               "\n 2 - Generate record of service" +
               "\n 3 - Request provider directory" +
               "\n 4 - Generate ChocAn bill" +
-              "\n q - Quit (logout)" +
-              "\n *** Under Construction ***"
+              "\n q - Quit (logout)"
       );
       breadcrumbPrompt();
       choice = getChoice();
@@ -514,16 +512,19 @@ public class Terminal extends IOAuthorization {
       return false;
     returnCode = overlord.memberCheckIn(memberID);
     if (returnCode < 0) {
-      System.out.println("Could not check in member: " + memberID);
-      // needs reason valid or suspended?
-      System.out.println("Invalid");
-      // or suspended
+      System.out.println("\nInvalid Member");
+      System.out.println("");
       return false;
     }
-    System.out.println("Validated");
 
-    overlord.viewMember();
-    return true;
+    if (overlord.isMemberValid()) {
+      System.out.println("\nValidated");
+      return true;
+    } else {
+      System.out.println("\nSuspended Member ");
+      overlord.memberCheckOut();
+      return false;
+    }
   }
 
   private String getID(dataType type) {
