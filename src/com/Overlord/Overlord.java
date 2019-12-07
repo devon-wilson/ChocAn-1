@@ -452,7 +452,7 @@ public class Overlord extends DataBaseManager<Object> {
       }
       try{
         String totalFee = Integer.toString(fee);
-        ReadWrite.fileWrite(outputFile, "Total Fees: $" + totalFee, true);
+        ReadWrite.fileWrite(outputFile, "Total Fees: $" + totalFee + ".00", true);
       }
       catch(Exception e){
         return -1;
@@ -619,7 +619,7 @@ public class Overlord extends DataBaseManager<Object> {
     Record record = new Record(recordData);
 
     try {
-      ReadWrite.fileWrite("records/" + currentMember.get(1) + ".csv", data, true);
+      ReadWrite.fileWrite("data/records/records.csv", recordData, true);
       addTreeData(4, currentMember.get(1), record);
       addTreeData(5, currentUser.get(1), record);
       return 1;

@@ -51,7 +51,7 @@ public class ReadWrite
         FileWriter file;
         int i;
 
-        if(data[0] == null)
+        if (data == null)
             return -1;
 
         file = new FileWriter(filename, append);
