@@ -720,9 +720,9 @@ public class Terminal extends IOAuthorization {
   }
 
   private boolean generateChocAnBill() {
-    overlord.generateBill();
-
-    return true;
+      System.out.println("Sending a bill to ChocAn.");
+      overlord.generateBill();
+      return true;
 
   }
 
