@@ -482,10 +482,6 @@ public class Overlord extends DataBaseManager<Object> {
     return 0;
   }
 
-  public int sendReports(String input) {
-    return 0;
-  }
-
   public String[] getMember(String code){
     try {
       Member toReturn = (Member) findData(2, code);
