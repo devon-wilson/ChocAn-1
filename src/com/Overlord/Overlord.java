@@ -551,7 +551,11 @@ public class Overlord extends DataBaseManager<Object> {
   }
 
   public int requestDirectory() {
-    return 0;
+    if (currentUser == null)
+      return -2;
+
+    viewDirectory(currentUser.get(1));
+    return 1;
   }
 
   public int generateBill() {
