@@ -607,7 +607,7 @@ public class Overlord extends DataBaseManager<Object> {
     String[] data = new String[6];
     data[0] = getCurrentTime();
     data[1] = input[0];
-    data[2] = currentMember.get(1);
+    data[2] = input[3];
     data[3] = currentUser.get(1);
     data[4] = input[1];
     data[5] = input[2];

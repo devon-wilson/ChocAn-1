@@ -255,26 +255,26 @@ class OverlordTest {
     overlord.login(0, "123456789");
     overlord.memberCheckIn("123456789");
 
-    assertEquals(true, overlord.isMemberCheckedIn(), "Member is checked in");
+    assertTrue(overlord.isMemberCheckedIn(), "Member is checked in");
   }
 
   @Test
   void isMemberValid() {
-    assertEquals(false, overlord.isMemberValid(), "no member checked in");
+    assertFalse(overlord.isMemberValid(), "no member checked in");
 
     overlord.login(1, "123456789");
     overlord.memberCheckIn("123456789");
 
-    assertEquals(false, overlord.isMemberValid(), "suspended member checked in");
+    assertFalse(overlord.isMemberValid(), "suspended member checked in");
 
     overlord.memberCheckIn("987654321");
-    assertEquals(true, overlord.isMemberValid(), "valid member checked in");
+    assertTrue(overlord.isMemberValid(), "valid member checked in");
 
   }
 
   @Test
   void isMemberSuspended() {
-    assertEquals(false, overlord.isMemberSuspended());
+    assertFalse(overlord.isMemberSuspended());
   }
 
   @ParameterizedTest(name = "{2}")

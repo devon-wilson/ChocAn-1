@@ -198,9 +198,25 @@ public class DataBaseManager<Object> {
                 case (3):
                     return services.put(key, obj);
                 case (4):
-                    return (Object) memberRecords.put(key, (ArrayList) obj);
+                    ArrayList<Record> memRecords= memberRecords.get(key);
+                    if(memRecords == null){
+                        memRecords = new ArrayList<Record>();
+                        memRecords.add((Record) obj);
+                        memberRecords.put(key, memRecords);
+                    }else {
+                        memRecords.add((Record) obj);
+                    }
+                    return null;
                 case (5):
-                    return (Object) providerRecords.put(key, (ArrayList) obj);
+                    ArrayList<Record> provRecords= providerRecords.get(key);
+                    if(provRecords == null){
+                        provRecords = new ArrayList<Record>();
+                        provRecords.add((Record) obj);
+                        providerRecords.put(key, provRecords);
+                    }else {
+                        provRecords.add((Record) obj);
+                    }
+                    return null;
             }
             return null;
         }
