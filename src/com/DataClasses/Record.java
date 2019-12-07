@@ -47,13 +47,14 @@ public class Record {
         if(currDateTime == null){
             return null;
         }
-        String [] components = new String [6];
+        String [] components = new String [7];
         components[0] = currDateTime;
         components[1] = dateProvided;
         components[2] = providerID;
         components[3] = memberID;
         components[4] = serviceCode;
         components[5] = comment;
+        components[6] = cost;
         return components;
     }
 }
