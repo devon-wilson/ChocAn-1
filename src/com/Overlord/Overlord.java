@@ -415,11 +415,7 @@ public class Overlord extends DataBaseManager<Object> {
       return -1;
     try {
 
-      Provider current;
-      if (currentUser != null && currentUser.get(1).equals(providerID))
-        current = (Provider) currentUser;
-      else
-        current = (Provider) findData(1, providerID);
+      Provider current = (Provider) findData(1, providerID);
 
       if (current == null)
         return -1;
@@ -434,8 +430,7 @@ public class Overlord extends DataBaseManager<Object> {
 
       ReadWrite.fileWrite(outputFile, "", true);
       ReadWrite.fileWrite(outputFile, "Reports: ", true);
-      ArrayList<Record> providerRecords = (ArrayList<Record>) findData(4, providerID);
-      //ArrayList<ArrayList<Record>> providerLists = getAll(4);
+      ArrayList<Record> providerRecords = (ArrayList<Record>) findData(5, providerID);
       String [] record;
       int fee = 0;
       for(Record i : providerRecords){
@@ -450,14 +445,14 @@ public class Overlord extends DataBaseManager<Object> {
       }
       try{
         String number = Integer.toString(providerRecords.size());
-        ReadWrite.fileWrite(outputFile, number, true);
+        ReadWrite.fileWrite(outputFile, "Total Services: " + number, true);
       }
       catch(Exception e){
         return -1;
       }
       try{
         String totalFee = Integer.toString(fee);
-        ReadWrite.fileWrite(outputFile, totalFee, true);
+        ReadWrite.fileWrite(outputFile, "Total Fees: $" + totalFee, true);
       }
       catch(Exception e){
         return -1;
