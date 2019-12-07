@@ -316,11 +316,11 @@ public class DataBaseManager<Object> {
                     break;
                 case (1):
                     Provider provider = (Provider) i;
-                    line = provider.getAll();
+                    line = provider.toStringArray();
                     break;
                 case (2):
                     Member member = (Member) i;
-                    line = member.getAll();
+                    line = member.toStringArray();
                     break;
                 case (3):
                     Service service = (Service) i;

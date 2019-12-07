@@ -51,7 +51,7 @@ public class Provider extends User{
         super.display();
     }
 
-    public String[] getAll() {
+    public String[] toStringArray() {
         String[] all = new String[6+serviceCodes.size()];
         System.arraycopy(super.getAll(), 0, all, 0, 6);
         for (int i = 0; i < serviceCodes.size(); i++) {

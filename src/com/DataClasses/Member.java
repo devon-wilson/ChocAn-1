@@ -38,7 +38,7 @@ public class Member extends User{
         return 1;
     }
 
-    public String[] getAll() {
+    public String[] toStringArray() {
         String[] all = new String[7];
         System.arraycopy(super.getAll(), 0, all, 0, 6);
         all[6] = status;
