@@ -31,59 +31,19 @@ public class ReadWrite
         }
     }
 
-    static String[][] fileReadAll(String filename) throws IOException
+    public static int fileWrite(String filename, String data, boolean append) throws IOException
     {
-        FileReader file;
-        ArrayList<String> input = new ArrayList<>();
-        ArrayList<String[]> holder = new ArrayList<>();
-        String[][] ret;
-        String[] data;
-        int i = 0;
-        int j = 0;
-        int c;
+        FileWriter file;
+        int i;
 
-        try
-        {
-            file = new FileReader(filename);
-        }
-        catch(FileNotFoundException e)
-        {
-            System.out.println("File not found.");
-            return null;
-        }
+        if(data== null)
+            return -1;
 
-        input.add("");
-        while((c = file.read()) != -1)
-        {
-            if(c == ',')
-            {
-                input.add("");
-                ++i;
-            }
-            else if(c == '\n')
-            {
-                holder.add(new String[input.size()]);
-                data = new String[input.size()];
-                for(i = 0; i < input.size(); ++i)
-                    data[i] = input.get(i);
-                holder.set(j, data);
-                input.clear();
-                input.add("");
-                ++j;
-                i = 0;
-            }
-            else
-                input.set(i, input.get(i) + (char) c);
-        }
-
-        ret = new String[holder.size()][];
-        for(i = 0; i < holder.size(); ++i)
-        {
-            ret[i] = new String[holder.get(i).length];
-            ret[i] = holder.get(i);
-        }
-
-        return ret;
+        file = new FileWriter(filename, append);
+        file.write(data);
+        file.write('\n');
+        file.close();
+        return 1;
     }
 
     public static int fileWrite(String filename, String[] data, boolean append) throws IOException

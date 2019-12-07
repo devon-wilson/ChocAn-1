@@ -370,31 +370,65 @@ public class Overlord extends DataBaseManager<Object> {
       if (member == null)
         return -1;
 
-      //ReadWrite.fileWrite("records/" + memberID, member.getAll(), true);
+      String outputFile = "data/reports/members/" + memberID + ".txt";
+
+      // Write member data to text file
+      ReadWrite.fileWrite(outputFile, "Member Report:", false);
+      for (String i : member.getAll()) {
+        ReadWrite.fileWrite(outputFile, i, true);
+      }
+
+      ReadWrite.fileWrite(outputFile, "", true);
+      ReadWrite.fileWrite(outputFile, "Reports:", true);
+      ArrayList<Record> userRecords = (ArrayList<Record>) findData(4, memberID);
+      for (Record userRecord : userRecords) {
+        ReadWrite.fileWrite(outputFile, userRecord.getAll(), true);
+      }
       return 1;
     }
-    catch (ClassCastException a) {
+    catch (ClassCastException | IOException a) {
       return -1;
     }
   }
+
   public int genProviderReport(String providerID) {
-
+    if (providerID == null)
+      return -1;
     try {
-      Provider provider = (Provider) findData(1, providerID);
-      if (provider == null)
-        return -1;
-      //ReadWrite.fileWrite("Report" + providerID, member.toString(), false);
 
-      return 0;
+      Provider current;
+      if (currentUser != null && currentUser.get(1).equals(providerID))
+        current = (Provider) currentUser;
+      else
+        current = (Provider) findData(1, providerID);
+
+      if (current == null)
+        return -1;
+
+      String outputFile = "data/reports/providers/" + providerID + ".txt";
+
+      // Write member data to text file
+      ReadWrite.fileWrite(outputFile, "Provider Report:", false);
+      for (String i : current.getAll()) {
+        ReadWrite.fileWrite(outputFile, i, true);
+      }
+
+      ReadWrite.fileWrite(outputFile, "", true);
+      ReadWrite.fileWrite(outputFile, "Reports: ", true);
+      ArrayList<Record> providerRecords = (ArrayList<Record>) findData(4, providerID);
+      for (Record providerRecord : providerRecords)
+        ReadWrite.fileWrite(outputFile, providerRecord.getAll(), true);
+      return 1;
     }
-    catch (ClassCastException a)
-    {
+    catch (ClassCastException | IOException a) {
       return -1;
     }
   }
+
   public int genAllMemberReports() {
     return 0;
   }
+
   public int genAllProvidersReports() {
     return 0;
   }
@@ -543,7 +577,7 @@ public class Overlord extends DataBaseManager<Object> {
 
     try {
       ReadWrite.fileWrite("records/" + currentMember.get(1) + ".csv", data, true);
-      //addTreeData(4, currentMember.get(1), record);
+      addTreeData(4, currentMember.get(1), record);
       return 1;
     }
     catch (IOException a) {
@@ -552,7 +586,11 @@ public class Overlord extends DataBaseManager<Object> {
   }
 
   public int requestDirectory() {
-    return 0;
+    if (currentUser == null)
+      return -2;
+
+    viewDirectory(currentUser.get(1));
+    return 1;
   }
 
   public int generateBill() {
