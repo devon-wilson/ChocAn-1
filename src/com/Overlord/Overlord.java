@@ -589,8 +589,14 @@ public class Overlord extends DataBaseManager<Object> {
   public int requestDirectory() {
     if (currentUser == null)
       return -2;
-
-    viewDirectory(currentUser.get(1));
+    try{
+      Provider currentProvider = (Provider) currentUser;
+      String PID = currentProvider.get(1);
+      viewDirectory(PID);
+    }
+    catch(ClassCastException e){
+      return -1;
+    }
     return 1;
   }
 
