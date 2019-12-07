@@ -443,7 +443,6 @@ public class Terminal extends IOAuthorization {
           if(SID == null){
             break;
           }
-          overlord.addService(PID, SID);
           addService(PID, SID);
           break;
         case '3': // delete
@@ -613,12 +612,14 @@ public class Terminal extends IOAuthorization {
   private void addService(String PID, String SID) {
     final Field[] addServiceFields = {
             new Field("Name", 25, text),
-            new Field("Code", 6,text),
+            new Field("Code", 6,empty),
             new Field("cost", 6, currency),
-            new Field("ID", 9, text),
+            new Field("ID", 9, empty),
     };
     String[] newService = new String[addServiceFields.length + 1];
     queryFields(addServiceFields, newService);
+    newService[1] = SID;
+    newService[3] = PID;
 
     int returnCode = overlord.addService(newService);
     if (returnCode < 0) {
@@ -631,6 +632,9 @@ public class Terminal extends IOAuthorization {
     boolean rejected = true;
     for (int i = 0; i < fields.length; i++) {
       Field field = fields[i];
+      if(field.fieldType == FieldType.empty){
+        continue;
+      }
       String input;
       do {
         System.out.printf("Enter %s: ", field);
