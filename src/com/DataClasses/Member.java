@@ -37,4 +37,11 @@ public class Member extends User{
 
         return 1;
     }
+
+    public String[] getAll() {
+        String[] all = new String[7];
+        System.arraycopy(super.getAll(), 0, all, 0, 6);
+        all[6] = status;
+        return all;
+    }
 }

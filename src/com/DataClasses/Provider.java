@@ -50,4 +50,13 @@ public class Provider extends User{
         System.out.println("Provider Information:");
         super.display();
     }
+
+    public String[] getAll() {
+        String[] all = new String[6+serviceCodes.size()];
+        System.arraycopy(super.getAll(), 0, all, 0, 6);
+        for (int i = 0; i < serviceCodes.size(); i++) {
+            all[6+i] = serviceCodes.get(i);
+        }
+        return all;
+    }
 }
