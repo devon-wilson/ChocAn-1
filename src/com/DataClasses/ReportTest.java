@@ -88,11 +88,11 @@ class ReportTest {
         }
         toChange = new String("Test");
         if(myReport.changeAddress(toChange) != 0){
-            fail("Valid adress change failed");
+            fail("Valid address change failed");
         }
         String check = myReport.get(2);
         if(check.equals(toChange) == false){
-            fail("Adress does not match");
+            fail("Address does not match");
         }
     }
 

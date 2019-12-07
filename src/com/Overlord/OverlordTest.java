@@ -235,10 +235,14 @@ class OverlordTest {
 
   @Test
   void requestDirectory() {
-  }
+    assertEquals(-2,overlord.requestDirectory(), "with no provider");
 
-  @Test
-  void generateBill() {
+    overlord.login(1,"123456789");
+
+
+    assertEquals(1,overlord.requestDirectory(), "with no provider");
+
+
   }
 
   @ParameterizedTest(name = "{1}")
@@ -256,7 +260,16 @@ class OverlordTest {
 
   @Test
   void isMemberValid() {
-    assertEquals(false, overlord.isMemberValid());
+    assertEquals(false, overlord.isMemberValid(), "no member checked in");
+
+    overlord.login(1, "123456789");
+    overlord.memberCheckIn("123456789");
+
+    assertEquals(false, overlord.isMemberValid(), "suspended member checked in");
+
+    overlord.memberCheckIn("987654321");
+    assertEquals(true, overlord.isMemberValid(), "valid member checked in");
+
   }
 
   @Test
@@ -264,32 +277,63 @@ class OverlordTest {
     assertEquals(false, overlord.isMemberSuspended());
   }
 
-  @Test
-  void getMember() {
+  @ParameterizedTest(name = "{2}")
+  @CsvSource({
+          "100010001,0,member doesn't exist",
+          "123456789,1,member exists",
+  })
+  void getMember(String id, boolean expectNotNull, String message) {
+    if (expectNotNull) {
+      assertNotNull(overlord.getMember(id), message);
+    } else {
+      assertNull(overlord.getMember(id), message);
+    }
   }
 
-  @Test
-  void getProvider() {
+  @ParameterizedTest(name = "{2}")
+  @CsvSource({
+          "000000000,0,provider doesn't exist",
+          "123456789,1,provider exists",
+  })
+  void getProvider(String id, boolean expectNotNull, String message) {
+    if (expectNotNull) {
+      assertNotNull(overlord.getProvider(id), message);
+    } else {
+      assertNull(overlord.getProvider(id), message);
+    }
   }
 
-  @Test
-  void getService() {
+  @ParameterizedTest(name = "{2}")
+  @CsvSource({
+          "000000000,0,service doesn't exist",
+          "123456789,1,service exists",
+  })
+  void getService(String id, boolean expectNotNull, String message) {
+    if (expectNotNull) {
+      assertNotNull(overlord.getService(id), message);
+    } else {
+      assertNull(overlord.getService(id), message);
+    }
   }
 
   @Test
   void viewMembers() {
+    overlord.viewMembers();
   }
 
   @Test
   void viewProviders() {
+    overlord.viewProviders();
   }
 
   @Test
   void viewServices() {
+    overlord.viewServices();
   }
 
   @Test
   void viewDirectory() {
+    overlord.viewDirectory("123456789");
   }
 }
 

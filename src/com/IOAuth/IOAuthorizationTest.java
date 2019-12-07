@@ -1,5 +1,6 @@
 package com.IOAuth;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -8,17 +9,21 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class IOAuthorizationTest {
+  static IOAuthorization IO;
+
+  @BeforeEach
+  void setUp() {
+    IO = new IOAuthorization();
+  }
 
   @Test
   void constructor() {
-    IOAuthorization IO = new IOAuthorization();
     assertNotNull(IO, "IOAuth instantiated");
   }
 
   @ParameterizedTest(name = "Input string: {0} expecting: {1}")
   @CsvFileSource(resources =  "tests/menutests.csv")
   void validateMenu(String input, int expected) {
-    IOAuthorization IO = new IOAuthorization();
     assertEquals(expected, IO.validateMenu(input, 8), String.format("%s expects %d", input, expected));
   }
 
@@ -39,26 +44,19 @@ class IOAuthorizationTest {
           "1,312,-1,max length too high",
   })
   void validateCurrency(String input, int maxLength, int expected, String message) {
-    IOAuthorization IO = new IOAuthorization();
     assertEquals(expected, IO.validateCurrency(input, maxLength), message);
   }
 
   @ParameterizedTest(name = "Input date string: {0} expecting: {1}")
   @CsvFileSource(resources =  "tests/datetests.csv")
   void validateDate(String input, int expected) {
-    IOAuthorization IO = new IOAuthorization();
     assertEquals(expected, IO.validateDate(input));
   }
 
-  @Test
-  void validateDateTime() {
-    IOAuthorization IO = new IOAuthorization();
-  }
-
-  @ParameterizedTest(name = "Input tie string: {0} expecting: {1}")
+  @ParameterizedTest(name = "Input time string: {0} expecting: {1}")
   @CsvFileSource(resources =  "tests/timetests.csv")
-  void validateTime() {
-    IOAuthorization IO = new IOAuthorization();
+  void validateTime(String input, int expected) {
+    assertEquals(expected, IO.validateTime(input));
   }
 
 
@@ -78,7 +76,6 @@ class IOAuthorizationTest {
           ".      .,-1",
   })
   void validateID(String input, int expected) {
-    IOAuthorization IO = new IOAuthorization();
 
     assertEquals(expected, IO.validateID(input, 8));
 
@@ -87,7 +84,6 @@ class IOAuthorizationTest {
   @ParameterizedTest(name = "Input string: {0} expecting: {1}")
   @CsvFileSource(resources =  "tests/commenttests.csv")
   void validateTextLength(String input, int expected) {
-    IOAuthorization IO = new IOAuthorization();
     assertEquals(expected, IO.validateTextLength(input, 100));
   }
 }
