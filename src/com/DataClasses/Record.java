@@ -57,4 +57,15 @@ public class Record {
         components[6] = cost;
         return components;
     }
+
+    public void display(){
+        System.out.println(currDateTime);
+        System.out.println(dateProvided);
+        System.out.println(providerID);
+        System.out.println(memberID);
+        System.out.println(serviceCode);
+        System.out.println(comment);
+        System.out.println(cost);
+
+    }
 }

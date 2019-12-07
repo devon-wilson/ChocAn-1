@@ -367,9 +367,7 @@ public class Overlord extends DataBaseManager<Object> {
       ArrayList<Record> userRecords = (ArrayList<Record>) findData(4, memberID);
       for (Record userRecord : userRecords) {
         String [] components = userRecord.getAll();
-        if(components[3].equals(memberID)){
-          ReadWrite.fileWrite(outputFile, components, true);
-        }
+        ReadWrite.fileWrite(outputFile, components, true);
 
       }
       return 1;
@@ -403,19 +401,18 @@ public class Overlord extends DataBaseManager<Object> {
       ReadWrite.fileWrite(outputFile, "", true);
       ReadWrite.fileWrite(outputFile, "Reports: ", true);
       ArrayList<Record> providerRecords = (ArrayList<Record>) findData(4, providerID);
+      //ArrayList<ArrayList<Record>> providerLists = getAll(4);
       String [] record;
       int fee = 0;
-      for(Record providerRecord : providerRecords){
-        record = providerRecord.getAll();
-        if(record[2].equals(providerID) ==  true){
+      for(Record i : providerRecords){
+        record = i.getAll();
           try{
             fee += Integer.parseInt(record[6]);
           }
           catch(NumberFormatException e){
             return -1;
           }
-          ReadWrite.fileWrite(outputFile, record, true);
-        }
+        ReadWrite.fileWrite(outputFile, record, true);
       }
       try{
         String number = Integer.toString(providerRecords.size());

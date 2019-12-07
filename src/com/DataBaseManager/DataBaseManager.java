@@ -94,6 +94,8 @@ public class DataBaseManager<Object> {
                 case "Directory":
                     newObject = (Object) new Service(lineData);
                     break;
+                case "Record":
+                    newObject = (Object) new Record(lineData);
             }
 
             if (newObject != null)
