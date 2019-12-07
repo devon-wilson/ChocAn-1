@@ -578,6 +578,7 @@ public class Overlord extends DataBaseManager<Object> {
     try {
       ReadWrite.fileWrite("records/" + currentMember.get(1) + ".csv", data, true);
       addTreeData(4, currentMember.get(1), record);
+      addTreeData(5, currentUser.get(1), record);
       return 1;
     }
     catch (IOException a) {

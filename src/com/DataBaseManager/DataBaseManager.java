@@ -17,14 +17,47 @@ public class DataBaseManager<Object> {
     protected TreeMap<String, Object> providers;
     protected TreeMap<String, Object> members;
     protected TreeMap<String, Object> services;
-    protected TreeMap<String, Object> recordsList;
+    protected TreeMap<String, ArrayList> memberRecords;
+    protected TreeMap<String, ArrayList> providerRecords;
 
     public DataBaseManager() {
-        this.managers = buildTree("data/managers.csv");
-        this.providers = buildTree("data/providers.csv");
-        this.members = buildTree("data/members.csv");
+        this.managers = buildTree("data/users/managers.csv");
+        this.providers = buildTree("data/users/providers.csv");
+        this.members = buildTree("data/users/members.csv");
         this.services = buildTree("data/providerDirectory.csv");
-        this.recordsList = buildTree("data/records.csv");
+        this.memberRecords = buildRecordTree(3, "data/records/records.csv");
+        this.providerRecords = buildRecordTree(2, "data/records/records.csv");
+    }
+
+    private TreeMap<String, ArrayList> buildRecordTree(int type, String filename) {
+        TreeMap<String, ArrayList> root = new TreeMap<>();
+        String[] fileData;
+
+        if (type > 3 || type < 2)
+            return null;
+
+        if((fileData = ReadWrite.fileRead(filename)) == null)
+            return null;
+
+        for (int i = 1; i < fileData.length; i++) {
+            String[] lineData = fileData[i].split(",");
+
+            /* Use arrayLists of records
+            store record arrayLists organized by provider ID # as a key.
+             */
+            ArrayList recordList;
+            Record newObject = new Record(lineData);
+
+            recordList = root.get(lineData[type]);
+            if(recordList == null){
+                recordList = new ArrayList<Record>();
+                recordList.add(newObject);
+                root.put(lineData[type], recordList);
+            }
+            else
+                recordList.add(newObject);
+        }
+        return root;
     }
 
     private TreeMap<String, Object> buildTree(String filename) {
@@ -61,30 +94,11 @@ public class DataBaseManager<Object> {
                 case "Directory":
                     newObject = (Object) new Service(lineData);
                     break;
-                case "Record":
-                    newObject = (Object) new Record(lineData);
             }
 
-            if (newObject != null) {
-                /* Add records based on 5th element (service #).
-                Add all other  objects based on 2nd element (ID #).
-                 */
-                if (objectType.equals("Record")) {
-                    recordList = (ArrayList<Record>) root.get(lineData[2]);
-                    if(recordList == null){
-                        recordList = new ArrayList<Record>();
-                        recordList.add((Record) newObject);
-                        root.put(lineData[2], (Object) recordList);
-                    }
-                    else
-                        recordList.add((Record) newObject);
-                }
-                else {
-                    root.put(lineData[1], newObject);
-                }
-            }
+            if (newObject != null)
+                root.put(lineData[1], newObject);
         }
-
         return root;
     }
 
@@ -100,7 +114,8 @@ public class DataBaseManager<Object> {
         1 - PROVIDER
         2 - MEMBER
         3 - SERVICE
-        4 - RECORD
+        4 - MEMBER RECORD
+        5 - PROVIDER RECORD
          */
         switch(type) {
 
@@ -113,7 +128,7 @@ public class DataBaseManager<Object> {
             case (3):
                 return services.get(key);
             case (4):
-                return recordsList.get(key);
+                return (Object) memberRecords.get(key);
         }
         return null;
     }
@@ -130,7 +145,8 @@ public class DataBaseManager<Object> {
         1 - PROVIDER
         2 - MEMBER
         3 - SERVICE
-        4 - RECORD
+        4 - MEMBER RECORD
+        5 - PROVIDER RECORD
          */
         switch(type) {
 
@@ -143,7 +159,7 @@ public class DataBaseManager<Object> {
             case (3):
                 return services.remove(key);
             case (4):
-                return recordsList.remove(key);
+                return (Object) memberRecords.remove(key);
         }
         return null;
     }
@@ -160,22 +176,30 @@ public class DataBaseManager<Object> {
         1 - PROVIDER
         2 - MEMBER
         3 - SERVICE
-        4 - RECORD
+        4 - MEMBER RECORD
+        5 - PROVIDER RECORD
          */
-        switch(type) {
+        try {
+            switch (type) {
 
-            case (0):
-                return managers.put(key, obj);
-            case (1):
-                return providers.put(key, obj);
-            case (2):
-                return members.put(key, obj);
-            case (3):
-                return services.put(key, obj);
-            case (4):
-                return recordsList.put(key, obj);
+                case (0):
+                    return managers.put(key, obj);
+                case (1):
+                    return providers.put(key, obj);
+                case (2):
+                    return members.put(key, obj);
+                case (3):
+                    return services.put(key, obj);
+                case (4):
+                    return (Object) memberRecords.put(key, (ArrayList) obj);
+                case (5):
+                    return (Object) providerRecords.put(key, (ArrayList) obj);
+            }
+            return null;
         }
-        return null;
+        catch (ClassCastException a) {
+            return null;
+        }
     }
 
     /* Update an item
@@ -190,7 +214,8 @@ public class DataBaseManager<Object> {
         1 - PROVIDER
         2 - MEMBER
         3 - SERVICE
-        4 - RECORD
+        4 - MEMBER RECORD
+        5 - PROVIDER RECORD
          */
         switch(type) {
 
@@ -203,12 +228,14 @@ public class DataBaseManager<Object> {
             case (3):
                 return services.replace(key, obj);
             case (4):
-                return recordsList.replace(key, obj);
+                return (Object) memberRecords.replace(key, (ArrayList) obj);
+            case (5):
+                return (Object) providerRecords.replace(key, (ArrayList) obj);
         }
         return null;
     }
 
-    protected ArrayList<Object> getAll(int type) {
+    protected ArrayList getAll(int type) {
         if (type < 0 || type > 4)
             return null;
 
@@ -221,7 +248,8 @@ public class DataBaseManager<Object> {
             1 - PROVIDER
             2 - MEMBER
             3 - SERVICE
-            4 - RECORD
+            4 - MEMBER RECORD
+            5 - PROVIDER RECORD
              */
             switch(type) {
 
@@ -238,8 +266,9 @@ public class DataBaseManager<Object> {
                     values = services.values();
                     break;
                 case (4):
-                    values = recordsList.values();
-                    break;
+                    return (ArrayList) memberRecords.values();
+                case (5):
+                    return (ArrayList) providerRecords.values();
             }
             if (values == null)
                 return null;

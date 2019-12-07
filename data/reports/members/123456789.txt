@@ -1,0 +1,10 @@
+Member Report:
+Malcolm X
+123456789
+2645 112th Street
+Portland
+OR
+97320
+
+Reports:
+05-20-2019 12:40:29,05-20-2019,123456789,123456789,123456,No comment,100
