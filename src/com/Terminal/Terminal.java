@@ -95,13 +95,11 @@ public class Terminal extends IOAuthorization {
 
     do {
       System.out.println("\nChoose Provider option:" +
-              "\n *** Under Construction ***" +
               "\n 1 - Check in member" +
               "\n 2 - Generate record of service" +
               "\n 3 - Request provider directory" +
               "\n 4 - Generate ChocAn bill" +
-              "\n q - Quit (logout)" +
-              "\n *** Under Construction ***"
+              "\n q - Quit (logout)"
       );
       breadcrumbPrompt();
       choice = getChoice();
@@ -443,8 +441,7 @@ public class Terminal extends IOAuthorization {
           if(SID == null){
             break;
           }
-          overlord.addService(PID, SID);
-          addService();
+          addService(PID, SID);
           break;
         case '3': // delete
           SID = getID(dataType.SERVICE);
@@ -515,16 +512,19 @@ public class Terminal extends IOAuthorization {
       return false;
     returnCode = overlord.memberCheckIn(memberID);
     if (returnCode < 0) {
-      System.out.println("Could not check in member: " + memberID);
-      // needs reason valid or suspended?
-      System.out.println("Invalid");
-      // or suspended
+      System.out.println("\nInvalid Member");
+      System.out.println("");
       return false;
     }
-    System.out.println("Validated");
 
-    overlord.viewMember();
-    return true;
+    if (overlord.isMemberValid()) {
+      System.out.println("\nValidated");
+      return true;
+    } else {
+      System.out.println("\nSuspended Member ");
+      overlord.memberCheckOut();
+      return false;
+    }
   }
 
   private String getID(dataType type) {
@@ -546,10 +546,11 @@ public class Terminal extends IOAuthorization {
       return null;
     }
     String input;
+    String quit = new String("q");
     do {
       input = in.nextLine();
       System.out.println("Press q to quit.");
-      if(input.equals("q\n") == true){
+      if(input.equals(quit) == true){
         return null;
       }
 
@@ -609,11 +610,32 @@ public class Terminal extends IOAuthorization {
       System.out.println(translations[getReturnCodeIndex(returnCode)]);
     }
   }
+  private void addService(String PID, String SID) {
+    final Field[] addServiceFields = {
+            new Field("Name", 25, text),
+            new Field("Code", 6,empty),
+            new Field("cost", 6, currency),
+            new Field("ID", 9, empty),
+    };
+    String[] newService = new String[addServiceFields.length + 1];
+    queryFields(addServiceFields, newService);
+    newService[1] = SID;
+    newService[3] = PID;
+
+    int returnCode = overlord.addService(newService);
+    if (returnCode < 0) {
+      String[] translations = {"Failed to add", "Not authorized for this action"};
+      System.out.println(translations[getReturnCodeIndex(returnCode)]);
+    }
+  }
 
   void queryFields(Field[] fields, String[] inputArray) {
     boolean rejected = true;
     for (int i = 0; i < fields.length; i++) {
       Field field = fields[i];
+      if(field.fieldType == FieldType.empty){
+        continue;
+      }
       String input;
       do {
         System.out.printf("Enter %s: ", field);

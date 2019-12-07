@@ -289,12 +289,21 @@ public class Overlord extends DataBaseManager<Object> {
     if (serviceData == null)
       return -3;
 
+
     Service toAdd = new Service(serviceData);
-    if(addTreeData(3, serviceData[1], toAdd) == null)
-      return 1;
+    if(addTreeData(3, serviceData[1], toAdd) != null) {
+      try {
+        Provider toReturn = (Provider) findData(1, serviceData[3]);
+        if (toReturn == null)
+          return -1;
+        toReturn.addService(serviceData[1]);
+        return 1;
+      } catch (ClassCastException a) {
+        return -1;
+      }
+    }
     return -1;
   }
-
   public int addService(String PID, String SID){
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -303,6 +312,7 @@ public class Overlord extends DataBaseManager<Object> {
     if(toReturnP == null)
       return -1;
     toReturnP.addService(SID);
+
 
     return 1;
   }
@@ -317,7 +327,6 @@ public class Overlord extends DataBaseManager<Object> {
       return 1;
     return -1;
   }
-
   public int removeService(String PID, String SID){
     if (currentUser == null || !(currentUser instanceof Manager))
       return -2;
@@ -576,7 +585,11 @@ public class Overlord extends DataBaseManager<Object> {
   }
 
   public int requestDirectory() {
-    return 0;
+    if (currentUser == null)
+      return -2;
+
+    viewDirectory(currentUser.get(1));
+    return 1;
   }
 
   public int generateBill() {
