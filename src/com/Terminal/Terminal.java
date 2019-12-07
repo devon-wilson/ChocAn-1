@@ -745,6 +745,8 @@ public class Terminal extends IOAuthorization {
             new Field("Date Provided", 0, date),
             new Field("Service Code", 6, id),
             new Field("Comments", 100, text),
+            new Field("Member ID", 9, text),
+
     };
     String[] reportInfo = new String[serviceReportFields.length];
     queryFields(serviceReportFields, reportInfo);
