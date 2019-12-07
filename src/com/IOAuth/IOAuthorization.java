@@ -32,7 +32,7 @@ public class IOAuthorization {
 	protected int validateCurrency(String input, int maxLength) {
 		double maxValue;
 
-		if (isNotType(input, "double") || input.length() > maxLength)
+		if (isNotType(input, "double") || input.length() > maxLength || maxLength > 311)
 			return -1;
 
 		maxValue = Math.pow(10, maxLength - 3);

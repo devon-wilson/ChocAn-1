@@ -597,7 +597,7 @@ public class Terminal extends IOAuthorization {
     final Field[] addServiceFields = {
             new Field("Name", 25, text),
             new Field("Code", 6,text),
-            new Field("cost", 6, text),
+            new Field("cost", 6, currency),
             new Field("ID", 9, text),
     };
     String[] newService = new String[addServiceFields.length + 1];

@@ -33,6 +33,10 @@ class IOAuthorizationTest {
           "99999.99,8,0,99999.99 is too long",
           "100000,8,-1,10000",
           "999999.99,8,-1,999999.99 is too long",
+          "hat,6,-1,not a number",
+          "an arm and a leg,20,-1,not a number",
+          "1,311,0,max length very high",
+          "1,312,-1,max length too high",
   })
   void validateCurrency(String input, int maxLength, int expected, String message) {
     IOAuthorization IO = new IOAuthorization();
