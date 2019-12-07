@@ -5,6 +5,7 @@ import com.ReadWrite.ReadWrite;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.TreeMap;
 
 public class DataBaseManager<Object> {
@@ -297,7 +298,7 @@ public class DataBaseManager<Object> {
         ArrayList<String> list = new ArrayList<String>();
 
         // Determines first line of file
-        String[] firstLine = {"Manager", "Provider", "Member", "Service"};
+        String[] firstLine = {"Manager", "Provider", "Member", "Directory"};
         list.add(firstLine[type]);
 
         // Get data from all objects in tree
