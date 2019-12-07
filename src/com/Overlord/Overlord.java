@@ -393,7 +393,7 @@ public class Overlord extends DataBaseManager<Object> {
 
   public String[] getMember(String code){
     try {
-      Member toReturn = (Member) findData(1, code);
+      Member toReturn = (Member) findData(2, code);
       if (toReturn == null)
         return null;
       return toReturn.getAll();
@@ -439,7 +439,6 @@ public class Overlord extends DataBaseManager<Object> {
       return;
     }
   }
-
   public void viewProviders(){
     ArrayList<Object> allProviders = getAll(1);
     if (allProviders == null)
@@ -454,7 +453,6 @@ public class Overlord extends DataBaseManager<Object> {
       return;
     }
   }
-
   public void viewServices(){
     ArrayList<Object> allServices = getAll(3);
     if (allServices == null)

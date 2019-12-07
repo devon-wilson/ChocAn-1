@@ -264,6 +264,7 @@ public class Terminal extends IOAuthorization {
 
       switch (choice) {
         case '1': // view
+          System.out.println("Enter member ID");
           MID = getID(dataType.MEMBER);
           if(MID == null){
             break;
@@ -273,12 +274,13 @@ public class Terminal extends IOAuthorization {
           display(components);
           break;
         case '2':
-          //overlord.viewMembers();
+          overlord.viewMembers();
           break;
         case '3': // add
           addMember();
           break;
         case '4': // delete
+          System.out.println("Enter member ID");
           MID = getID(dataType.MEMBER);
           if(MID == null){
             break;
@@ -324,6 +326,7 @@ public class Terminal extends IOAuthorization {
 
       switch (choice) {
         case '1': // view
+          System.out.println("Enter provider ID");
           PID = getID(dataType.PROVIDER);
           if(PID == null){
             break;
@@ -333,12 +336,13 @@ public class Terminal extends IOAuthorization {
           display(components);
           break;
         case '2':
-          //overlord.viewProviders();
+          overlord.viewProviders();
           break;
         case '3': // add
           addProvider();
           break;
         case '4': // delete
+          System.out.println("Enter provider ID");
           PID = getID(dataType.PROVIDER);
           if(PID == null){
             break;
@@ -375,6 +379,7 @@ public class Terminal extends IOAuthorization {
       String SID = null;
       switch (choice){
         case '1': // view
+          System.out.println("Enter service code");
           SID = getID(dataType.SERVICE);
           if(SID == null){
             break;
@@ -384,12 +389,13 @@ public class Terminal extends IOAuthorization {
           display(components);
           break;
         case '2':
-          //overlord.viewServices();
+          overlord.viewServices();
           break;
         case '3': // add
           addService();
           break;
         case '4': // delete
+          System.out.println("Enter service code");
           SID = getID(dataType.SERVICE);
           if(SID == null){
             break;
@@ -429,18 +435,16 @@ public class Terminal extends IOAuthorization {
       String SID = null;
       switch (choice){
         case '1': // view
-          SID = getID(dataType.SERVICE);
-          if(SID == null){
-            break;
-          }
           overlord.viewDirectory(PID);
           break;
         case '2': // add
+          System.out.println("Enter service code");
           SID = getID(dataType.SERVICE);
           if(SID == null){
             break;
           }
           overlord.addService(PID, SID);
+          addService();
           break;
         case '3': // delete
           SID = getID(dataType.SERVICE);
@@ -462,6 +466,9 @@ public class Terminal extends IOAuthorization {
 
 
   private void display(String [] toDisplay){
+    if(toDisplay == null){
+      return;
+    }
     for(int i = 0; i < toDisplay.length; ++i){
       System.out.println(toDisplay[i]);
     }
@@ -542,7 +549,7 @@ public class Terminal extends IOAuthorization {
     do {
       input = in.nextLine();
       System.out.println("Press q to quit.");
-      if(input.equals('q') == true){
+      if(input.equals("q\n") == true){
         return null;
       }
 
