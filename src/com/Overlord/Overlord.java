@@ -74,6 +74,39 @@ public class Overlord extends DataBaseManager<Object> {
     }
   }
 
+  private boolean writeToDisk() {
+    try {
+      ArrayList<String> treeData = treeToStringArray(0);
+      boolean append = false;
+      for (String i : treeData) {
+        ReadWrite.fileWrite("data/users/managers.csv", i, append);
+        append = true;
+      }
+      treeData = treeToStringArray(1);
+      append = false;
+      for (String i : treeData) {
+        ReadWrite.fileWrite("data/users/providers.csv", i, append);
+        append = true;
+      }
+      treeData = treeToStringArray(2);
+      append = false;
+      for (String i : treeData) {
+        ReadWrite.fileWrite("data/users/members.csv", i, append);
+        append = true;
+      }
+      treeData = treeToStringArray(3);
+      append = false;
+      for (String i : treeData) {
+        ReadWrite.fileWrite("data/providerDirectory.csv", i, append);
+        append = true;
+      }
+      return true;
+    }
+    catch (IOException a) {
+      return false;
+    }
+  }
+
   /**
    * Logout
    *
@@ -81,7 +114,8 @@ public class Overlord extends DataBaseManager<Object> {
    */
   public int logout() {
     // Need to write all trees to disk on logout
-
+    if(!writeToDisk())
+      System.out.println("Failed to write memory data to disk.");
     this.currentUser = null;
     this.currentMember = null;
     this.currentServices = null;
@@ -625,6 +659,4 @@ public class Overlord extends DataBaseManager<Object> {
     }
     return 0;
   }
-
-
 }

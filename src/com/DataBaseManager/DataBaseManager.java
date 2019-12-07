@@ -13,12 +13,12 @@ public class DataBaseManager<Object> {
     Returns the number of objects added to the tree.
      */
 
-    protected TreeMap<String, Object> managers;
-    protected TreeMap<String, Object> providers;
-    protected TreeMap<String, Object> members;
-    protected TreeMap<String, Object> services;
-    protected TreeMap<String, ArrayList> memberRecords;
-    protected TreeMap<String, ArrayList> providerRecords;
+    private TreeMap<String, Object> managers;
+    private TreeMap<String, Object> providers;
+    private TreeMap<String, Object> members;
+    private TreeMap<String, Object> services;
+    private TreeMap<String, ArrayList> memberRecords;
+    private TreeMap<String, ArrayList> providerRecords;
 
     public DataBaseManager() {
         this.managers = buildTree("data/users/managers.csv");
@@ -129,6 +129,8 @@ public class DataBaseManager<Object> {
                 return services.get(key);
             case (4):
                 return (Object) memberRecords.get(key);
+            case (5):
+                return (Object) providerRecords.get(key);
         }
         return null;
     }
@@ -160,6 +162,8 @@ public class DataBaseManager<Object> {
                 return services.remove(key);
             case (4):
                 return (Object) memberRecords.remove(key);
+            case (5):
+                return (Object) providerRecords.remove(key);
         }
         return null;
     }
@@ -279,5 +283,51 @@ public class DataBaseManager<Object> {
             return null;
         }
 
+    }
+
+    protected ArrayList<String> treeToStringArray(int type) {
+        /*
+        Each tree has it's own integer code
+        0 - MANAGER
+        1 - PROVIDER
+        2 - MEMBER
+        3 - SERVICE
+         */
+
+        ArrayList<String> list = new ArrayList<String>();
+
+        // Determines first line of file
+        String[] firstLine = {"Manager", "Provider", "Member", "Service"};
+        list.add(firstLine[type]);
+
+        // Get data from all objects in tree
+        ArrayList allData = getAll(type);
+        for (java.lang.Object i : allData) {
+
+            String[] line = null;
+
+            switch (type) {
+                case (0):
+                    Manager manager = (Manager) i;
+                    line = manager.getAll();
+                    break;
+                case (1):
+                    Provider provider = (Provider) i;
+                    line = provider.getAll();
+                    break;
+                case (2):
+                    Member member = (Member) i;
+                    line = member.getAll();
+                    break;
+                case (3):
+                    Service service = (Service) i;
+                    line = service.getAll();
+                    break;
+            }
+            String lineData = String.join(",", line);
+            list.add(lineData);
+        }
+
+        return list;
     }
 }
