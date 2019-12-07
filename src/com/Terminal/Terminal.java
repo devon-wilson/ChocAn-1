@@ -16,7 +16,7 @@ import static com.Terminal.FieldType.*;
  * </p>
  */
 public class Terminal extends IOAuthorization {
-  private enum dataType {MEMBER, PROVIDER, SERVICE;}
+  private enum dataType {MEMBER, PROVIDER, SERVICE}
   final private Overlord overlord;
   final private Scanner in;
   final String prompt = "$ ";
@@ -142,9 +142,7 @@ public class Terminal extends IOAuthorization {
               "\n 2 - Generate record of service" +
               "\n 3 - Request provider directory" +
               "\n 4 - Generate ChocAn bill" +
-              "\n 5 - 5" +
-              "\n 6 - 6" +
-              "\n 7 - 7" +
+              "\n 5 - Enter service" +
               "\n q - Quit (check out)"
       );
       breadcrumbPrompt();
@@ -164,10 +162,7 @@ public class Terminal extends IOAuthorization {
           generateChocAnBill();
           break;
         case '5':
-          break;
-        case '6':
-          break;
-        case '7':
+          enterService();
           break;
         case 'q':
           break;
@@ -715,6 +710,15 @@ public class Terminal extends IOAuthorization {
     overlord.requestDirectory();
   }
 
+  private void enterService() {
+    char choice;
+      String serviceCode = getID(dataType.SERVICE);
+      System.out.printf("Entered %s\n Is this correct? ");
+      choice = getChoice();
+    if (choice == 'y')
+      overlord.searchService(serviceCode);
+  }
+
   private boolean generateChocAnBill() {
     System.out.println("Generate ChocAn Bill");
     String date;
@@ -746,13 +750,7 @@ public class Terminal extends IOAuthorization {
 
 
 
-  private void generateReports() {
-    //overlord.genMemberReport;
-  }
 
-  private void viewReports() {
-    //overlord.
-  }
 
   private String getServiceCode() {
     System.out.print("please enter service code");
