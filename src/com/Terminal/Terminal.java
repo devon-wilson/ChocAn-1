@@ -205,6 +205,7 @@ public class Terminal extends IOAuthorization {
               "\n 2 - Manage providers" +
               "\n 3 - Manage services" +
               "\n 4 - Manage provider directories" +
+              "\n 5 - Generate reports" +
               "\n q - Quit"
       );
       breadcrumbPrompt();
@@ -222,6 +223,9 @@ public class Terminal extends IOAuthorization {
           break;
         case '4':
           manageProviderDirectory();
+          break;
+        case '5':
+          manageReports();
           break;
         case 'q':
           break;
@@ -462,6 +466,15 @@ public class Terminal extends IOAuthorization {
     } while (choice != 'q');
 
     breadcrumbs.pop();
+  }
+  private void manageReports(){
+      char choice;
+      String managerID;
+      System.out.println("Terminal.manageMembers");
+      breadcrumbs.push("members");
+
+      
+
   }
 
 
