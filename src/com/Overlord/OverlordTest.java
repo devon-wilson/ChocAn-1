@@ -1,14 +1,22 @@
 package com.Overlord;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.io.File;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OverlordTest {
+
+  @TempDir
+  File tempDir;
+
   @Test
   void InstantiateOverlordTest() {
     System.out.println("Testing: instantiating overlord");
@@ -160,7 +168,7 @@ class OverlordTest {
   void addRemoveService() {
     Overlord overlord = new Overlord();
 
-    String[] newService = {"Pedicure", "000001", "50.00"};
+    String[] newService = {"Pedicure", "000001", "50.00", "123456789"};
     assertEquals(-2, overlord.addService(newService), "no current user");
     assertEquals(-2, overlord.removeService("000001"), "no current user");
 
@@ -177,7 +185,7 @@ class OverlordTest {
 
     assertEquals(-3, overlord.removeService(null), "passed null to function");
 
-    assertEquals(-1, overlord.removeService("000001"), "passed null to function");
+    assertEquals(1, overlord.removeService("000001"), "passed current user manager and to function");
   }
 
   @Test
@@ -262,6 +270,53 @@ class OverlordTest {
     overlord.memberCheckIn("123456789");
 
     assertEquals(true, overlord.isMemberCheckedIn(), "Member is checked in");
+  }
+
+  @Test
+  void isMemberValid() {
+    Overlord overlord = new Overlord();
+    assertEquals(false, overlord.isMemberValid());
+  }
+
+  @Test
+  void isMemberSuspended() {
+    Overlord overlord = new Overlord();
+    assertEquals(false, overlord.isMemberSuspended());
+  }
+
+  @Test
+  void getMember() {
+    Overlord overlord = new Overlord();
+  }
+
+  @Test
+  void getProvider() {
+    Overlord overlord = new Overlord();
+  }
+
+  @Test
+  void getService() {
+    Overlord overlord = new Overlord();
+  }
+
+  @Test
+  void viewMembers() {
+    Overlord overlord = new Overlord();
+  }
+
+  @Test
+  void viewProviders() {
+    Overlord overlord = new Overlord();
+  }
+
+  @Test
+  void viewServices() {
+    Overlord overlord = new Overlord();
+  }
+
+  @Test
+  void viewDirectory() {
+    Overlord overlord = new Overlord();
   }
 }
 
